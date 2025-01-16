@@ -37,14 +37,15 @@
     map.on('load', function () {
       map.addSource('pmtiles-source', {
         type: 'vector',
-        url: 'pmtiles://https://uscuni.org/69333.pmtiles'
+        // url: 'pmtiles://https://uscuni.org/69333.pmtiles'
+        url: 'pmtiles://http://127.0.0.1:8000/complete.pmtiles'
       });
 
       map.addLayer({
         id: 'pmtiles-layer',
         type: 'fill',
         source: 'pmtiles-source',
-        'source-layer': '69333_clustersfgb', // Adjust this to match the actual layer name in your PMTiles
+        'source-layer': 'buildings', // Adjust this to match the actual layer name in your PMTiles
         paint: {
           "fill-color": [
             "match",
