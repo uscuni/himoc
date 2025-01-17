@@ -45,7 +45,7 @@
         id: 'pmtiles-layer',
         type: 'fill',
         source: 'pmtiles-source',
-        'source-layer': 'buildings', // Adjust this to match the actual layer name in your PMTiles
+        'source-layer': 'buildings',
         paint: {
           "fill-color": [
             "match",
@@ -57,7 +57,7 @@
             "4", "#f58231",
             "5", "#911eb4",
             "6", "#46f0f0",
-            "7", "#f032e6",
+            "7", "#f0d2e6",
             "8", "#bcf60c",
             "9", "#fabebe",
             "10", "#008080",
@@ -95,18 +95,55 @@
           ],
         },
       });
+
+      // show the cluster on click
+      map.on('click', 'pmtiles-layer', function (e) {
+        new maplibregl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML('final_without_noise: ' + e.features[0].properties.final_without_noise)
+          .addTo(map);
+      });
+
+      map.on('mouseenter', 'pmtiles-layer', function () {
+        map.getCanvas().style.cursor = 'pointer';
+      });
+
+      map.on('mouseleave', 'pmtiles-layer', function () {
+        map.getCanvas().style.cursor = '';
+      });
+
+      // add regions hulls for debugging purposes
+      map.addSource('geojson-source', {
+        type: 'geojson',
+        data: 'http://127.0.0.1:8000/regions.geojson'
+      });
+
+      map.addLayer({
+        id: 'geojson-layer',
+        type: 'line',
+        source: 'geojson-source',
+        paint: {
+          'line-color': '#ffffff',
+          'line-width': 2,
+          'line-dasharray': [2, 2]
+        }
+      });
     });
+
     // add button to make map full screen
     map.addControl(new maplibregl.FullscreenControl());
+
     // specify to use the globe projection
     map.on('style.load', () => {
       map.setProjection({
-        type: 'globe', // Set projection to globe
+        type: 'globe',
       });
     });
+
     // include navigation control
     let nav = new maplibregl.NavigationControl();
     map.addControl(nav, 'top-left');
+
   </script>
 </body>
 
