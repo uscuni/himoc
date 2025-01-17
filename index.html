@@ -1,0 +1,240 @@
+<html>
+
+<head>
+  <title>Urban Landscape of Central Europe</title>
+  <meta charset="utf-8" />
+  <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.css' />
+  <script src='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.js'></script>
+  <script src="https://unpkg.com/pmtiles@4.2.1/dist/pmtiles.js"></script>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    #map {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+  <script type="text/javascript">
+    // add the PMTiles plugin to the maplibregl global.
+    // setting metadata = true fills out the "attribution" field of the source, and is required for some inspector applications,
+    // but requires an additional blocking HTTP request before loading the map.
+    let protocol = new pmtiles.Protocol({ metadata: true });
+    maplibregl.addProtocol("pmtiles", protocol.tile);
+
+    const map = new maplibregl.Map({
+      style: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+      container: "map",
+      zoom: 13,
+      center: [14.436035, 50.078292],
+    });
+    map.showTileBoundaries = false;
+    map.on('load', function () {
+      map.addSource('pmtiles-source', {
+        type: 'vector',
+        // url: 'pmtiles://http://127.0.0.1:8000/complete.pmtiles'
+        url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/complete.pmtiles'
+      });
+
+      map.addLayer({
+        id: 'pmtiles-layer',
+        type: 'fill',
+        source: 'pmtiles-source',
+        maxzoom: 24,
+        'source-layer': 'buildings',
+        paint: {
+          "fill-color": [
+            "match",
+            ["get", "final_without_noise"],
+            "0", "rgb(141, 211, 199)",
+            "1", "rgb(255, 255, 179)",
+            "2", "rgb(190, 186, 218)",
+            "3", "rgb(251, 128, 114)",
+            "4", "rgb(128, 177, 211)",
+            "5", "rgb(253, 180, 98)",
+            "6", "rgb(179, 222, 105)",
+            "7", "rgb(252, 205, 229)",
+            "8", "rgb(217, 217, 217)",
+            "9", "rgb(188, 128, 189)",
+            "10", "rgb(204, 235, 197)",
+            "11", "rgb(255, 237, 111)",
+            "12", "rgb(154, 154, 121)",
+            "13", "rgb(40, 178, 109)",
+            "14", "rgb(150, 142, 239)",
+            "15", "rgb(190, 142, 20)",
+            "16", "rgb(255, 158, 251)",
+            "17", "rgb(16, 174, 170)",
+            "18", "rgb(138, 170, 57)",
+            "19", "rgb(215, 170, 158)",
+            "20", "rgb(182, 227, 255)",
+            "21", "rgb(109, 255, 194)",
+            "22", "rgb(162, 150, 162)",
+            "23", "rgb(89, 255, 255)",
+            "24", "rgb(146, 194, 142)",
+            "25", "rgb(198, 134, 93)",
+            "26", "rgb(255, 215, 182)",
+            "27", "rgb(194, 182, 97)",
+            "28", "rgb(138, 166, 162)",
+            "29", "rgb(65, 215, 243)",
+            "30", "rgb(202, 158, 247)",
+            "31", "rgb(206, 255, 251)",
+            "32", "rgb(219, 162, 194)",
+            "33", "rgb(57, 215, 158)",
+            "#cccccc" // default color
+          ],
+        },
+      });
+
+      // show the cluster on click
+      map.on('click', 'pmtiles-layer', function (e) {
+        new maplibregl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML('final_without_noise: ' + e.features[0].properties.final_without_noise)
+          .addTo(map);
+      });
+
+      map.on('mouseenter', 'pmtiles-layer', function () {
+        map.getCanvas().style.cursor = 'pointer';
+      });
+
+      map.on('mouseleave', 'pmtiles-layer', function () {
+        map.getCanvas().style.cursor = '';
+      });
+
+      // add regions hulls for debugging purposes
+      map.addSource('geojson-source', {
+        type: 'geojson',
+        data: 'http://127.0.0.1:8000/regions.geojson'
+      });
+
+      map.addLayer({
+        id: 'geojson-layer',
+        type: 'line',
+        source: 'geojson-source',
+        paint: {
+          'line-color': '#ffffff',
+          'line-width': 2,
+          'line-dasharray': [2, 2]
+        }
+      });
+
+      // add layer control
+      const layers = [
+        { id: 'pmtiles-layer', name: 'Buildings' },
+        { id: 'geojson-layer', name: 'Regions' }
+      ];
+
+      const layerControl = document.createElement('div');
+      layerControl.id = 'layer-control';
+      layerControl.style.position = 'absolute';
+      layerControl.style.top = '10px';
+      layerControl.style.right = '10px';
+      layerControl.style.backgroundColor = 'white';
+      layerControl.style.padding = '10px';
+      layerControl.style.borderRadius = '5px';
+      layerControl.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
+
+      layers.forEach(layer => {
+        const layerCheckbox = document.createElement('input');
+        layerCheckbox.type = 'checkbox';
+        layerCheckbox.id = layer.id;
+        layerCheckbox.checked = true;
+        layerCheckbox.onchange = (e) => {
+          map.setLayoutProperty(layer.id, 'visibility', e.target.checked ? 'visible' : 'none');
+        };
+
+        const layerLabel = document.createElement('label');
+        layerLabel.htmlFor = layer.id;
+        layerLabel.textContent = layer.name;
+
+        const layerControlItem = document.createElement('div');
+        layerControlItem.appendChild(layerCheckbox);
+        layerControlItem.appendChild(layerLabel);
+
+        layerControl.appendChild(layerControlItem);
+      });
+
+      document.body.appendChild(layerControl);
+
+
+      // add filter control for pmtiles-layer
+      const filterControl = document.createElement('div');
+      filterControl.id = 'filter-control';
+      filterControl.style.position = 'absolute';
+      filterControl.style.top = '80px';
+      filterControl.style.right = '10px';
+      filterControl.style.backgroundColor = 'white';
+      filterControl.style.padding = '10px';
+      filterControl.style.borderRadius = '5px';
+      filterControl.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
+
+      const filterLabel = document.createElement('label');
+      filterLabel.textContent = 'Filter by final_without_noise:';
+      filterControl.appendChild(filterLabel);
+
+      const filterSelect = document.createElement('select');
+      filterSelect.id = 'filter-select';
+
+      const allOption = document.createElement('option');
+      allOption.value = 'all';
+      allOption.textContent = 'All';
+      filterSelect.appendChild(allOption);
+
+      for (let i = 0; i <= 33; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = i;
+        filterSelect.appendChild(option);
+      }
+
+      filterSelect.onchange = (e) => {
+        const value = e.target.value;
+        if (value === 'all') {
+          map.setFilter('pmtiles-layer', null);
+        } else {
+          map.setFilter('pmtiles-layer', ['==', ['get', 'final_without_noise'], value]);
+        }
+      };
+
+      filterControl.appendChild(filterSelect);
+      document.body.appendChild(filterControl);
+
+    });
+    // add button to make map full screen
+    // map.addControl(new maplibregl.FullscreenControl());
+
+    // specify to use the globe projection
+    map.on('style.load', () => {
+      map.setProjection({
+        type: 'globe',
+      });
+    });
+
+    // include navigation control
+    let nav = new maplibregl.NavigationControl();
+    map.addControl(nav, 'top-left');
+
+    const zoomLevel = document.createElement('div');
+    zoomLevel.id = 'zoom-level';
+    zoomLevel.style.position = 'absolute';
+    zoomLevel.style.bottom = '10px';
+    zoomLevel.style.left = '10px';
+    zoomLevel.style.backgroundColor = 'white';
+    zoomLevel.style.padding = '5px';
+    zoomLevel.style.borderRadius = '5px';
+    zoomLevel.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
+    document.body.appendChild(zoomLevel);
+
+    map.on('zoom', () => {
+      zoomLevel.textContent = 'Zoom level: ' + map.getZoom().toFixed(2);
+    });
+
+  </script>
+</body>
+
+</html>
