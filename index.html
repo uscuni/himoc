@@ -37,7 +37,7 @@
     map.on('load', function () {
       map.addSource('pmtiles-source', {
         type: 'vector',
-        // url: 'pmtiles://http://127.0.0.1:8000/complete.pmtiles'
+        // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
         url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/complete.pmtiles'
       });
 
@@ -109,7 +109,7 @@
       // add regions hulls for debugging purposes
       map.addSource('geojson-source', {
         type: 'geojson',
-        // data: 'http://127.0.0.1:8000/regions.geojson'
+        // data: 'http://127.0.0.1:8000/regions.geojson'   // use this when developing locally
         data: 'https://uscuni.org/himoc/regions.geojson'
       });
 
@@ -122,6 +122,13 @@
           'line-width': 2,
           'line-dasharray': [2, 2]
         }
+      });
+
+      map.on('click', 'geojson-layer', function (e) {
+        new maplibregl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML(e.features[0].properties.labels)
+          .addTo(map);
       });
 
       // add layer control
