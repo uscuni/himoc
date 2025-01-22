@@ -306,18 +306,17 @@
       filterControl.style.padding = '10px';
       filterControl.style.borderRadius = '5px';
       filterControl.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
+      filterControl.style.height = '200px';
+      filterControl.style.overflowY = 'auto';
 
       const filterLabel = document.createElement('label');
-      filterLabel.textContent = 'Filter by cluster:';
+      filterLabel.textContent = 'Filter by cluster: ';
       filterControl.appendChild(filterLabel);
 
       const filterSelect = document.createElement('select');
       filterSelect.id = 'filter-select';
-
-      const allOption = document.createElement('option');
-      allOption.value = 'all';
-      allOption.textContent = 'All';
-      filterSelect.appendChild(allOption);
+      filterSelect.multiple = true;
+      filterSelect.style.height = '100%';
 
       for (let i = 0; i <= 33; i++) {
         const option = document.createElement('option');
@@ -327,17 +326,17 @@
       }
 
       filterSelect.onchange = (e) => {
-        const value = e.target.value;
-        if (value === 'all') {
+        const selectedOptions = Array.from(e.target.selectedOptions).map(option => option.value);
+        if (selectedOptions.length === 0) {
           map.setFilter('buildings', null);
           map.setFilter('morphotopes', null);
           map.setFilter('h3', null);
           map.setFilter('grid', null);
         } else {
-          map.setFilter('buildings', ['==', ['get', 'final_without_noise'], value]);
-          map.setFilter('morphotopes', ['==', ['get', 'final_without_noise'], value]);
-          map.setFilter('h3', ['==', ['get', 'final_without_noise'], value]);
-          map.setFilter('grid', ['==', ['get', 'final_without_noise'], value]);
+          map.setFilter('buildings', ['in', ['get', 'final_without_noise'], ['literal', selectedOptions]]);
+          map.setFilter('morphotopes', ['in', ['get', 'final_without_noise'], ['literal', selectedOptions]]);
+          map.setFilter('h3', ['in', ['get', 'final_without_noise'], ['literal', selectedOptions]]);
+          map.setFilter('grid', ['in', ['get', 'final_without_noise'], ['literal', selectedOptions]]);
         }
       };
 
