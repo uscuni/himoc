@@ -330,8 +330,14 @@
         const value = e.target.value;
         if (value === 'all') {
           map.setFilter('buildings', null);
+          map.setFilter('morphotopes', null);
+          map.setFilter('h3', null);
+          map.setFilter('grid', null);
         } else {
           map.setFilter('buildings', ['==', ['get', 'final_without_noise'], value]);
+          map.setFilter('morphotopes', ['==', ['get', 'final_without_noise'], value]);
+          map.setFilter('h3', ['==', ['get', 'final_without_noise'], value]);
+          map.setFilter('grid', ['==', ['get', 'final_without_noise'], value]);
         }
       };
 
