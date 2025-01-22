@@ -35,74 +35,194 @@
     });
     map.showTileBoundaries = false;
     map.on('load', function () {
-      map.addSource('pmtiles-source', {
+      map.addSource('buildings-source', {
         type: 'vector',
         // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
         url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/complete.pmtiles'
       });
 
+      const fillColor = [
+        "match",
+        ["get", "final_without_noise"],
+        "0", "#e17c05",
+        "1", "#1cae75",
+        "2", "#922800",
+        "3", "#6da2ff",
+        "4", "#38a6a5",
+        "5", "#94346e",
+        "6", "#73af48",
+        "7", "#1d6996",
+        "8", "#0f8554",
+        "9", "#354dbe",
+        "10", "#edad08",
+        "11", "#dba2ff",
+        "12", "#a65904",
+        "13", "#3d6100",
+        "14", "#aeb6ef",
+        "15", "#f79e8e",
+        "16", "#6f4070",
+        "17", "#cc503e",
+        "18", "#965145",
+        "19", "#1096c6",
+        "20", "#ae59db",
+        "21", "#6969e3",
+        "22", "#1ccefb",
+        "23", "#968ac6",
+        "24", "#ef9eca",
+        "25", "#0cdba2",
+        "26", "#e761b2",
+        "27", "#6d4d00",
+        "28", "#5f4690",
+        "29", "#a66996",
+        "30", "#498a04",
+        "31", "#967d00",
+        "32", "#babe71",
+        "33", "#006d69",
+        "#cccccc" // default color
+      ];
+
       map.addLayer({
-        id: 'pmtiles-layer',
+        id: 'buildings',
         type: 'fill',
-        source: 'pmtiles-source',
+        source: 'buildings-source',
         maxzoom: 24,
         'source-layer': 'buildings',
         paint: {
-          "fill-color": [
-            "match",
-            ["get", "final_without_noise"],
-            "0", "#e17c05",
-            "1", "#1cae75",
-            "2", "#922800",
-            "3", "#6da2ff",
-            "4", "#38a6a5",
-            "5", "#94346e",
-            "6", "#73af48",
-            "7", "#1d6996",
-            "8", "#0f8554",
-            "9", "#354dbe",
-            "10", "#edad08",
-            "11", "#dba2ff",
-            "12", "#a65904",
-            "13", "#3d6100",
-            "14", "#aeb6ef",
-            "15", "#f79e8e",
-            "16", "#6f4070",
-            "17", "#cc503e",
-            "18", "#965145",
-            "19", "#1096c6",
-            "20", "#ae59db",
-            "21", "#6969e3",
-            "22", "#1ccefb",
-            "23", "#968ac6",
-            "24", "#ef9eca",
-            "25", "#0cdba2",
-            "26", "#e761b2",
-            "27", "#6d4d00",
-            "28", "#5f4690",
-            "29", "#a66996",
-            "30", "#498a04",
-            "31", "#967d00",
-            "32", "#babe71",
-            "33", "#006d69",
-            "#cccccc" // default color
-          ],
+          "fill-color": fillColor,
         },
       });
 
       // show the cluster on click
-      map.on('click', 'pmtiles-layer', function (e) {
+      map.on('click', 'buildings', function (e) {
         new maplibregl.Popup()
           .setLngLat(e.lngLat)
-          .setHTML('final_without_noise: ' + e.features[0].properties.final_without_noise)
+          .setHTML('final_without_noise: ' + e.features[0].properties.final_without_noise + '<br />final: ' + e.features[0].properties.final)
           .addTo(map);
       });
 
-      map.on('mouseenter', 'pmtiles-layer', function () {
+      map.on('mouseenter', 'buildings', function () {
         map.getCanvas().style.cursor = 'pointer';
       });
 
-      map.on('mouseleave', 'pmtiles-layer', function () {
+      map.on('mouseleave', 'buildings', function () {
+        map.getCanvas().style.cursor = '';
+      });
+
+      // add morphotopes
+      map.addSource('morphotopes-source', {
+        type: 'vector',
+        // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
+        url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/morphotopes.pmtiles'
+      });
+
+
+      map.addLayer({
+        id: 'morphotopes',
+        type: 'fill',
+        source: 'morphotopes-source',
+        maxzoom: 24,
+        'layout': {
+          'visibility': 'none'
+        },
+        'source-layer': 'morphotopes',
+        paint: {
+          "fill-color": fillColor,
+          "fill-opacity": 0.7
+        },
+      });
+
+      // show the cluster on click
+      map.on('click', 'morphotopes', function (e) {
+        new maplibregl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML('final_without_noise: ' + e.features[0].properties.final_without_noise + '<br />final: ' + e.features[0].properties.final)
+          .addTo(map);
+      });
+
+      map.on('mouseenter', 'morphotopes', function () {
+        map.getCanvas().style.cursor = 'pointer';
+      });
+
+      map.on('mouseleave', 'morphotopes', function () {
+        map.getCanvas().style.cursor = '';
+      });
+
+
+      // add h3
+      map.addSource('h3-source', {
+        type: 'vector',
+        // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
+        url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/h3.pmtiles'
+      });
+
+
+      map.addLayer({
+        id: 'h3',
+        type: 'fill',
+        source: 'h3-source',
+        maxzoom: 24,
+        'layout': {
+          'visibility': 'none'
+        },
+        'source-layer': 'h3',
+        paint: {
+          "fill-color": fillColor,
+          "fill-opacity": 0.7
+        },
+      });
+
+      // show the cluster on click
+      map.on('click', 'h3', function (e) {
+        new maplibregl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML('final_without_noise: ' + e.features[0].properties.final_without_noise + '<br />final: ' + e.features[0].properties.final)
+          .addTo(map);
+      });
+
+      map.on('mouseenter', 'h3', function () {
+        map.getCanvas().style.cursor = 'pointer';
+      });
+
+      map.on('mouseleave', 'h3', function () {
+        map.getCanvas().style.cursor = '';
+      });
+
+      // add grid 250m
+      map.addSource('grid-source', {
+        type: 'vector',
+        // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
+        url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/grid_250.pmtiles'
+      });
+
+
+      map.addLayer({
+        id: 'grid',
+        type: 'fill',
+        source: 'grid-source',
+        maxzoom: 24,
+        'layout': {
+          'visibility': 'none'
+        },
+        'source-layer': 'grid',
+        paint: {
+          "fill-color": fillColor,
+          "fill-opacity": 0.7
+        },
+      });
+
+      // show the cluster on click
+      map.on('click', 'grid', function (e) {
+        new maplibregl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML('final_without_noise: ' + e.features[0].properties.final_without_noise + '<br />final: ' + e.features[0].properties.final)
+          .addTo(map);
+      });
+
+      map.on('mouseenter', 'grid', function () {
+        map.getCanvas().style.cursor = 'pointer';
+      });
+
+      map.on('mouseleave', 'grid', function () {
         map.getCanvas().style.cursor = '';
       });
 
@@ -114,9 +234,12 @@
       });
 
       map.addLayer({
-        id: 'geojson-layer',
+        id: 'regions',
         type: 'line',
         source: 'geojson-source',
+        'layout': {
+          'visibility': 'none'
+        },
         paint: {
           'line-color': '#ffffff',
           'line-width': 2,
@@ -124,7 +247,7 @@
         }
       });
 
-      map.on('click', 'geojson-layer', function (e) {
+      map.on('click', 'regions', function (e) {
         new maplibregl.Popup()
           .setLngLat(e.lngLat)
           .setHTML(e.features[0].properties.labels)
@@ -133,8 +256,11 @@
 
       // add layer control
       const layers = [
-        { id: 'pmtiles-layer', name: 'Buildings' },
-        { id: 'geojson-layer', name: 'Regions' }
+        { id: 'buildings', name: 'Buildings' },
+        { id: 'morphotopes', name: 'Morphotopes' },
+        { id: 'h3', name: 'H3' },
+        { id: 'grid', name: 'Grid 250m' },
+        { id: 'regions', name: 'Regions' }
       ];
 
       const layerControl = document.createElement('div');
@@ -151,7 +277,7 @@
         const layerCheckbox = document.createElement('input');
         layerCheckbox.type = 'checkbox';
         layerCheckbox.id = layer.id;
-        layerCheckbox.checked = true;
+        layerCheckbox.checked = layer.id === 'buildings';
         layerCheckbox.onchange = (e) => {
           map.setLayoutProperty(layer.id, 'visibility', e.target.checked ? 'visible' : 'none');
         };
@@ -170,11 +296,11 @@
       document.body.appendChild(layerControl);
 
 
-      // add filter control for pmtiles-layer
+      // add filter control for buildings
       const filterControl = document.createElement('div');
       filterControl.id = 'filter-control';
       filterControl.style.position = 'absolute';
-      filterControl.style.top = '80px';
+      filterControl.style.top = '140px';
       filterControl.style.right = '10px';
       filterControl.style.backgroundColor = 'white';
       filterControl.style.padding = '10px';
@@ -203,9 +329,9 @@
       filterSelect.onchange = (e) => {
         const value = e.target.value;
         if (value === 'all') {
-          map.setFilter('pmtiles-layer', null);
+          map.setFilter('buildings', null);
         } else {
-          map.setFilter('pmtiles-layer', ['==', ['get', 'final_without_noise'], value]);
+          map.setFilter('buildings', ['==', ['get', 'final_without_noise'], value]);
         }
       };
 
