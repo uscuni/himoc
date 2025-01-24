@@ -35,11 +35,19 @@ function _chart(d3, data, cluster, setRadius, innerRadius, maxLength, setColor, 
     .attr("font-family", "sans-serif")
     .attr("font-size", 10);
 
+  // Add background circle
+  svg.append("circle")
+    .attr("cx", 0)
+    .attr("cy", 0)
+    .attr("r", outerRadius)
+    .attr("fill", "#000000")
+    .attr("opacity", 0.5);
+
   svg.append("style").text(`
 
 .link--active {
-  stroke: #000 !important;
-  stroke-width: 1.5px;
+  stroke: #fff !important;
+  stroke-width: 2.5px;
 }
 
 .link-extension--active {
@@ -49,13 +57,13 @@ function _chart(d3, data, cluster, setRadius, innerRadius, maxLength, setColor, 
 .label--active {
   font-weight: bold;
 }
-
 `);
 
   const linkExtension = svg.append("g")
     .attr("fill", "none")
-    .attr("stroke", "#000")
+    .attr("stroke", "#fff")
     .attr("stroke-opacity", 0.25)
+    .attr("stroke-width", 2)
     .selectAll("path")
     .data(root.links().filter(d => !d.target.children))
     .join("path")
@@ -64,13 +72,49 @@ function _chart(d3, data, cluster, setRadius, innerRadius, maxLength, setColor, 
 
   const link = svg.append("g")
     .attr("fill", "none")
-    .attr("stroke", "#000")
+    .attr("stroke", "#fff")
+    .attr("stroke-width", 2)
     .selectAll("path")
     .data(root.links())
     .join("path")
     .each(function (d) { d.target.linkNode = this; })
     .attr("d", linkConstant)
-    .attr("stroke", d => d.target.color);
+    .attr("stroke", d => d.target.color)
+    .on("mouseover", mouseovered(true))
+    .on("mouseout", mouseovered(false));
+
+
+  // const descendants = svg.append("g")
+  //   .attr("fill", "none")
+  //   .attr("stroke", "#fff")
+  //   .attr("stroke-width", 5)
+  //   .attr("stroke-opacity", 0)
+  //   .selectAll("path")
+  //   .data(root.links())
+  //   .join("path")
+  //   .each(function (d) { d.target.linkNode = this; })
+  //   .attr("d", linkConstant);
+
+  // link.on("mouseover", function (event, d) {
+  //   const descendantLinks = new Set();
+  //   function collectDescendants(node) {
+  //     if (node.children) {
+  //       node.children.forEach(child => {
+  //         descendantLinks.add(child.linkNode);
+  //         collectDescendants(child);
+  //       });
+  //     }
+  //   }
+  //   collectDescendants(d.target);
+  //   descendants.attr("stroke-opacity", function (p) {
+  //     return descendantLinks.has(p.target.linkNode) ? 0.4 : 0;
+  //   });
+  //   mouseovered(true).call(this, event, d);
+  // })
+  //   .on("mouseout", function (event, d) {
+  //     descendants.attr("stroke-opacity", 0);
+  //     mouseovered(false).call(this, event, d);
+  //   });
 
   svg.append("g")
     .selectAll("text")
@@ -79,6 +123,7 @@ function _chart(d3, data, cluster, setRadius, innerRadius, maxLength, setColor, 
     .attr("dy", ".31em")
     .attr("transform", d => `rotate(${d.x - 90}) translate(${innerRadius + 4},0)${d.x < 180 ? "" : " rotate(180)"}`)
     .attr("text-anchor", d => d.x < 180 ? "start" : "end")
+    .attr("fill", "white") // Added fill attribute
     .text(d => d.data.name.replace(/_/g, " "))
     .on("mouseover", mouseovered(true))
     .on("mouseout", mouseovered(false));
@@ -98,6 +143,7 @@ function _chart(d3, data, cluster, setRadius, innerRadius, maxLength, setColor, 
     };
   }
 
+
   return Object.assign(svg.node(), { update });
 }
 
@@ -116,11 +162,30 @@ function _cluster(d3, innerRadius) {
   )
 }
 
+const uniqueColors = [
+  "#1cae75",
+  "#922800",
+  "#6da2ff",
+  "#38a6a5",
+  "#94346e",
+  "#73af48",
+  "#1d6996",
+  "#0f8554",
+  "#354dbe",
+  "#edad08",
+  "#dba2ff",
+  "#a65904",
+  "#3d6100",
+  "#aeb6ef",
+  "#f79e8e",
+  "#6f4070"
+];
+
 function _color(d3) {
   return (
     d3.scaleOrdinal()
-      .domain(["113039", "132985", "77517", "77516"])
-      .range(d3.schemeCategory10)
+      .domain(["132982", "132101", "130459", "123316", "117655", "115333", "114550", "114538", "113036", "101179", "92982", "82765", "77515", "77513", "77508", "76535"].reverse())
+      .range(uniqueColors)
   )
 }
 
