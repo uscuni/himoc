@@ -7,6 +7,7 @@
   <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.css' />
   <script src='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.js'></script>
   <script src="https://unpkg.com/pmtiles@4.2.1/dist/pmtiles.js"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
   <style>
     body {
       margin: 0;
@@ -73,6 +74,50 @@
       return form;
     }
 
+    window.highlightTreeSegments = function (leafId) {
+      // Remove all active classes first
+      d3.selectAll(".link--active").classed("link--active", false);
+      d3.selectAll(".link-extension--active").classed("link-extension--active", false);
+      d3.selectAll(".label--active").classed("label--active", false);
+
+      // Find and highlight the corresponding tree segments
+      const node = d3.selectAll("path").filter(d => {
+        return d.target && d.target.data && d.target.data.name === leafId;
+      });
+
+      if (node.size()) {
+        node.each(function (d) {
+          let current = d;
+          while (current && current.target) {
+            if (current.target.linkNode) {
+              d3.select(current.target.linkNode).classed("link--active", true);
+            }
+            if (current.target.linkExtensionNode) {
+              d3.select(current.target.linkExtensionNode).classed("link-extension--active", true);
+            }
+            current = current.target.parent;
+          }
+        });
+      }
+    }
+
+    function clearSelection() {
+      // Clear map filters
+      const layersToUpdate = ['buildings', 'morphotopes', 'h3', 'grid'];
+      layersToUpdate.forEach(layer => {
+        if (map.getLayer(layer)) {
+          map.setFilter(layer, null);
+        }
+      });
+
+      // Clear tree highlighting
+      d3.selectAll(".link--active").classed("link--active", false);
+      d3.selectAll(".link-extension--active").classed("link-extension--active", false);
+      d3.selectAll(".label--active").classed("label--active", false);
+    }
+
+    window.clearSelection = clearSelection;
+
 
     function _chart(d3, data, cluster, setRadius, innerRadius, maxLength, setColor, outerRadius, width, linkExtensionConstant, linkConstant, linkExtensionVariable, linkVariable) {
       const root = d3.hierarchy(data, d => d.branchset)
@@ -104,7 +149,7 @@
 }
 
 .link-extension--active {
-  stroke-opacity: .6;
+  stroke-opacity: 1;
 }
 
 .label--active {
@@ -115,7 +160,7 @@
       const linkExtension = svg.append("g")
         .attr("fill", "none")
         .attr("stroke", "#fff")
-        .attr("stroke-opacity", 0.25)
+        .attr("stroke-opacity", 0.5)
         .attr("stroke-width", 4)
         .selectAll("path")
         .data(root.links().filter(d => !d.target.children))
@@ -182,18 +227,24 @@
         }
         collectLeafIds(d.target);
 
+        // Update map layers
         const layersToUpdate = ['buildings', 'morphotopes', 'h3', 'grid'];
         layersToUpdate.forEach(layer => {
-          map.setFilter(layer, ['in', ['get', 'final_without_noise'], ['literal', leafIds]]);
+          if (map.getLayer(layer)) {
+            map.setFilter(layer, ['in', ['get', 'final_without_noise'], ['literal', leafIds]]);
+          }
         });
+
+        // Highlight the tree segments
+        d3.select(this).classed("link--active", true);
+        d3.select(d.target.linkExtensionNode).classed("link-extension--active", true);
+
+        event.stopPropagation(); // Prevent the click from bubbling up
       });
 
       svg.on("click", function (event) {
-        if (event.target.tagName !== 'path') {
-          const layersToUpdate = ['buildings', 'morphotopes', 'h3', 'grid'];
-          layersToUpdate.forEach(layer => {
-            map.setFilter(layer, null);
-          });
+        if (event.target === this || event.target.tagName !== 'path') { // Only clear if clicking the background or non-path element
+          clearSelection();
         }
       });
 
@@ -440,6 +491,13 @@
         "#cccccc" // default color
       ];
 
+      map.on('click', function (e) {
+        // Only clear if we didn't click on a building
+        if (!e.defaultPrevented) {
+          clearSelection();
+        }
+      });
+
       map.addLayer({
         id: 'buildings',
         type: 'fill',
@@ -452,20 +510,38 @@
       });
 
       // show the cluster on click
-      map.on('click', 'buildings', function (e) {
+      // Common click handler function for all layers
+      const handleLayerClick = (e) => {
+        const leafId = e.features[0].properties.final_without_noise;
+
+        // Update popup
         new maplibregl.Popup()
           .setLngLat(e.lngLat)
-          .setHTML('final_without_noise: ' + e.features[0].properties.final_without_noise + '<br />final: ' + e.features[0].properties.final)
+          .setHTML('final_without_noise: ' + leafId + '<br />final: ' + e.features[0].properties.final)
           .addTo(map);
+
+        // Highlight corresponding tree segments
+        highlightTreeSegments(leafId);
+
+        // Prevent the click from bubbling to the map
+        e.preventDefault();
+      };
+
+      // Add click handlers to all layers
+      ['buildings', 'morphotopes', 'h3', 'grid'].forEach(layer => {
+        map.on('click', layer, handleLayerClick);
       });
 
-      map.on('mouseenter', 'buildings', function () {
+
+      map.on('mouseenter', 'buildings', function (e) {
         map.getCanvas().style.cursor = 'pointer';
       });
 
       map.on('mouseleave', 'buildings', function () {
         map.getCanvas().style.cursor = '';
       });
+
+
 
       // add morphotopes
       map.addSource('morphotopes-source', {
