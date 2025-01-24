@@ -24,6 +24,30 @@
   <div id="tree-of-life-output"
     style="position: absolute; bottom: 50px; right: 0px; padding: 0px; z-index: 1; min-width: 400px; max-width: 25%">
   </div>
+  <script>
+    const uniqueColors = [
+      '#1f77b4',
+      '#aec7e8',
+      '#ff7f0e',
+      '#ffbb78',
+      '#2ca02c',
+      '#98df8a',
+      '#d62728',
+      '#ff9896',
+      '#9467bd',
+      '#c5b0d5',
+      '#8c564b',
+      '#c49c94',
+      '#e377c2',
+      '#f7b6d2',
+      // '#7f7f7f',
+      // '#c7c7c7',
+      '#bcbd22',
+      '#dbdb8d',
+      '#17becf',
+      '#9edae5'
+    ];
+  </script>
   <script type="module">
     // import define from "./tree-of-life/index.js";
 
@@ -219,25 +243,6 @@
       )
     }
 
-    const uniqueColors = [
-      "#1cae75",
-      "#922800",
-      "#6da2ff",
-      "#38a6a5",
-      "#94346e",
-      "#73af48",
-      "#1d6996",
-      "#0f8554",
-      "#354dbe",
-      "#edad08",
-      "#dba2ff",
-      "#a65904",
-      "#3d6100",
-      "#aeb6ef",
-      "#f79e8e",
-      "#6f4070"
-    ];
-
     function _color(d3) {
       return (
         d3.scaleOrdinal()
@@ -401,6 +406,19 @@
     let protocol = new pmtiles.Protocol({ metadata: true });
     maplibregl.addProtocol("pmtiles", protocol.tile);
 
+
+    // add mapping from the leaf nodes to higher in regards to colouring
+    let mapping = {};
+    fetch('mapping.json')
+      .then(response => response.json())
+      .then(data => {
+        mapping = data;
+        console.log('Mapping loaded:', mapping);
+      })
+      .catch(error => {
+        console.error('Error loading mapping:', error);
+      });
+
     const map = new maplibregl.Map({
       style: "https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json",
       container: "map",
@@ -418,114 +436,7 @@
       const fillColor = [
         "match",
         ["get", "final_without_noise"],
-        '1', '#1cae75',
-        '2', '#1cae75',
-        '3', '#1cae75',
-        '4', '#1cae75',
-        '5', '#1cae75',
-        '6', '#1cae75',
-        '7', '#922800',
-        '8', '#922800',
-        '9', '#922800',
-        '10', '#922800',
-        '11', '#922800',
-        '12', '#6da2ff',
-        '13', '#6da2ff',
-        '14', '#6da2ff',
-        '15', '#6da2ff',
-        '16', '#6da2ff',
-        '17', '#38a6a5',
-        '18', '#38a6a5',
-        '19', '#38a6a5',
-        '20', '#94346e',
-        '21', '#94346e',
-        '22', '#94346e',
-        '23', '#94346e',
-        '24', '#94346e',
-        '25', '#94346e',
-        '26', '#94346e',
-        '27', '#94346e',
-        '28', '#73af48',
-        '29', '#73af48',
-        '30', '#73af48',
-        '31', '#73af48',
-        '32', '#73af48',
-        '33', '#73af48',
-        '34', '#73af48',
-        '35', '#73af48',
-        '36', '#1d6996',
-        '37', '#1d6996',
-        '38', '#1d6996',
-        '39', '#1d6996',
-        '40', '#1d6996',
-        '41', '#1d6996',
-        '42', '#1d6996',
-        '43', '#1d6996',
-        '44', '#0f8554',
-        '45', '#0f8554',
-        '46', '#0f8554',
-        '47', '#0f8554',
-        '48', '#0f8554',
-        '49', '#0f8554',
-        '50', '#0f8554',
-        '51', '#0f8554',
-        '52', '#354dbe',
-        '53', '#354dbe',
-        '54', '#354dbe',
-        '55', '#354dbe',
-        '56', '#354dbe',
-        '57', '#354dbe',
-        '58', '#354dbe',
-        '59', '#354dbe',
-        '60', '#edad08',
-        '61', '#edad08',
-        '62', '#edad08',
-        '63', '#edad08',
-        '64', '#edad08',
-        '65', '#dba2ff',
-        '66', '#dba2ff',
-        '67', '#dba2ff',
-        '68', '#dba2ff',
-        '69', '#dba2ff',
-        '70', '#dba2ff',
-        '71', '#dba2ff',
-        '72', '#dba2ff',
-        '73', '#a65904',
-        '74', '#a65904',
-        '75', '#a65904',
-        '76', '#a65904',
-        '77', '#a65904',
-        '78', '#a65904',
-        '79', '#a65904',
-        '80', '#a65904',
-        '81', '#3d6100',
-        '82', '#3d6100',
-        '83', '#3d6100',
-        '84', '#3d6100',
-        '85', '#3d6100',
-        '86', '#3d6100',
-        '87', '#3d6100',
-        '88', '#3d6100',
-        '89', '#aeb6ef',
-        '90', '#aeb6ef',
-        '91', '#aeb6ef',
-        '92', '#aeb6ef',
-        '93', '#aeb6ef',
-        '94', '#aeb6ef',
-        '95', '#aeb6ef',
-        '96', '#aeb6ef',
-        '97', '#f79e8e',
-        '98', '#f79e8e',
-        '99', '#f79e8e',
-        '100', '#f79e8e',
-        '101', '#f79e8e',
-        '102', '#6f4070',
-        '103', '#6f4070',
-        '104', '#6f4070',
-        '105', '#6f4070',
-        '106', '#6f4070',
-        '107', '#6f4070',
-        '108', '#6f4070',
+        ...Object.entries(mapping[4]).flatMap(([key, value]) => [key, uniqueColors[parseInt(value) - 1]]),
         "#cccccc" // default color
       ];
 
