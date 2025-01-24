@@ -21,7 +21,7 @@ function _showLength(html) {
 }
 
 
-function _chart(d3, data, cluster, setRadius, innerRadius, maxLength, setColor, outerRadius, width, legend, linkExtensionConstant, linkConstant, linkExtensionVariable, linkVariable) {
+function _chart(d3, data, cluster, setRadius, innerRadius, maxLength, setColor, outerRadius, width, linkExtensionConstant, linkConstant, linkExtensionVariable, linkVariable) {
   const root = d3.hierarchy(data, d => d.branchset)
     .sum(d => d.branchset ? 0 : 1)
     .sort((a, b) => (a.value - b.value) || d3.ascending(a.data.length, b.data.length));
@@ -34,9 +34,6 @@ function _chart(d3, data, cluster, setRadius, innerRadius, maxLength, setColor, 
     .attr("viewBox", [-outerRadius, -outerRadius, width, width])
     .attr("font-family", "sans-serif")
     .attr("font-size", 10);
-
-  // svg.append("g")
-  //   .call(legend);
 
   svg.append("style").text(`
 
@@ -200,29 +197,6 @@ function _linkStep() {
   )
 }
 
-function _legend(color, outerRadius) {
-  return (
-    svg => {
-      const g = svg
-        .selectAll("g")
-        .data(color.domain())
-        .join("g")
-        .attr("transform", (d, i) => `translate(${-outerRadius},${-outerRadius + i * 20})`);
-
-      g.append("rect")
-        .attr("width", 18)
-        .attr("height", 18)
-        .attr("fill", color);
-
-      g.append("text")
-        .attr("x", 24)
-        .attr("y", 9)
-        .attr("dy", "0.35em")
-        .text(d => d);
-    }
-  )
-}
-
 async function _data(parseNewick, FileAttachment) {
   return (
     parseNewick(await FileAttachment("life.txt").text())
@@ -269,7 +243,7 @@ export default function define(runtime, observer) {
   main.variable(observer()).define(["md"], _1);
   main.variable("viewof showLength").define("viewof showLength", ["html"], _showLength);
   main.variable("showLength").define("showLength", ["Generators", "viewof showLength"], (G, _) => G.input(_));
-  main.variable(observer("chart")).define("chart", ["d3", "data", "cluster", "setRadius", "innerRadius", "maxLength", "setColor", "outerRadius", "width", "legend", "linkExtensionConstant", "linkConstant", "linkExtensionVariable", "linkVariable"], _chart);
+  main.variable(observer("chart")).define("chart", ["d3", "data", "cluster", "setRadius", "innerRadius", "maxLength", "setColor", "outerRadius", "width", "linkExtensionConstant", "linkConstant", "linkExtensionVariable", "linkVariable"], _chart);
   main.variable("update").define("update", ["chart", "showLength"], _update);
   main.variable("cluster").define("cluster", ["d3", "innerRadius"], _cluster);
   main.variable("color").define("color", ["d3"], _color);
@@ -281,7 +255,6 @@ export default function define(runtime, observer) {
   main.variable("linkExtensionVariable").define("linkExtensionVariable", ["linkStep", "innerRadius"], _linkExtensionVariable);
   main.variable("linkExtensionConstant").define("linkExtensionConstant", ["linkStep", "innerRadius"], _linkExtensionConstant);
   main.variable("linkStep").define("linkStep", _linkStep);
-  main.variable("legend").define("legend", ["color", "outerRadius"], _legend);
   main.variable("data").define("data", ["parseNewick", "FileAttachment"], _data);
   main.variable("width").define("width", _width);
   main.variable("outerRadius").define("outerRadius", ["width"], _outerRadius);
