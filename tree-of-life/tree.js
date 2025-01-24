@@ -47,7 +47,7 @@ function _chart(d3, data, cluster, setRadius, innerRadius, maxLength, setColor, 
 
 .link--active {
   stroke: #fff !important;
-  stroke-width: 2.5px;
+  stroke-width: 4px;
 }
 
 .link-extension--active {
@@ -83,38 +83,53 @@ function _chart(d3, data, cluster, setRadius, innerRadius, maxLength, setColor, 
     .on("mouseover", mouseovered(true))
     .on("mouseout", mouseovered(false));
 
+  link.on("mouseover", function (event, d) {
+    const descendantLinks = new Set();
+    function collectDescendants(node) {
+      if (node.children) {
+        node.children.forEach(child => {
+          descendantLinks.add(child.linkNode);
+          collectDescendants(child);
+        });
+      }
+    }
+    collectDescendants(d.target);
+    d3.select(this).classed("link--active", true);
+    descendantLinks.forEach(linkNode => {
+      d3.select(linkNode).classed("link--active", true);
+    });
+    d3.select(d.target.linkExtensionNode).classed("link-extension--active", true);
+  })
+    .on("mouseout", function (event, d) {
+      const descendantLinks = new Set();
+      function collectDescendants(node) {
+        if (node.children) {
+          node.children.forEach(child => {
+            descendantLinks.add(child.linkNode);
+            collectDescendants(child);
+          });
+        }
+      }
+      collectDescendants(d.target);
+      d3.select(this).classed("link--active", false);
+      descendantLinks.forEach(linkNode => {
+        d3.select(linkNode).classed("link--active", false);
+      });
+      d3.select(d.target.linkExtensionNode).classed("link-extension--active", false);
+    });
 
-  // const descendants = svg.append("g")
-  //   .attr("fill", "none")
-  //   .attr("stroke", "#fff")
-  //   .attr("stroke-width", 5)
-  //   .attr("stroke-opacity", 0)
-  //   .selectAll("path")
-  //   .data(root.links())
-  //   .join("path")
-  //   .each(function (d) { d.target.linkNode = this; })
-  //   .attr("d", linkConstant);
-
-  // link.on("mouseover", function (event, d) {
-  //   const descendantLinks = new Set();
-  //   function collectDescendants(node) {
-  //     if (node.children) {
-  //       node.children.forEach(child => {
-  //         descendantLinks.add(child.linkNode);
-  //         collectDescendants(child);
-  //       });
-  //     }
-  //   }
-  //   collectDescendants(d.target);
-  //   descendants.attr("stroke-opacity", function (p) {
-  //     return descendantLinks.has(p.target.linkNode) ? 0.4 : 0;
-  //   });
-  //   mouseovered(true).call(this, event, d);
-  // })
-  //   .on("mouseout", function (event, d) {
-  //     descendants.attr("stroke-opacity", 0);
-  //     mouseovered(false).call(this, event, d);
-  //   });
+    link.on("click", function(event, d) {
+      const leafIds = [];
+      function collectLeafIds(node) {
+        if (!node.children) {
+          leafIds.push(node.data.name);
+        } else {
+          node.children.forEach(collectLeafIds);
+        }
+      }
+      collectLeafIds(d.target);
+      console.log('Leaf IDs:', leafIds);
+    });
 
   svg.append("g")
     .selectAll("text")
