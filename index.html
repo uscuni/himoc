@@ -22,7 +22,7 @@
 <body>
 
   <div id="tree-of-life-output"
-    style="position: absolute; bottom: 50px; right: 20px; padding: 10px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index: 1; min-width: 400px; max-width: 25%">
+    style="position: absolute; bottom: 50px; right: 0px; padding: 0px; z-index: 1; min-width: 400px; max-width: 25%">
   </div>
   <script type="module">
     // import define from "./tree-of-life/index.js";
@@ -62,7 +62,7 @@
       const svg = d3.create("svg")
         .attr("viewBox", [-outerRadius, -outerRadius, width, width])
         .attr("font-family", "sans-serif")
-        .attr("font-size", 10);
+        .attr("font-size", 12);
 
       // Add background circle
       svg.append("circle")
@@ -92,7 +92,7 @@
         .attr("fill", "none")
         .attr("stroke", "#fff")
         .attr("stroke-opacity", 0.25)
-        .attr("stroke-width", 2)
+        .attr("stroke-width", 4)
         .selectAll("path")
         .data(root.links().filter(d => !d.target.children))
         .join("path")
@@ -160,10 +160,17 @@
 
         const layersToUpdate = ['buildings', 'morphotopes', 'h3', 'grid'];
         layersToUpdate.forEach(layer => {
-
           map.setFilter(layer, ['in', ['get', 'final_without_noise'], ['literal', leafIds]]);
-
         });
+      });
+
+      svg.on("click", function (event) {
+        if (event.target.tagName !== 'path') {
+          const layersToUpdate = ['buildings', 'morphotopes', 'h3', 'grid'];
+          layersToUpdate.forEach(layer => {
+            map.setFilter(layer, null);
+          });
+        }
       });
 
       svg.append("g")
@@ -667,41 +674,12 @@
         map.getCanvas().style.cursor = '';
       });
 
-      // add regions hulls for debugging purposes
-      map.addSource('geojson-source', {
-        type: 'geojson',
-        // data: 'http://127.0.0.1:8000/regions.geojson'   // use this when developing locally
-        data: 'https://uscuni.org/himoc/regions.geojson'
-      });
-
-      map.addLayer({
-        id: 'regions',
-        type: 'line',
-        source: 'geojson-source',
-        'layout': {
-          'visibility': 'none'
-        },
-        paint: {
-          'line-color': '#ffffff',
-          'line-width': 2,
-          'line-dasharray': [2, 2]
-        }
-      });
-
-      map.on('click', 'regions', function (e) {
-        new maplibregl.Popup()
-          .setLngLat(e.lngLat)
-          .setHTML(e.features[0].properties.labels)
-          .addTo(map);
-      });
-
       // add layer control
       const layers = [
         { id: 'buildings', name: 'Buildings' },
         { id: 'morphotopes', name: 'Morphotopes' },
-        { id: 'h3', name: 'H3' },
+        { id: 'h3', name: 'H3 level 10' },
         { id: 'grid', name: 'Grid 250m' },
-        { id: 'regions', name: 'Regions' }
       ];
 
       const layerControl = document.createElement('div');
@@ -710,6 +688,9 @@
       layerControl.style.top = '10px';
       layerControl.style.right = '10px';
       layerControl.style.backgroundColor = 'white';
+      layerControl.style.opacity = 0.8;
+      layerControl.style.fontFamily = '"Helvetica Neue", Arial, Helvetica, sans-serif';
+      layerControl.style.fontSize = '12px';
       layerControl.style.padding = '10px';
       layerControl.style.borderRadius = '5px';
       layerControl.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
@@ -751,20 +732,21 @@
     let nav = new maplibregl.NavigationControl();
     map.addControl(nav, 'top-left');
 
-    const zoomLevel = document.createElement('div');
-    zoomLevel.id = 'zoom-level';
-    zoomLevel.style.position = 'absolute';
-    zoomLevel.style.bottom = '10px';
-    zoomLevel.style.left = '10px';
-    zoomLevel.style.backgroundColor = 'white';
-    zoomLevel.style.padding = '5px';
-    zoomLevel.style.borderRadius = '5px';
-    zoomLevel.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
-    document.body.appendChild(zoomLevel);
+    // include zoom level indicator
+    // const zoomLevel = document.createElement('div');
+    // zoomLevel.id = 'zoom-level';
+    // zoomLevel.style.position = 'absolute';
+    // zoomLevel.style.bottom = '10px';
+    // zoomLevel.style.left = '10px';
+    // zoomLevel.style.backgroundColor = 'white';
+    // zoomLevel.style.padding = '5px';
+    // zoomLevel.style.borderRadius = '5px';
+    // zoomLevel.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
+    // document.body.appendChild(zoomLevel);
 
-    map.on('zoom', () => {
-      zoomLevel.textContent = 'Zoom level: ' + map.getZoom().toFixed(2);
-    });
+    // map.on('zoom', () => {
+    //   zoomLevel.textContent = 'Zoom level: ' + map.getZoom().toFixed(2);
+    // });
 
   </script>
 </body>
