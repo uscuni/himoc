@@ -3,6 +3,7 @@
 <head>
   <title>Urban Landscape of Central Europe</title>
   <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="./tree-of-life/inspector.css">
   <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.css' />
   <script src='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.js'></script>
   <script src="https://unpkg.com/pmtiles@4.2.1/dist/pmtiles.js"></script>
@@ -19,6 +20,19 @@
 </head>
 
 <body>
+
+  <div id="tree-of-life-output"
+    style="position: absolute; top: 10px; left: 50px; background-color: white; padding: 10px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index: 1; width: 500px;">
+  </div>
+  <script type="module">
+    import define from "./tree-of-life/index.js";
+    import { Runtime, Library, Inspector } from "./tree-of-life/runtime.js";
+
+    const runtime = new Runtime();
+    const treeOfLifeOutput = document.getElementById('tree-of-life-output');
+    const main = runtime.module(define, Inspector.into(treeOfLifeOutput));
+  </script>
+
   <div id="map"></div>
   <script type="text/javascript">
     // add the PMTiles plugin to the maplibregl global.

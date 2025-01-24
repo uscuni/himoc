@@ -1,9 +1,7 @@
 // https://observablehq.com/@d3/tree-of-life@146
 function _1(md) {
   return (
-    md`# Tree of Life
-
-A phylogenetic tree inspired by [a figure from *Nature*](https://www.nature.com/articles/nature08656/figures/1) and [Jason Davies](https://www.jasondavies.com/tree-of-life/).`
+    md``
   )
 }
 
@@ -37,8 +35,8 @@ function _chart(d3, data, cluster, setRadius, innerRadius, maxLength, setColor, 
     .attr("font-family", "sans-serif")
     .attr("font-size", 10);
 
-  svg.append("g")
-    .call(legend);
+  // svg.append("g")
+  //   .call(legend);
 
   svg.append("style").text(`
 
@@ -124,7 +122,7 @@ function _cluster(d3, innerRadius) {
 function _color(d3) {
   return (
     d3.scaleOrdinal()
-      .domain(["Bacteria", "Eukaryota", "Archaea"])
+      .domain(["113039", "132985", "77517", "77516"])
       .range(d3.schemeCategory10)
   )
 }
@@ -265,30 +263,30 @@ export default function define(runtime, observer) {
   const main = runtime.module();
   function toString() { return this.url; }
   const fileAttachments = new Map([
-    ["life.txt", { url: new URL("./files/818ec1334688a0bd315222228552b87133fafe8dd3cd130a2a919d7ddec2d7c6ca00d5ae74243773a907fa62bc19082c9c985c9d6e55b95d5a340991852d92a7.txt", import.meta.url), mimeType: "text/plain", toString }]
+    ["life.txt", { url: new URL("./files/tree.txt", import.meta.url), mimeType: "text/plain", toString }]
   ]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], _1);
-  main.variable(observer("viewof showLength")).define("viewof showLength", ["html"], _showLength);
-  main.variable(observer("showLength")).define("showLength", ["Generators", "viewof showLength"], (G, _) => G.input(_));
+  main.variable("viewof showLength").define("viewof showLength", ["html"], _showLength);
+  main.variable("showLength").define("showLength", ["Generators", "viewof showLength"], (G, _) => G.input(_));
   main.variable(observer("chart")).define("chart", ["d3", "data", "cluster", "setRadius", "innerRadius", "maxLength", "setColor", "outerRadius", "width", "legend", "linkExtensionConstant", "linkConstant", "linkExtensionVariable", "linkVariable"], _chart);
-  main.variable(observer("update")).define("update", ["chart", "showLength"], _update);
-  main.variable(observer("cluster")).define("cluster", ["d3", "innerRadius"], _cluster);
-  main.variable(observer("color")).define("color", ["d3"], _color);
-  main.variable(observer("maxLength")).define("maxLength", ["d3"], _maxLength);
-  main.variable(observer("setRadius")).define("setRadius", _setRadius);
-  main.variable(observer("setColor")).define("setColor", ["color"], _setColor);
-  main.variable(observer("linkVariable")).define("linkVariable", ["linkStep"], _linkVariable);
-  main.variable(observer("linkConstant")).define("linkConstant", ["linkStep"], _linkConstant);
-  main.variable(observer("linkExtensionVariable")).define("linkExtensionVariable", ["linkStep", "innerRadius"], _linkExtensionVariable);
-  main.variable(observer("linkExtensionConstant")).define("linkExtensionConstant", ["linkStep", "innerRadius"], _linkExtensionConstant);
-  main.variable(observer("linkStep")).define("linkStep", _linkStep);
-  main.variable(observer("legend")).define("legend", ["color", "outerRadius"], _legend);
-  main.variable(observer("data")).define("data", ["parseNewick", "FileAttachment"], _data);
-  main.variable(observer("width")).define("width", _width);
-  main.variable(observer("outerRadius")).define("outerRadius", ["width"], _outerRadius);
-  main.variable(observer("innerRadius")).define("innerRadius", ["outerRadius"], _innerRadius);
-  main.variable(observer("parseNewick")).define("parseNewick", _parseNewick);
-  main.variable(observer("d3")).define("d3", ["require"], _d3);
+  main.variable("update").define("update", ["chart", "showLength"], _update);
+  main.variable("cluster").define("cluster", ["d3", "innerRadius"], _cluster);
+  main.variable("color").define("color", ["d3"], _color);
+  main.variable("maxLength").define("maxLength", ["d3"], _maxLength);
+  main.variable("setRadius").define("setRadius", _setRadius);
+  main.variable("setColor").define("setColor", ["color"], _setColor);
+  main.variable("linkVariable").define("linkVariable", ["linkStep"], _linkVariable);
+  main.variable("linkConstant").define("linkConstant", ["linkStep"], _linkConstant);
+  main.variable("linkExtensionVariable").define("linkExtensionVariable", ["linkStep", "innerRadius"], _linkExtensionVariable);
+  main.variable("linkExtensionConstant").define("linkExtensionConstant", ["linkStep", "innerRadius"], _linkExtensionConstant);
+  main.variable("linkStep").define("linkStep", _linkStep);
+  main.variable("legend").define("legend", ["color", "outerRadius"], _legend);
+  main.variable("data").define("data", ["parseNewick", "FileAttachment"], _data);
+  main.variable("width").define("width", _width);
+  main.variable("outerRadius").define("outerRadius", ["width"], _outerRadius);
+  main.variable("innerRadius").define("innerRadius", ["outerRadius"], _innerRadius);
+  main.variable("parseNewick").define("parseNewick", _parseNewick);
+  main.variable("d3").define("d3", ["require"], _d3);
   return main;
 }
