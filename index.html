@@ -145,7 +145,11 @@
 
 .link--active {
   stroke: #fff !important;
-  stroke-width: 6px;
+  stroke-width: 7px;
+}
+
+.link--selected {
+  stroke-width: 7px;
 }
 
 .link-extension--active {
@@ -215,8 +219,10 @@
           });
           d3.select(d.target.linkExtensionNode).classed("link-extension--active", false);
         });
-
       function handleTreeClick(event, d, element) {
+        // Clear previous selections first
+        d3.selectAll(".link--selected").classed("link--selected", false);
+
         const leafIds = [];
         function collectLeafIds(node) {
           if (!node.children) {
@@ -227,6 +233,21 @@
         }
         collectLeafIds(d.target);
 
+        // Add selected class to the clicked link and its descendants
+        const descendantLinks = new Set();
+        function collectDescendants(node) {
+          if (node.linkNode) {
+            descendantLinks.add(node.linkNode);
+          }
+          if (node.children) {
+            node.children.forEach(collectDescendants);
+          }
+        }
+        collectDescendants(d.target);
+        descendantLinks.forEach(linkNode => {
+          d3.select(linkNode).classed("link--selected", true);
+        });
+
         // Update map layers
         const layersToUpdate = ['buildings', 'morphotopes', 'h3', 'grid'];
         layersToUpdate.forEach(layer => {
@@ -234,15 +255,6 @@
             map.setFilter(layer, ['in', ['get', 'final_without_noise'], ['literal', leafIds]]);
           }
         });
-
-        // Highlight the tree segments
-        d3.select(element).classed("link--active", true);
-        d3.select(d.target.linkExtensionNode).classed("link-extension--active", true);
-
-        // Highlight all leaf labels involved
-        d3.selectAll('text')
-          .filter(node => leafIds.includes(node.data.name))
-          .classed("label--active", true);
 
         event.stopPropagation();
       }
@@ -267,6 +279,7 @@
       svg.on("click", function (event) {
         if (event.target === this || event.target.tagName !== 'path') { // Only clear if clicking the background or non-path element
           clearSelection();
+          d3.selectAll(".link--selected").classed("link--selected", false);
         }
       });
 
@@ -539,9 +552,15 @@
       ];
 
       map.on('click', function (e) {
-        // Only clear if we didn't click on a building
-        if (!e.defaultPrevented) {
+        // Check if any features were clicked
+        const features = map.queryRenderedFeatures(e.point, {
+          layers: ['buildings', 'morphotopes', 'h3', 'grid']
+        });
+
+        // Only clear if we didn't click on any features
+        if (features.length === 0) {
           clearSelection();
+          d3.selectAll(".link--selected").classed("link--selected", false);
         }
       });
 
