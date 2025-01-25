@@ -87,16 +87,16 @@
 
       if (node.size()) {
         node.each(function (d) {
-          let current = d;
-          while (current && current.target) {
-            if (current.target.linkNode) {
-              d3.select(current.target.linkNode).classed("link--active", true);
+          // Start from target node and traverse up to root
+          let current = d.target;
+          do {
+            if (current.linkNode) {
+              d3.select(current.linkNode).classed("link--active", true);
             }
-            if (current.target.linkExtensionNode) {
-              d3.select(current.target.linkExtensionNode).classed("link-extension--active", true);
+            if (current.linkExtensionNode) {
+              d3.select(current.linkExtensionNode).classed("link-extension--active", true);
             }
-            current = current.target.parent;
-          }
+          } while (current = current.parent); // Continue until we reach the root
         });
       }
     }
