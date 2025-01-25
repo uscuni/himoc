@@ -242,6 +242,41 @@
         event.stopPropagation(); // Prevent the click from bubbling up
       });
 
+      linkExtension.on("click", function (event, d) {
+        const leafIds = [];
+        function collectLeafIds(node) {
+          if (!node.children) {
+            leafIds.push(node.data.name);
+          } else {
+            node.children.forEach(collectLeafIds);
+          }
+        }
+        collectLeafIds(d.target);
+
+        // Update map layers
+        const layersToUpdate = ['buildings', 'morphotopes', 'h3', 'grid'];
+        layersToUpdate.forEach(layer => {
+          if (map.getLayer(layer)) {
+            map.setFilter(layer, ['in', ['get', 'final_without_noise'], ['literal', leafIds]]);
+          }
+        });
+
+        // Highlight the tree segments
+        d3.select(this).classed("link--active", true);
+        d3.select(d.target.linkExtensionNode).classed("link-extension--active", true);
+
+        event.stopPropagation(); // Prevent the click from bubbling up
+      });
+
+      linkExtension.on("mouseover", function (event, d) {
+        d3.select(this).classed("link-extension--active", true);
+        d3.select(d.target.linkNode).classed("link--active", true);
+      })
+        .on("mouseout", function (event, d) {
+          d3.select(this).classed("link-extension--active", false);
+          d3.select(d.target.linkNode).classed("link--active", false);
+        });
+
       svg.on("click", function (event) {
         if (event.target === this || event.target.tagName !== 'path') { // Only clear if clicking the background or non-path element
           clearSelection();
