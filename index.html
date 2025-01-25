@@ -512,6 +512,27 @@
       center: [14.436035, 50.078292],
     });
     map.showTileBoundaries = false;
+
+    // Add scale control with inverted colors
+    const scale = new maplibregl.ScaleControl({
+      maxWidth: 80,
+      unit: 'metric'
+    });
+
+    // Add custom CSS for the scale control
+    const style = document.createElement('style');
+    style.textContent = `
+      .maplibregl-ctrl.maplibregl-ctrl-scale {
+        background-color: rgba(0,0,0,0.5);
+        color: #ffffff;
+        border: 1px solid #ffffff;
+        border-top: none;
+      }
+    `;
+    document.head.appendChild(style);
+    map.addControl(scale);
+
+    
     map.on('load', function () {
       map.addSource('buildings-source', {
         type: 'vector',
