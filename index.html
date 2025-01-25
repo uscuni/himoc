@@ -216,7 +216,7 @@
           d3.select(d.target.linkExtensionNode).classed("link-extension--active", false);
         });
 
-      link.on("click", function (event, d) {
+      function handleTreeClick(event, d, element) {
         const leafIds = [];
         function collectLeafIds(node) {
           if (!node.children) {
@@ -236,36 +236,18 @@
         });
 
         // Highlight the tree segments
-        d3.select(this).classed("link--active", true);
+        d3.select(element).classed("link--active", true);
         d3.select(d.target.linkExtensionNode).classed("link-extension--active", true);
 
-        event.stopPropagation(); // Prevent the click from bubbling up
+        event.stopPropagation();
+      }
+
+      link.on("click", function (event, d) {
+        handleTreeClick(event, d, this);
       });
 
       linkExtension.on("click", function (event, d) {
-        const leafIds = [];
-        function collectLeafIds(node) {
-          if (!node.children) {
-            leafIds.push(node.data.name);
-          } else {
-            node.children.forEach(collectLeafIds);
-          }
-        }
-        collectLeafIds(d.target);
-
-        // Update map layers
-        const layersToUpdate = ['buildings', 'morphotopes', 'h3', 'grid'];
-        layersToUpdate.forEach(layer => {
-          if (map.getLayer(layer)) {
-            map.setFilter(layer, ['in', ['get', 'final_without_noise'], ['literal', leafIds]]);
-          }
-        });
-
-        // Highlight the tree segments
-        d3.select(this).classed("link--active", true);
-        d3.select(d.target.linkExtensionNode).classed("link-extension--active", true);
-
-        event.stopPropagation(); // Prevent the click from bubbling up
+        handleTreeClick(event, d, this);
       });
 
       linkExtension.on("mouseover", function (event, d) {
@@ -293,7 +275,11 @@
         .attr("fill", "white") // Added fill attribute
         .text(d => d.data.name.replace(/_/g, " "))
         .on("mouseover", mouseovered(true))
-        .on("mouseout", mouseovered(false));
+        .on("mouseout", mouseovered(false))
+        .on("click", function (event, d) {
+          event.stopPropagation();
+          handleTreeClick(event, { target: d }, this.parentNode.querySelector('.link'));
+        });
 
       function update(checked) {
         const t = d3.transition().duration(750);
@@ -532,7 +518,7 @@
     document.head.appendChild(style);
     map.addControl(scale);
 
-    
+
     map.on('load', function () {
       map.addSource('buildings-source', {
         type: 'vector',
