@@ -131,7 +131,7 @@
       const svg = d3.create("svg")
         .attr("viewBox", [-outerRadius, -outerRadius, width, width])
         .attr("font-family", "sans-serif")
-        .attr("font-size", 12);
+        .attr("font-size", 22);
 
       // Add background circle
       svg.append("circle")
@@ -238,6 +238,11 @@
         // Highlight the tree segments
         d3.select(element).classed("link--active", true);
         d3.select(d.target.linkExtensionNode).classed("link-extension--active", true);
+
+        // Highlight all leaf labels involved
+        d3.selectAll('text')
+          .filter(node => leafIds.includes(node.data.name))
+          .classed("label--active", true);
 
         event.stopPropagation();
       }
