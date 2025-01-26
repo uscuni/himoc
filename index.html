@@ -671,14 +671,6 @@
         },
       });
 
-      // show the cluster on click
-      map.on('click', 'morphotopes', function (e) {
-        new maplibregl.Popup()
-          .setLngLat(e.lngLat)
-          .setHTML('final_without_noise: ' + e.features[0].properties.final_without_noise + '<br />final: ' + e.features[0].properties.final)
-          .addTo(map);
-      });
-
       map.on('mouseenter', 'morphotopes', function () {
         map.getCanvas().style.cursor = 'pointer';
       });
@@ -711,14 +703,6 @@
         },
       });
 
-      // show the cluster on click
-      map.on('click', 'h3', function (e) {
-        new maplibregl.Popup()
-          .setLngLat(e.lngLat)
-          .setHTML('final_without_noise: ' + e.features[0].properties.final_without_noise + '<br />final: ' + e.features[0].properties.final)
-          .addTo(map);
-      });
-
       map.on('mouseenter', 'h3', function () {
         map.getCanvas().style.cursor = 'pointer';
       });
@@ -748,14 +732,6 @@
           "fill-color": fillColor,
           "fill-opacity": 0.7
         },
-      });
-
-      // show the cluster on click
-      map.on('click', 'grid', function (e) {
-        new maplibregl.Popup()
-          .setLngLat(e.lngLat)
-          .setHTML('final_without_noise: ' + e.features[0].properties.final_without_noise + '<br />final: ' + e.features[0].properties.final)
-          .addTo(map);
       });
 
       map.on('mouseenter', 'grid', function () {
