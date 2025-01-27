@@ -800,6 +800,15 @@
     let nav = new maplibregl.NavigationControl();
     map.addControl(nav, 'top-left');
 
+    // Add right-click event listener to show latitude and longitude
+    map.on('contextmenu', function (e) {
+      const coordinates = e.lngLat;
+      new maplibregl.Popup()
+        .setLngLat(coordinates)
+        .setHTML(`Latitude: ${coordinates.lat.toFixed(5)}<br>Longitude: ${coordinates.lng.toFixed(5)}`)
+        .addTo(map);
+    });
+
     // include zoom level indicator
     // const zoomLevel = document.createElement('div');
     // zoomLevel.id = 'zoom-level';
