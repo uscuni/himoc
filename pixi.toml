@@ -3,7 +3,7 @@ authors = ["Martin Fleischmann <martin@martinfleischmann.net>"]
 channels = ["conda-forge"]
 description = "Add a short description here"
 name = "himoc"
-platforms = ["osx-arm64"]
+platforms = ["osx-arm64", "linux-64"]
 version = "0.1.0"
 
 [tasks]
