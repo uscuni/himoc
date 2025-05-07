@@ -4,3 +4,4 @@ To run locally:
 pixi run npm install -g http-server
 pixi run http-server -p 8000 --cors
 ```
+

@@ -2,66 +2,56 @@
 <!-- TODO: 77516, 114550 are not selectable as it is higher order -->
 
 <head>
-  <title>Urban Landscape of Central Europe</title>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" type="text/css" href="./tree-of-life/inspector.css">
-  <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.css' />
-  <script src='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.js'></script>
-  <script src="https://unpkg.com/pmtiles@4.2.1/dist/pmtiles.js"></script>
-  <script src="https://d3js.org/d3.v6.min.js"></script>
-  <style>
-    body {
-      margin: 0;
-    }
-
-    #map {
-      height: 100%;
-      width: 100%;
-    }
-  </style>
+    <title>Urban Landscape of Central Europe</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="./tree-of-life/inspector.css">
+    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.css' />
+    <script src='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.js'></script>
+    <script src="https://unpkg.com/pmtiles@4.2.1/dist/pmtiles.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+        
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
 
-  <div id="tree-of-life-output"
-    style="position: absolute; bottom: 50px; right: 0px; padding: 0px; z-index: 1; min-width: 400px; max-width: 25%">
-  </div>
-  <script>
-    const uniqueColors = [
-      '#1f77b4',
-      '#aec7e8',
-      '#ff7f0e',
-      '#ffbb78',
-      '#2ca02c',
-      '#98df8a',
-      '#d62728',
-      '#ff9896',
-      '#9467bd',
-      '#c5b0d5',
-      '#8c564b',
-      '#c49c94',
-      '#e377c2',
-      '#f7b6d2',
-      // '#7f7f7f',
-      // '#c7c7c7',
-      '#bcbd22',
-      '#dbdb8d',
-      '#17becf',
-      '#9edae5'
-    ];
-  </script>
-  <script type="module">
-    // import define from "./tree-of-life/index.js";
-
-    // https://observablehq.com/@d3/tree-of-life@146
-    function _1(md) {
-      return (
-        md``
-      )
-    }
-
-    function _showLength(html) {
-      const form = html`<form style="font: 12px var(--sans-serif); display: flex; flex-direction: column; justify-content: center; min-height: 33px;"><label style="display: flex; align-items: center;"><input type=checkbox name=i><span style="margin-left: 0.5em;">Show branch length</span>`;
+    <div id="tree-of-life-output" style="position: absolute; bottom: 50px; right: 0px; padding: 0px; z-index: 1; min-width: 400px; max-width: 25%">
+    </div>
+    <script>
+        const uniqueColors = [
+            '#1f77b4',
+            '#aec7e8',
+            '#ff7f0e',
+            '#ffbb78',
+            '#2ca02c',
+            '#98df8a',
+            '#d62728',
+            '#ff9896',
+            '#9467bd',
+            '#c5b0d5',
+            '#8c564b',
+            '#c49c94',
+            '#e377c2',
+            '#f7b6d2',
+            // '#7f7f7f',
+            // '#c7c7c7',
+            '#bcbd22',
+            '#dbdb8d',
+            '#17becf',
+            '#9edae5'
+        ];
+    </script>
+    <script type="module">
+        function _1(md) { return ( md`` ) } function _showLength(html) { const form = html`
+        <form style="font: 12px var(--sans-serif); display: flex; flex-direction: column; justify-content: center; min-height: 33px;"><label style="display: flex; align-items: center;"><input type=checkbox name=i><span style="margin-left: 0.5em;">Show branch length</span>`;
       const timeout = setTimeout(() => {
         form.i.checked = true;
         form.i.onclick();
@@ -334,10 +324,25 @@
       )
     }
 
+    let ids_for_tree = {};
+      fetch('./data/ids_for_tree.json')
+      .then(response => response.json())
+      .then(data => {
+        ids_for_tree = data;
+        // Convert all the integer IDs to strings
+        for (const key in data) {
+          data[key] = String(data[key]);
+        }
+        console.log('ids_for_tree loaded:', ids_for_tree);
+      })
+      .catch(error => {
+        console.error('Error loading ids_for_tree:', error);
+      });
+
     function _color(d3) {
       return (
         d3.scaleOrdinal()
-          .domain(["132982", "132101", "130459", "123316", "117655", "115333", "114550", "114538", "113036", "101179", "92982", "82765", "77515", "77513", "77508", "76535"].reverse())
+          .domain(ids_for_tree)
           .range(uniqueColors)
       )
     }
@@ -455,7 +460,7 @@
       const main = runtime.module();
       function toString() { return this.url; }
       const fileAttachments = new Map([
-        ["life.txt", { url: new URL("./tree-of-life/files/tree.txt", import.meta.url), mimeType: "text/plain", toString }]
+        ["life.txt", { url: new URL("./data/tree.txt", import.meta.url), mimeType: "text/plain", toString }]
       ]);
       main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
       main.variable(observer()).define(["md"], _1);
@@ -500,7 +505,7 @@
 
     // add mapping from the leaf nodes to higher in regards to colouring
     let mapping = {};
-    fetch('mapping.json')
+      fetch('./data/mapping.json')
       .then(response => response.json())
       .then(data => {
         mapping = data;
@@ -579,14 +584,14 @@
     map.on('load', function () {
       map.addSource('buildings-source', {
         type: 'vector',
-        // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
+        // url: 'pmtiles://http://127.0.0.1:8000/complete.pmtiles'   // use this when developing locally
         url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/complete.pmtiles'
       });
 
       const fillColor = [
         "match",
         ["get", "final_without_noise"],
-        ...Object.entries(mapping[4]).flatMap(([key, value]) => [key, uniqueColors[parseInt(value) - 1]]),
+        ...Object.entries(mapping).flatMap(([key, value]) => [key, uniqueColors[parseInt(value) - 1]]),
         "#cccccc" // default color
       ];
 
@@ -622,7 +627,7 @@
         // Update popup
         new maplibregl.Popup()
           .setLngLat(e.lngLat)
-          .setHTML('<h4>' + clusterNames[mapping[4][leafId]] + '</h4>' + clusterDescriptions[mapping[4][leafId]] + '</br><small>label: [' + leafId + "]</small>")
+          .setHTML('<h4>' + clusterNames[mapping[leafId]] + '</h4>' + clusterDescriptions[mapping[leafId]] + '</br><small>label: [' + leafId + "] original label: " + e.features[0].properties.final + "<br>morphotope: " + e.features[0].properties.morph + " branch: " + mapping[leafId] + "</small>")
           .addTo(map);
 
         // Highlight corresponding tree segments
@@ -649,141 +654,141 @@
 
 
       // add morphotopes
-      map.addSource('morphotopes-source', {
-        type: 'vector',
-        // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
-        url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/morphotopes.pmtiles'
-      });
+      // map.addSource('morphotopes-source', {
+      //   type: 'vector',
+      //   // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
+      //   url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/morphotopes.pmtiles'
+      // });
 
 
-      map.addLayer({
-        id: 'morphotopes',
-        type: 'fill',
-        source: 'morphotopes-source',
-        maxzoom: 24,
-        'layout': {
-          'visibility': 'none'
-        },
-        'source-layer': 'morphotopes',
-        paint: {
-          "fill-color": fillColor,
-          "fill-opacity": 0.7
-        },
-      });
+      // map.addLayer({
+      //   id: 'morphotopes',
+      //   type: 'fill',
+      //   source: 'morphotopes-source',
+      //   maxzoom: 24,
+      //   'layout': {
+      //     'visibility': 'none'
+      //   },
+      //   'source-layer': 'morphotopes',
+      //   paint: {
+      //     "fill-color": fillColor,
+      //     "fill-opacity": 0.7
+      //   },
+      // });
 
-      map.on('mouseenter', 'morphotopes', function () {
-        map.getCanvas().style.cursor = 'pointer';
-      });
+      // map.on('mouseenter', 'morphotopes', function () {
+      //   map.getCanvas().style.cursor = 'pointer';
+      // });
 
-      map.on('mouseleave', 'morphotopes', function () {
-        map.getCanvas().style.cursor = '';
-      });
-
-
-      // add h3
-      map.addSource('h3-source', {
-        type: 'vector',
-        // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
-        url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/h3.pmtiles'
-      });
+      // map.on('mouseleave', 'morphotopes', function () {
+      //   map.getCanvas().style.cursor = '';
+      // });
 
 
-      map.addLayer({
-        id: 'h3',
-        type: 'fill',
-        source: 'h3-source',
-        maxzoom: 24,
-        'layout': {
-          'visibility': 'none'
-        },
-        'source-layer': 'h3',
-        paint: {
-          "fill-color": fillColor,
-          "fill-opacity": 0.7
-        },
-      });
-
-      map.on('mouseenter', 'h3', function () {
-        map.getCanvas().style.cursor = 'pointer';
-      });
-
-      map.on('mouseleave', 'h3', function () {
-        map.getCanvas().style.cursor = '';
-      });
-
-      // add grid 250m
-      map.addSource('grid-source', {
-        type: 'vector',
-        // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
-        url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/grid_250.pmtiles'
-      });
+      // // add h3
+      // map.addSource('h3-source', {
+      //   type: 'vector',
+      //   // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
+      //   url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/h3.pmtiles'
+      // });
 
 
-      map.addLayer({
-        id: 'grid',
-        type: 'fill',
-        source: 'grid-source',
-        maxzoom: 24,
-        'layout': {
-          'visibility': 'none'
-        },
-        'source-layer': 'grid',
-        paint: {
-          "fill-color": fillColor,
-          "fill-opacity": 0.7
-        },
-      });
+      // map.addLayer({
+      //   id: 'h3',
+      //   type: 'fill',
+      //   source: 'h3-source',
+      //   maxzoom: 24,
+      //   'layout': {
+      //     'visibility': 'none'
+      //   },
+      //   'source-layer': 'h3',
+      //   paint: {
+      //     "fill-color": fillColor,
+      //     "fill-opacity": 0.7
+      //   },
+      // });
 
-      map.on('mouseenter', 'grid', function () {
-        map.getCanvas().style.cursor = 'pointer';
-      });
+      // map.on('mouseenter', 'h3', function () {
+      //   map.getCanvas().style.cursor = 'pointer';
+      // });
 
-      map.on('mouseleave', 'grid', function () {
-        map.getCanvas().style.cursor = '';
-      });
+      // map.on('mouseleave', 'h3', function () {
+      //   map.getCanvas().style.cursor = '';
+      // });
+
+      // // add grid 250m
+      // map.addSource('grid-source', {
+      //   type: 'vector',
+      //   // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
+      //   url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/grid_250.pmtiles'
+      // });
+
+
+      // map.addLayer({
+      //   id: 'grid',
+      //   type: 'fill',
+      //   source: 'grid-source',
+      //   maxzoom: 24,
+      //   'layout': {
+      //     'visibility': 'none'
+      //   },
+      //   'source-layer': 'grid',
+      //   paint: {
+      //     "fill-color": fillColor,
+      //     "fill-opacity": 0.7
+      //   },
+      // });
+
+      // map.on('mouseenter', 'grid', function () {
+      //   map.getCanvas().style.cursor = 'pointer';
+      // });
+
+      // map.on('mouseleave', 'grid', function () {
+      //   map.getCanvas().style.cursor = '';
+      // });
 
       // add layer control
-      const layers = [
-        { id: 'buildings', name: 'Buildings' },
-        { id: 'morphotopes', name: 'Morphotopes' },
-        { id: 'h3', name: 'H3 level 10' },
-        { id: 'grid', name: 'Grid 250m' },
-      ];
+      // const layers = [
+      //   { id: 'buildings', name: 'Buildings' },
+      //   { id: 'morphotopes', name: 'Morphotopes' },
+      //   { id: 'h3', name: 'H3 level 10' },
+      //   { id: 'grid', name: 'Grid 250m' },
+      // ];
 
-      const layerControl = document.createElement('div');
-      layerControl.id = 'layer-control';
-      layerControl.style.position = 'absolute';
-      layerControl.style.top = '10px';
-      layerControl.style.right = '10px';
-      layerControl.style.backgroundColor = 'white';
-      layerControl.style.opacity = 0.8;
-      layerControl.style.fontFamily = '"Helvetica Neue", Arial, Helvetica, sans-serif';
-      layerControl.style.fontSize = '12px';
-      layerControl.style.padding = '10px';
-      layerControl.style.borderRadius = '5px';
-      layerControl.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
+      // const layerControl = document.createElement('div');
+      // layerControl.id = 'layer-control';
+      // layerControl.style.position = 'absolute';
+      // layerControl.style.top = '10px';
+      // layerControl.style.right = '10px';
+      // layerControl.style.backgroundColor = 'white';
+      // layerControl.style.opacity = 0.8;
+      // layerControl.style.fontFamily = '"Helvetica Neue", Arial, Helvetica, sans-serif';
+      // layerControl.style.fontSize = '12px';
+      // layerControl.style.padding = '10px';
+      // layerControl.style.borderRadius = '5px';
+      // layerControl.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
 
-      layers.forEach(layer => {
-        const layerCheckbox = document.createElement('input');
-        layerCheckbox.type = 'checkbox';
-        layerCheckbox.id = layer.id;
-        layerCheckbox.checked = layer.id === 'buildings';
-        layerCheckbox.onchange = (e) => {
-          map.setLayoutProperty(layer.id, 'visibility', e.target.checked ? 'visible' : 'none');
-        };
+      // layers.forEach(layer => {
+      //   const layerCheckbox = document.createElement('input');
+      //   layerCheckbox.type = 'checkbox';
+      //   layerCheckbox.id = layer.id;
+      //   layerCheckbox.checked = layer.id === 'buildings';
+      //   layerCheckbox.onchange = (e) => {
+      //     map.setLayoutProperty(layer.id, 'visibility', e.target.checked ? 'visible' : 'none');
+      //   };
 
-        const layerLabel = document.createElement('label');
-        layerLabel.htmlFor = layer.id;
-        layerLabel.textContent = layer.name;
+      //   const layerLabel = document.createElement('label');
+      //   layerLabel.htmlFor = layer.id;
+      //   layerLabel.textContent = layer.name;
 
-        const layerControlItem = document.createElement('div');
-        layerControlItem.appendChild(layerCheckbox);
-        layerControlItem.appendChild(layerLabel);
+      //   const layerControlItem = document.createElement('div');
+      //   layerControlItem.appendChild(layerCheckbox);
+      //   layerControlItem.appendChild(layerLabel);
 
-        layerControl.appendChild(layerControlItem);
-      });
+      //   layerControl.appendChild(layerControlItem);
+      // });
 
-      document.body.appendChild(layerControl);
+      // document.body.appendChild(layerControl);
 
     });
     // add button to make map full screen
