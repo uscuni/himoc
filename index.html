@@ -325,7 +325,7 @@
     }
 
     let ids_for_tree = {};
-    fetch('ids_for_tree.json')
+      fetch('./data/ids_for_tree.json')
       .then(response => response.json())
       .then(data => {
         ids_for_tree = data;
@@ -460,7 +460,7 @@
       const main = runtime.module();
       function toString() { return this.url; }
       const fileAttachments = new Map([
-        ["life.txt", { url: new URL("./tree-of-life/files/tree.txt", import.meta.url), mimeType: "text/plain", toString }]
+        ["life.txt", { url: new URL("./data/tree.txt", import.meta.url), mimeType: "text/plain", toString }]
       ]);
       main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
       main.variable(observer()).define(["md"], _1);
@@ -505,7 +505,7 @@
 
     // add mapping from the leaf nodes to higher in regards to colouring
     let mapping = {};
-    fetch('mapping.json')
+      fetch('./data/mapping.json')
       .then(response => response.json())
       .then(data => {
         mapping = data;
@@ -584,8 +584,8 @@
     map.on('load', function () {
       map.addSource('buildings-source', {
         type: 'vector',
-        url: 'pmtiles://http://127.0.0.1:8000/complete.pmtiles'   // use this when developing locally
-        // url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/complete.pmtiles'
+        // url: 'pmtiles://http://127.0.0.1:8000/complete.pmtiles'   // use this when developing locally
+        url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/complete.pmtiles'
       });
 
       const fillColor = [
@@ -627,7 +627,7 @@
         // Update popup
         new maplibregl.Popup()
           .setLngLat(e.lngLat)
-          .setHTML('<h4>' + clusterNames[mapping[leafId]] + '</h4>' + clusterDescriptions[mapping[leafId]] + '</br><small>label: [' + leafId + "]</small>")
+          .setHTML('<h4>' + clusterNames[mapping[leafId]] + '</h4>' + clusterDescriptions[mapping[leafId]] + '</br><small>label: [' + leafId + "] original label: " + e.features[0].properties.final + "<br>morphotope: " + e.features[0].properties.morph + " branch: " + mapping[leafId] + "</small>")
           .addTo(map);
 
         // Highlight corresponding tree segments
@@ -654,141 +654,141 @@
 
 
       // add morphotopes
-      map.addSource('morphotopes-source', {
-        type: 'vector',
-        // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
-        url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/morphotopes.pmtiles'
-      });
+      // map.addSource('morphotopes-source', {
+      //   type: 'vector',
+      //   // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
+      //   url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/morphotopes.pmtiles'
+      // });
 
 
-      map.addLayer({
-        id: 'morphotopes',
-        type: 'fill',
-        source: 'morphotopes-source',
-        maxzoom: 24,
-        'layout': {
-          'visibility': 'none'
-        },
-        'source-layer': 'morphotopes',
-        paint: {
-          "fill-color": fillColor,
-          "fill-opacity": 0.7
-        },
-      });
+      // map.addLayer({
+      //   id: 'morphotopes',
+      //   type: 'fill',
+      //   source: 'morphotopes-source',
+      //   maxzoom: 24,
+      //   'layout': {
+      //     'visibility': 'none'
+      //   },
+      //   'source-layer': 'morphotopes',
+      //   paint: {
+      //     "fill-color": fillColor,
+      //     "fill-opacity": 0.7
+      //   },
+      // });
 
-      map.on('mouseenter', 'morphotopes', function () {
-        map.getCanvas().style.cursor = 'pointer';
-      });
+      // map.on('mouseenter', 'morphotopes', function () {
+      //   map.getCanvas().style.cursor = 'pointer';
+      // });
 
-      map.on('mouseleave', 'morphotopes', function () {
-        map.getCanvas().style.cursor = '';
-      });
-
-
-      // add h3
-      map.addSource('h3-source', {
-        type: 'vector',
-        // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
-        url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/h3.pmtiles'
-      });
+      // map.on('mouseleave', 'morphotopes', function () {
+      //   map.getCanvas().style.cursor = '';
+      // });
 
 
-      map.addLayer({
-        id: 'h3',
-        type: 'fill',
-        source: 'h3-source',
-        maxzoom: 24,
-        'layout': {
-          'visibility': 'none'
-        },
-        'source-layer': 'h3',
-        paint: {
-          "fill-color": fillColor,
-          "fill-opacity": 0.7
-        },
-      });
-
-      map.on('mouseenter', 'h3', function () {
-        map.getCanvas().style.cursor = 'pointer';
-      });
-
-      map.on('mouseleave', 'h3', function () {
-        map.getCanvas().style.cursor = '';
-      });
-
-      // add grid 250m
-      map.addSource('grid-source', {
-        type: 'vector',
-        // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
-        url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/grid_250.pmtiles'
-      });
+      // // add h3
+      // map.addSource('h3-source', {
+      //   type: 'vector',
+      //   // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
+      //   url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/h3.pmtiles'
+      // });
 
 
-      map.addLayer({
-        id: 'grid',
-        type: 'fill',
-        source: 'grid-source',
-        maxzoom: 24,
-        'layout': {
-          'visibility': 'none'
-        },
-        'source-layer': 'grid',
-        paint: {
-          "fill-color": fillColor,
-          "fill-opacity": 0.7
-        },
-      });
+      // map.addLayer({
+      //   id: 'h3',
+      //   type: 'fill',
+      //   source: 'h3-source',
+      //   maxzoom: 24,
+      //   'layout': {
+      //     'visibility': 'none'
+      //   },
+      //   'source-layer': 'h3',
+      //   paint: {
+      //     "fill-color": fillColor,
+      //     "fill-opacity": 0.7
+      //   },
+      // });
 
-      map.on('mouseenter', 'grid', function () {
-        map.getCanvas().style.cursor = 'pointer';
-      });
+      // map.on('mouseenter', 'h3', function () {
+      //   map.getCanvas().style.cursor = 'pointer';
+      // });
 
-      map.on('mouseleave', 'grid', function () {
-        map.getCanvas().style.cursor = '';
-      });
+      // map.on('mouseleave', 'h3', function () {
+      //   map.getCanvas().style.cursor = '';
+      // });
+
+      // // add grid 250m
+      // map.addSource('grid-source', {
+      //   type: 'vector',
+      //   // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
+      //   url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/grid_250.pmtiles'
+      // });
+
+
+      // map.addLayer({
+      //   id: 'grid',
+      //   type: 'fill',
+      //   source: 'grid-source',
+      //   maxzoom: 24,
+      //   'layout': {
+      //     'visibility': 'none'
+      //   },
+      //   'source-layer': 'grid',
+      //   paint: {
+      //     "fill-color": fillColor,
+      //     "fill-opacity": 0.7
+      //   },
+      // });
+
+      // map.on('mouseenter', 'grid', function () {
+      //   map.getCanvas().style.cursor = 'pointer';
+      // });
+
+      // map.on('mouseleave', 'grid', function () {
+      //   map.getCanvas().style.cursor = '';
+      // });
 
       // add layer control
-      const layers = [
-        { id: 'buildings', name: 'Buildings' },
-        { id: 'morphotopes', name: 'Morphotopes' },
-        { id: 'h3', name: 'H3 level 10' },
-        { id: 'grid', name: 'Grid 250m' },
-      ];
+      // const layers = [
+      //   { id: 'buildings', name: 'Buildings' },
+      //   { id: 'morphotopes', name: 'Morphotopes' },
+      //   { id: 'h3', name: 'H3 level 10' },
+      //   { id: 'grid', name: 'Grid 250m' },
+      // ];
 
-      const layerControl = document.createElement('div');
-      layerControl.id = 'layer-control';
-      layerControl.style.position = 'absolute';
-      layerControl.style.top = '10px';
-      layerControl.style.right = '10px';
-      layerControl.style.backgroundColor = 'white';
-      layerControl.style.opacity = 0.8;
-      layerControl.style.fontFamily = '"Helvetica Neue", Arial, Helvetica, sans-serif';
-      layerControl.style.fontSize = '12px';
-      layerControl.style.padding = '10px';
-      layerControl.style.borderRadius = '5px';
-      layerControl.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
+      // const layerControl = document.createElement('div');
+      // layerControl.id = 'layer-control';
+      // layerControl.style.position = 'absolute';
+      // layerControl.style.top = '10px';
+      // layerControl.style.right = '10px';
+      // layerControl.style.backgroundColor = 'white';
+      // layerControl.style.opacity = 0.8;
+      // layerControl.style.fontFamily = '"Helvetica Neue", Arial, Helvetica, sans-serif';
+      // layerControl.style.fontSize = '12px';
+      // layerControl.style.padding = '10px';
+      // layerControl.style.borderRadius = '5px';
+      // layerControl.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
 
-      layers.forEach(layer => {
-        const layerCheckbox = document.createElement('input');
-        layerCheckbox.type = 'checkbox';
-        layerCheckbox.id = layer.id;
-        layerCheckbox.checked = layer.id === 'buildings';
-        layerCheckbox.onchange = (e) => {
-          map.setLayoutProperty(layer.id, 'visibility', e.target.checked ? 'visible' : 'none');
-        };
+      // layers.forEach(layer => {
+      //   const layerCheckbox = document.createElement('input');
+      //   layerCheckbox.type = 'checkbox';
+      //   layerCheckbox.id = layer.id;
+      //   layerCheckbox.checked = layer.id === 'buildings';
+      //   layerCheckbox.onchange = (e) => {
+      //     map.setLayoutProperty(layer.id, 'visibility', e.target.checked ? 'visible' : 'none');
+      //   };
 
-        const layerLabel = document.createElement('label');
-        layerLabel.htmlFor = layer.id;
-        layerLabel.textContent = layer.name;
+      //   const layerLabel = document.createElement('label');
+      //   layerLabel.htmlFor = layer.id;
+      //   layerLabel.textContent = layer.name;
 
-        const layerControlItem = document.createElement('div');
-        layerControlItem.appendChild(layerCheckbox);
-        layerControlItem.appendChild(layerLabel);
+      //   const layerControlItem = document.createElement('div');
+      //   layerControlItem.appendChild(layerCheckbox);
+      //   layerControlItem.appendChild(layerLabel);
 
-        layerControl.appendChild(layerControlItem);
-      });
+      //   layerControl.appendChild(layerControlItem);
+      // });
 
-      document.body.appendChild(layerControl);
+      // document.body.appendChild(layerControl);
 
     });
     // add button to make map full screen
