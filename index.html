@@ -13,7 +13,7 @@
         body {
             margin: 0;
         }
-        
+
         #map {
             height: 100%;
             width: 100%;
@@ -516,41 +516,25 @@
       });
 
     let clusterNames = {
-      "1": "Dense Connected Developments",
-      "2": "Large Interconnected Blocks",
-      "3": "Extensive Courtyard Complexes",
-      "4": "Massive Connected Aggregations",
-      "5": "Dense Standalone Buildings",
-      "6": "Compact Development",
-      "7": "Cul-de-Sac Layout",
-      "8": "Aligned Winding Streets",
-      "9": "Sparse Rural Development",
-      "10": "Large Wide-Spaced Complexes",
-      "11": "Dispersed Linear Development",
-      "12": "Linear Development",
-      "13": "Sparse Open Layout",
-      "14": "Sparse Road-Linked Development",
-      "15": "Large Utilitarian Development",
-      "16": "Extensive Wide-Spaced Developments"
+      "1": "Incoherent Large-Scale Homogenous Fabric",
+      "2": "Incoherent Large-Scale Heterogenous Fabric",
+      "3": "Incoherent Small-Scale Linear Fabric",
+      "4": "Incoherent Small-Scale Sparse Fabric",
+      "5": "Incoherent Small-Scale Compact Fabric",
+      "6": "Coherent Interconnected Fabric",
+      "7": "Coherent Dense Disjoint Fabric",
+      "8": "Coherent Dense Adjacent Fabric"
     };
 
     let clusterDescriptions = {
-      "1": "In this cluster, buildings frequently share walls forming row-like structures and occupy larger portions of the area. The density of blocks and local street connectivity are moderately high, while inter-building distances remain relatively small. Overall, this configuration yields a dense, tightly arranged environment.",
-      "2": "This cluster is characterised by a high count of connected buildings forming enclosed blocks with courtyards. The covered area ratio is notably high, while street corridors are relatively narrow, resulting in consolidated building formations.",
-      "3": "Developments in this cluster exhibit multiple courtyards, numerous connected buildings, and large perimeter walls. Building sizes vary significantly, creating expansive connected areas distinguished by substantial adjacency and courtyard presence.",
-      "4": "This cluster displays very large connected building areas, lengthy perimeter walls, and considerable variability in building sizes. The overall formation covers vast stretches of the built environment with substantial coverage.",
-      "5": "This cluster features a well-connected street layout with high proportion of multi-way intersections. Shared walls between buildings are less common, reflecting a pattern of standalone structures within a robust street network.",
-      "6": "Development in this cluster is characterised by a moderate number of buildings and relatively dense local street connectivity. Shared walls appear regularly, and inter-building distances are relatively small, suggesting a compact layout.",
-      "7": "This cluster is distinguished by a significant presence of cul-de-sacs and relatively modest building coverage. Although local node density is moderate, the overall street network is not highly interconnected.",
-      "8": "Here, buildings exhibit a consistent alignment along streets of varying width. However, the overall street connectivity is lower than average, leading to a moderately ordered but less connected layout.",
-      "9": "Developments in this cluster have greater distances between buildings and street nodes. Streets are often wider, and adjacency is comparatively low.",
-      "10": "This cluster is defined by substantial building footprints, relatively wide streets, and significant spacing between structures. Buildings in this cluster stand out for their size as well as their strong compactness, squareness and rectangularity.",
-      "11": "This cluster exhibits long street segments, considerable distances between intersections, and minimal shared walls. The result is a dispersed layout with moderate development density, typically forming long linear villages.",
-      "12": "This cluster is characterised by lengthy street segments and higher distances between street intersections, albeit shorter than in the case of Dispersed Linear Development. Buildings are isolated, relatively small and far apart from each other. Overall the total built-up area in the development is low to moderate.",
-      "13": "Greater distances between buildings, fewer shared walls, and a lower coverage ratio are defining traits of this cluster. Streets remain relatively open, leading to a loosely structured environment. Overall the total built-up area in the development is low.",
-      "14": "With larger spacing between buildings, fewer shared walls, and moderate to long street segments, this cluster highlights a relatively open pattern. Compared to other sparse development, there are fewer streets relative to the number of buildings, leading to a higher granularity.",
-      "15": "This cluster consists of buildings with substantial footprints, wide street profiles, and notable variation in size. The design does not emphasize sunlight exposure, creating broad but less refined configurations, typical of industrial and other service areas.",
-      "16": "This cluster is marked by large building footprints, broad street profiles, and fewer shared walls. The resulting environment is spacious, with significant open areas between structures, typical of modernist housing.",
+      "1": "Incoherent large-scale homogeneous fabric consists of the large buildings with moderate variations in size and shape, as well as low to moderate street connectivity and wide streets. The resulting environment is spacious, with significant open areas between structures, typical of modernist housing, with areas showing a relatively high degree of homogeneity caused by underlying planning principles.",
+      "2": "Incoherent large-scale heterogeneous fabric consists of the largest buildings with notable variations in size and shape, as well as low to moderate street connectivity and wide streets. The design does not emphasise sunlight exposure, creating broad but less refined configurations, typical of industrial and other service areas.",
+      "3": "Incoherent small-scale linear fabric has a moderate built-up area and low local street connectivity, typically forming long linear villages. Its streets are long, linear, wide, and there are minimal shared walls between structures.",
+      "4": "Incoherent small-scale sparse fabric is characterised by low built-up density, low street connectivity, large distances between buildings, few shared walls, and large open spaces around buildings. The streets are few, open, and wide. The buildings are small to moderate in size, and their layout is more typical of rural areas.",
+      "5": "Incoherent small-scale compact fabric has low to moderate built-up area and street connectivity. Buildings exhibit a consistent alignment among themselves and also along streets of varying length, width, and linearity. There is also a significant number of shared walls between structures, typical for more traditional villages.",
+      "6": "Coherent interconnected fabric is typical for historical city and town centres, where buildings form intensive development. In this branch, the built-up density and local street connectivity are high, while inter-building distances remain relatively small. Buildings frequently share walls, forming larger structures with courtyards along relatively short and narrow streets.",
+      "7": "The coherent dense disjoint fabric has moderate to high built-up density and local street connectivity, with longer and wider streets compared to other dense developments. Shared walls between buildings are less common, and distances within buildings are moderate, reflecting a pattern of standalone structures within a robust street network.",
+      "8": "In coherent dense adjacent fabric, the built-up density and local street connectivity are high, while inter-building distances remain relatively small. Buildings frequently share walls, forming larger structures along relatively short and narrow streets.",
     };
 
     const map = new maplibregl.Map({
