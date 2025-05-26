@@ -36,6 +36,7 @@
           "#b2cd32", // green 4
           "#ECBF43", // yellow 5
         ];
+                  let isDarkMode = false;
     </script>
     <script type="module">
         function _1(md) { return ( md`` ) } function _showLength(html) { const form = html`
@@ -113,12 +114,12 @@
         .attr("font-size", 22);
 
       // Add background circle
-      svg.append("circle")
+      const backgroundCircle = svg.append("circle")
         .attr("cx", 0)
         .attr("cy", 0)
         .attr("r", innerRadius)
-        .attr("fill", "#000000")
-        .attr("opacity", 0.5);
+        .attr("fill", () => isDarkMode ? "#000000" : "#ffffff")
+        .attr("opacity", 0.75);
 
       svg.append("style").text(`
 
@@ -143,7 +144,7 @@
       const linkExtension = svg.append("g")
         .attr("fill", "none")
         .attr("stroke", "#fff")
-        .attr("stroke-opacity", 0.5)
+        .attr("stroke-opacity", 0)
         .attr("stroke-width", 4)
         .selectAll("path")
         .data(root.links().filter(d => !d.target.children))
@@ -153,7 +154,7 @@
 
       const link = svg.append("g")
         .attr("fill", "none")
-        .attr("stroke", "#fff")
+        .attr("stroke", () => isDarkMode ? "#fff" : "#000")
         .attr("stroke-width", 4)
         .selectAll("path")
         .data(root.links())
@@ -262,21 +263,21 @@
         }
       });
 
-      svg.append("g")
-        .selectAll("text")
-        .data(root.leaves())
-        .join("text")
-        .attr("dy", ".31em")
-        .attr("transform", d => `rotate(${d.x - 90}) translate(${innerRadius + 4},0)${d.x < 180 ? "" : " rotate(180)"}`)
-        .attr("text-anchor", d => d.x < 180 ? "start" : "end")
-        .attr("fill", "white") // Added fill attribute
-        .text(d => d.data.name.replace(/_/g, " "))
-        .on("mouseover", mouseovered(true))
-        .on("mouseout", mouseovered(false))
-        .on("click", function (event, d) {
-          event.stopPropagation();
-          handleTreeClick(event, { target: d }, this.parentNode.querySelector('.link'));
-        });
+      // svg.append("g")
+      //   .selectAll("text")
+      //   .data(root.leaves())
+      //   .join("text")
+      //   .attr("dy", ".31em")
+      //   .attr("transform", d => `rotate(${d.x - 90}) translate(${innerRadius + 4},0)${d.x < 180 ? "" : " rotate(180)"}`)
+      //   .attr("text-anchor", d => d.x < 180 ? "start" : "end")
+      //   .attr("fill", "white") // Added fill attribute
+      //   .text(d => d.data.name.replace(/_/g, " "))
+      //   .on("mouseover", mouseovered(true))
+      //   .on("mouseout", mouseovered(false))
+      //   .on("click", function (event, d) {
+      //     event.stopPropagation();
+      //     handleTreeClick(event, { target: d }, this.parentNode.querySelector('.link'));
+      //   });
 
       function update(checked) {
         const t = d3.transition().duration(750);
@@ -533,8 +534,7 @@
     });
     map.showTileBoundaries = false;
 
-              // Add dark mode toggle
-              let isDarkMode = false;
+                        // Add dark mode toggle
               const darkModeButton = document.createElement('button');
                 darkModeButton.innerHTML = '🌙'; // Moon icon for dark mode
                 darkModeButton.style.position = 'absolute';
@@ -574,6 +574,24 @@
                   // darkModeButton.style.borderColor = '#ccc';
                 }
                 updateScaleStyle(); // Update scale styling when dark mode changes
+
+                // Update tree background circle color
+                d3.select("circle").attr("fill", isDarkMode ? "#000000" : "#ffffff");
+
+                // Update tree link stroke colors
+                d3.selectAll("#tree-of-life-output svg g path")
+                  .filter(function () {
+                    return d3.select(this.parentNode).attr("stroke") !== null;
+                  })
+                  .each(function (d) {
+                    if (d && d.target && d.target.color) {
+                      // Keep the colored strokes as they are
+                      return;
+                    } else {
+                      // Update the base stroke color for non-colored links
+                      d3.select(this.parentNode).attr("stroke", isDarkMode ? "#fff" : "#000");
+                    }
+                  });
               });
 
               document.body.appendChild(darkModeButton);
