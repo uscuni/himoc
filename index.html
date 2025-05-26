@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="./tree-of-life/inspector.css">
     <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.js'></script>
     <script src="https://unpkg.com/pmtiles@4.2.1/dist/pmtiles.js"></script>
     <script src="https://d3js.org/d3.v6.min.js"></script>
@@ -536,7 +537,7 @@
 
                         // Add dark mode toggle
               const darkModeButton = document.createElement('button');
-                darkModeButton.innerHTML = '🌙'; // Moon icon for dark mode
+                darkModeButton.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for dark mode
                 darkModeButton.style.position = 'absolute';
                 darkModeButton.style.top = '100px';
                 darkModeButton.style.left = '10px';
@@ -546,7 +547,7 @@
                 darkModeButton.style.borderRadius = '4px';
                 darkModeButton.style.padding = '6px 6px';
                 darkModeButton.style.cursor = 'pointer';
-                darkModeButton.style.fontSize = '12px';
+                  darkModeButton.style.fontSize = '15px';
                 darkModeButton.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
                 darkModeButton.title = 'Toggle dark mode';
 
@@ -562,13 +563,13 @@
                 isDarkMode = !isDarkMode;
                 if (isDarkMode) {
                   map.setStyle("https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json");
-                  darkModeButton.innerHTML = '☀️'; // Sun icon for light mode
+                  darkModeButton.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for light mode
                   // darkModeButton.style.backgroundColor = '#333';
                   // darkModeButton.style.color = 'white';
                   // darkModeButton.style.borderColor = '#555';
                 } else {
                   map.setStyle("https://basemaps.cartocdn.com/gl/positron-gl-style/style.json");
-                  darkModeButton.innerHTML = '🌙'; // Moon icon for dark mode
+                  darkModeButton.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for dark mode
                   // darkModeButton.style.backgroundColor = 'white';
                   // darkModeButton.style.color = 'black';
                   // darkModeButton.style.borderColor = '#ccc';
