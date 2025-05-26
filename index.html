@@ -527,7 +527,7 @@
     };
 
     const map = new maplibregl.Map({
-      style: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+      style: "data/positron.json",
       container: "map",
       zoom: 13,
       center: [14.436035, 50.078292],
@@ -561,13 +561,13 @@
               darkModeButton.addEventListener('click', () => {
                 isDarkMode = !isDarkMode;
                 if (isDarkMode) {
-                  map.setStyle("https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json");
+                  map.setStyle("data/dark_matter.json");
                   darkModeButton.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for light mode
                   // darkModeButton.style.backgroundColor = '#333';
                   // darkModeButton.style.color = 'white';
                   // darkModeButton.style.borderColor = '#555';
                 } else {
-                  map.setStyle("https://basemaps.cartocdn.com/gl/positron-gl-style/style.json");
+                  map.setStyle("data/positron.json");
                   darkModeButton.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for dark mode
                   // darkModeButton.style.backgroundColor = 'white';
                   // darkModeButton.style.color = 'black';
@@ -627,6 +627,17 @@
           url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/complete.pmtiles'
         });
 
+        const layers = map.getStyle().layers;
+        // Find the index of the first symbol layer in the map style
+        let firstSymbolId;
+        for (let i = 0; i < layers.length; i++) {
+          if (layers[i].type === 'symbol') {
+            firstSymbolId = layers[i].id;
+            console.log(firstSymbolId);
+            break;
+          }
+        }
+
         const fillColor = [
           "match",
           ["get", "final_without_noise"],
@@ -643,7 +654,7 @@
           paint: {
             "fill-color": fillColor,
           },
-        });
+        }, firstSymbolId);
 
         // Add event handlers
         const handleLayerClick = (e) => {
