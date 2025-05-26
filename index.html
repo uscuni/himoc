@@ -30,12 +30,10 @@
           "#4069BC", // dark blue 1
           "#7CBAE4", // light blue 8
           "#E69C63", // grey-ish 6
-
           "#eec1d5", // light pink 7
           "#e6639d", // pink 2
           "#E0665F", // red 3
           "#b2cd32", // green 4
-
           "#ECBF43", // yellow 5
         ];
     </script>
@@ -535,6 +533,51 @@
     });
     map.showTileBoundaries = false;
 
+              // Add dark mode toggle
+              let isDarkMode = false;
+              const darkModeButton = document.createElement('button');
+                darkModeButton.innerHTML = '🌙'; // Moon icon for dark mode
+                darkModeButton.style.position = 'absolute';
+                darkModeButton.style.top = '100px';
+                darkModeButton.style.left = '10px';
+                darkModeButton.style.zIndex = '1000';
+                darkModeButton.style.backgroundColor = 'white';
+                darkModeButton.style.border = '1px solid #ccc';
+                darkModeButton.style.borderRadius = '4px';
+                darkModeButton.style.padding = '6px 6px';
+                darkModeButton.style.cursor = 'pointer';
+                darkModeButton.style.fontSize = '12px';
+                darkModeButton.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+                darkModeButton.title = 'Toggle dark mode';
+
+                darkModeButton.addEventListener('mouseenter', () => {
+                darkModeButton.style.backgroundColor = '#f0f0f0';
+                });
+
+                darkModeButton.addEventListener('mouseleave', () => {
+                darkModeButton.style.backgroundColor = 'white';
+                });
+
+              darkModeButton.addEventListener('click', () => {
+                isDarkMode = !isDarkMode;
+                if (isDarkMode) {
+                  map.setStyle("https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json");
+                  darkModeButton.innerHTML = '☀️'; // Sun icon for light mode
+                  // darkModeButton.style.backgroundColor = '#333';
+                  // darkModeButton.style.color = 'white';
+                  // darkModeButton.style.borderColor = '#555';
+                } else {
+                  map.setStyle("https://basemaps.cartocdn.com/gl/positron-gl-style/style.json");
+                  darkModeButton.innerHTML = '🌙'; // Moon icon for dark mode
+                  // darkModeButton.style.backgroundColor = 'white';
+                  // darkModeButton.style.color = 'black';
+                  // darkModeButton.style.borderColor = '#ccc';
+                }
+                updateScaleStyle(); // Update scale styling when dark mode changes
+              });
+
+              document.body.appendChild(darkModeButton);
+
     // Add scale control with inverted colors
     const scale = new maplibregl.ScaleControl({
       maxWidth: 80,
@@ -543,31 +586,85 @@
 
     // Add custom CSS for the scale control
     const style = document.createElement('style');
-    style.textContent = `
+            const updateScaleStyle = () => {
+            style.textContent = `
       .maplibregl-ctrl.maplibregl-ctrl-scale {
-        background-color: rgba(0,0,0,0.5);
-        color: #ffffff;
-        border: 1px solid #ffffff;
+        background-color: rgba(${isDarkMode ? '0,0,0' : '255,255,255'},0.5);
+        color: ${isDarkMode ? '#ffffff' : '#000000'};
+        border: 1px solid ${isDarkMode ? '#ffffff' : '#000000'};
         border-top: none;
       }
-    `;
+      `;
+            };
+            updateScaleStyle();
     document.head.appendChild(style);
     map.addControl(scale);
 
-
     map.on('load', function () {
-      map.addSource('buildings-source', {
-        type: 'vector',
-        // url: 'pmtiles://http://127.0.0.1:8000/complete.pmtiles'   // use this when developing locally
-        url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/complete.pmtiles'
-      });
+      // Store the layer configuration function
+      const addMapLayers = () => {
+        map.addSource('buildings-source', {
+          type: 'vector',
+          // url: 'pmtiles://http://127.0.0.1:8000/complete.pmtiles'   // use this when developing locally
+          url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/complete.pmtiles'
+        });
 
-      const fillColor = [
-        "match",
-        ["get", "final_without_noise"],
-        ...Object.entries(mapping).flatMap(([key, value]) => [key, uniqueColors[parseInt(value) - 1]]),
-        "#cccccc" // default color
-      ];
+        const fillColor = [
+          "match",
+          ["get", "final_without_noise"],
+          ...Object.entries(mapping).flatMap(([key, value]) => [key, uniqueColors[parseInt(value) - 1]]),
+          "#cccccc" // default color
+        ];
+
+        map.addLayer({
+          id: 'buildings',
+          type: 'fill',
+          source: 'buildings-source',
+          maxzoom: 24,
+          'source-layer': 'buildings',
+          paint: {
+            "fill-color": fillColor,
+          },
+        });
+
+        // Add event handlers
+        const handleLayerClick = (e) => {
+          const leafId = e.features[0].properties.final_without_noise;
+
+          new maplibregl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML('<h4>' + clusterNames[mapping[leafId]] + '</h4>' + clusterDescriptions[mapping[leafId]] + '</br><small>label: [' + leafId + "] original label: " + e.features[0].properties.final + "<br>morphotope: " + e.features[0].properties.morph + " branch: " + mapping[leafId] + "</small>")
+            .addTo(map);
+
+          highlightTreeSegments(leafId);
+          e.preventDefault();
+        };
+
+        ['buildings', 'morphotopes', 'h3', 'grid'].forEach(layer => {
+          if (map.getLayer(layer)) {
+            map.on('click', layer, handleLayerClick);
+          }
+        });
+
+        map.on('mouseenter', 'buildings', function (e) {
+          map.getCanvas().style.cursor = 'pointer';
+        });
+
+        map.on('mouseleave', 'buildings', function () {
+          map.getCanvas().style.cursor = '';
+        });
+      };
+
+      // Initial layer setup
+      addMapLayers();
+
+      // Re-add layers when style changes
+      map.on('style.load', () => {
+        // Only re-add layers if they don't exist (to avoid duplicate additions)
+        if (!map.getSource('buildings-source')) {
+          addMapLayers();
+        }
+      });
 
       map.on('click', function (e) {
         // Check if any features were clicked
@@ -581,189 +678,6 @@
           d3.selectAll(".link--selected").classed("link--selected", false);
         }
       });
-
-      map.addLayer({
-        id: 'buildings',
-        type: 'fill',
-        source: 'buildings-source',
-        maxzoom: 24,
-        'source-layer': 'buildings',
-        paint: {
-          "fill-color": fillColor,
-        },
-      });
-
-      // show the cluster on click
-      // Common click handler function for all layers
-      const handleLayerClick = (e) => {
-        const leafId = e.features[0].properties.final_without_noise;
-
-        // Update popup
-        new maplibregl.Popup()
-          .setLngLat(e.lngLat)
-          .setHTML('<h4>' + clusterNames[mapping[leafId]] + '</h4>' + clusterDescriptions[mapping[leafId]] + '</br><small>label: [' + leafId + "] original label: " + e.features[0].properties.final + "<br>morphotope: " + e.features[0].properties.morph + " branch: " + mapping[leafId] + "</small>")
-          .addTo(map);
-
-        // Highlight corresponding tree segments
-        highlightTreeSegments(leafId);
-
-        // Prevent the click from bubbling to the map
-        e.preventDefault();
-      };
-
-      // Add click handlers to all layers
-      ['buildings', 'morphotopes', 'h3', 'grid'].forEach(layer => {
-        map.on('click', layer, handleLayerClick);
-      });
-
-
-      map.on('mouseenter', 'buildings', function (e) {
-        map.getCanvas().style.cursor = 'pointer';
-      });
-
-      map.on('mouseleave', 'buildings', function () {
-        map.getCanvas().style.cursor = '';
-      });
-
-
-
-      // add morphotopes
-      // map.addSource('morphotopes-source', {
-      //   type: 'vector',
-      //   // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
-      //   url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/morphotopes.pmtiles'
-      // });
-
-
-      // map.addLayer({
-      //   id: 'morphotopes',
-      //   type: 'fill',
-      //   source: 'morphotopes-source',
-      //   maxzoom: 24,
-      //   'layout': {
-      //     'visibility': 'none'
-      //   },
-      //   'source-layer': 'morphotopes',
-      //   paint: {
-      //     "fill-color": fillColor,
-      //     "fill-opacity": 0.7
-      //   },
-      // });
-
-      // map.on('mouseenter', 'morphotopes', function () {
-      //   map.getCanvas().style.cursor = 'pointer';
-      // });
-
-      // map.on('mouseleave', 'morphotopes', function () {
-      //   map.getCanvas().style.cursor = '';
-      // });
-
-
-      // // add h3
-      // map.addSource('h3-source', {
-      //   type: 'vector',
-      //   // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
-      //   url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/h3.pmtiles'
-      // });
-
-
-      // map.addLayer({
-      //   id: 'h3',
-      //   type: 'fill',
-      //   source: 'h3-source',
-      //   maxzoom: 24,
-      //   'layout': {
-      //     'visibility': 'none'
-      //   },
-      //   'source-layer': 'h3',
-      //   paint: {
-      //     "fill-color": fillColor,
-      //     "fill-opacity": 0.7
-      //   },
-      // });
-
-      // map.on('mouseenter', 'h3', function () {
-      //   map.getCanvas().style.cursor = 'pointer';
-      // });
-
-      // map.on('mouseleave', 'h3', function () {
-      //   map.getCanvas().style.cursor = '';
-      // });
-
-      // // add grid 250m
-      // map.addSource('grid-source', {
-      //   type: 'vector',
-      //   // url: 'pmtiles://http://127.0.0.1:8000/86873.pmtiles'   // use this when developing locally
-      //   url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/grid_250.pmtiles'
-      // });
-
-
-      // map.addLayer({
-      //   id: 'grid',
-      //   type: 'fill',
-      //   source: 'grid-source',
-      //   maxzoom: 24,
-      //   'layout': {
-      //     'visibility': 'none'
-      //   },
-      //   'source-layer': 'grid',
-      //   paint: {
-      //     "fill-color": fillColor,
-      //     "fill-opacity": 0.7
-      //   },
-      // });
-
-      // map.on('mouseenter', 'grid', function () {
-      //   map.getCanvas().style.cursor = 'pointer';
-      // });
-
-      // map.on('mouseleave', 'grid', function () {
-      //   map.getCanvas().style.cursor = '';
-      // });
-
-      // add layer control
-      // const layers = [
-      //   { id: 'buildings', name: 'Buildings' },
-      //   { id: 'morphotopes', name: 'Morphotopes' },
-      //   { id: 'h3', name: 'H3 level 10' },
-      //   { id: 'grid', name: 'Grid 250m' },
-      // ];
-
-      // const layerControl = document.createElement('div');
-      // layerControl.id = 'layer-control';
-      // layerControl.style.position = 'absolute';
-      // layerControl.style.top = '10px';
-      // layerControl.style.right = '10px';
-      // layerControl.style.backgroundColor = 'white';
-      // layerControl.style.opacity = 0.8;
-      // layerControl.style.fontFamily = '"Helvetica Neue", Arial, Helvetica, sans-serif';
-      // layerControl.style.fontSize = '12px';
-      // layerControl.style.padding = '10px';
-      // layerControl.style.borderRadius = '5px';
-      // layerControl.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
-
-      // layers.forEach(layer => {
-      //   const layerCheckbox = document.createElement('input');
-      //   layerCheckbox.type = 'checkbox';
-      //   layerCheckbox.id = layer.id;
-      //   layerCheckbox.checked = layer.id === 'buildings';
-      //   layerCheckbox.onchange = (e) => {
-      //     map.setLayoutProperty(layer.id, 'visibility', e.target.checked ? 'visible' : 'none');
-      //   };
-
-      //   const layerLabel = document.createElement('label');
-      //   layerLabel.htmlFor = layer.id;
-      //   layerLabel.textContent = layer.name;
-
-      //   const layerControlItem = document.createElement('div');
-      //   layerControlItem.appendChild(layerCheckbox);
-      //   layerControlItem.appendChild(layerLabel);
-
-      //   layerControl.appendChild(layerControlItem);
-      // });
-
-      // document.body.appendChild(layerControl);
-
     });
     // add button to make map full screen
     // map.addControl(new maplibregl.FullscreenControl());
