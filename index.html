@@ -313,16 +313,17 @@
       )
     }
 
-    let ids_for_tree = {};
+      let ids_for_tree = [];  // Initialize as empty array instead of {}
       fetch('./data/ids_for_tree.json')
       .then(response => response.json())
       .then(data => {
-        ids_for_tree = data;
-        // Convert all the integer IDs to strings
-        for (const key in data) {
-          data[key] = String(data[key]);
-        }
+        ids_for_tree = Object.values(data).map(String);  // Convert to array of strings
         console.log('ids_for_tree loaded:', ids_for_tree);
+
+        // Re-render the chart after data is loaded
+        if (typeof main !== 'undefined') {
+          main.redefine("color", ["d3"], _color);
+        }
       })
       .catch(error => {
         console.error('Error loading ids_for_tree:', error);
@@ -331,7 +332,7 @@
     function _color(d3) {
       return (
         d3.scaleOrdinal()
-          .domain(ids_for_tree)
+          .domain(ids_for_tree.length > 0 ? ids_for_tree : [])  // Ensure we have an array
           .range(uniqueColors)
       )
     }
