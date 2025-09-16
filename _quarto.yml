@@ -9,9 +9,9 @@ project:
 website:
   title: "Urban Taxonomy"
   navbar:
-    background: primary
+    background: white
+    foreground: '#222222'
     search: true
-    collapse-below: lg
     twitter-card: true
     open-graph: true
     repo-actions: [issue]
@@ -24,6 +24,7 @@ website:
       - docs.ipynb
       - href: https://doi.org/10.48550/arXiv.2509.10083
         text: Paper
+        target: _blank
     right:
       - icon: github
         href: "https://github.com/uscuni/himoc"

@@ -69,12 +69,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-01862001d900f827fb82a58934f679c7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -171,7 +170,7 @@ window.Quarto = {
 <span class="menu-text">Guide</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://doi.org/10.48550/arXiv.2509.10083"> 
+    <a class="nav-link" href="https://doi.org/10.48550/arXiv.2509.10083" target="_blank"> 
 <span class="menu-text">Paper</span></a>
   </li>  
 </ul>
@@ -218,7 +217,7 @@ window.Quarto = {
 <p>Urban Taxonomy using Hierarchical Morphotope Classification</p>
 <p><img src="imgs/cities.png" class="img-fluid"></p>
 <section id="what" class="level3">
-<h3 class="anchored" data-anchor-id="what">What</h3>
+<h3 data-anchor-id="what">What</h3>
 <p>Urban Taxonomy is a <strong>classification</strong> of built-up fabric. It divides cities into regions of consistent <strong>patterns of urban form</strong> (think about buildings and street layouts, compositions and configurations) and connects them via a <strong>taxonomic tree</strong>. That in turn encodes how similar different regions are.</p>
 <p>The images above show just one level of the taxonomy in two cities, Prague and Vienna. However, the classification currently covers <strong>6 countries</strong> (Austria, Czechia, Germany. Lithuania, Poland, and Slovakia) with more to come soon.</p>
 <p>What do we mean by taxonomic tree?</p>
@@ -390,11 +389,11 @@ Names on the level 3
 <p><img src="imgs/prague_taxonomy.png" class="img-fluid"></p>
 </section>
 <section id="who" class="level3">
-<h3 class="anchored" data-anchor-id="who">Who</h3>
+<h3 data-anchor-id="who">Who</h3>
 <p>The classification has been developed by <a href="https://martinfleischmann.net">Dr.&nbsp;Martin Fleischmann</a> and Dr.&nbsp;Krasen Samardzhiev from the Department of Social Geography and Regional Planning of Charles University. The team further includes Anna Brázdová, Daniela Dančejová, Lisa Winkler (Uni of Freiburg), and Eliška Pospěchová.</p>
 <p>If you’d like to contact the team, you can drop an email to Martin at <a href="mailto:martin.fleischmann@natur.cuni.cz">martin.fleischmann@natur.cuni.cz</a>.</p>
 <section id="citation" class="level4">
-<h4 class="anchored" data-anchor-id="citation">Citation</h4>
+<h4 data-anchor-id="citation">Citation</h4>
 <p>The paper is currently under review. In the meantime, please cite the preprint.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">fleischmann2025Hierarchical</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {The {{Hierarchical Morphotope Classification}}: {{A Theory-Driven Framework}} for {{Large-Scale Analysis}} of {{Built Form}}},</span>
@@ -414,7 +413,7 @@ Names on the level 3
 </section>
 </section>
 <section id="how" class="level3">
-<h3 class="anchored" data-anchor-id="how">How</h3>
+<h3 data-anchor-id="how">How</h3>
 <p>The detailed overview of the method is available in the <a href="https://doi.org/10.48550/arXiv.2509.10083">research paper</a>. Let’s take a quick look on how it works.</p>
 <p><img src="imgs/method.png" class="img-fluid"></p>
 <ol type="1">
@@ -427,14 +426,15 @@ Names on the level 3
 <li>Get clusters based on a custom level from the tree.</li>
 </ol>
 <p>That is roughly it. Again, all the technical details are in the <a href="https://doi.org/10.48550/arXiv.2509.10083">paper</a>.</p>
-<section id="code" class="level4">
-<h4 class="anchored" data-anchor-id="code">Code</h4>
-<p>All components of the work rely on open source software and open data, with the resulting code and data being openly available. Code, with the specification of a reproducible environment, is available at <a href="https://github.com/uscuni/urban_taxonomy">github.com/uscuni/urban_taxonomy</a> and archived at <a href="https://doi.org/10.5281/zenodo.17105270">doi.org/10.5281/zenodo.17105270</a>.</p>
 </section>
+<section id="code" class="level3">
+<h3 data-anchor-id="code">Code</h3>
+<p>All components of the work rely on open source software and open data, with the resulting code and data being openly available. Code, with the specification of a reproducible environment, is available at <a href="https://github.com/uscuni/urban_taxonomy">github.com/uscuni/urban_taxonomy</a> and archived at <a href="https://doi.org/10.5281/zenodo.17105270">doi.org/10.5281/zenodo.17105270</a>. For data, see <a href="./data.html">Data</a>.</p>
 </section>
 <section id="acknowledgements" class="level3">
-<h3 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h3>
-<p>The authors kindly acknowledge funding by the Charles University’s Primus programme through the project “Influence of Socioeconomic and Cultural Factors on Urban Structure in Central Europe”, project reference <code>PRIMUS/24/SCI/023</code>. We would further like to thank to Claudia Baranzelli and Daniel Arribas-Bel for fruitful discussions helping shape the final outcome, to Rūta Marija Slavinskaitė, Milda Sutkaitytė, 4ct and Insitute for Planning and Devlopment Prague for their invaluable feedback on the classification and its applicability.</p>
+<h3 data-anchor-id="acknowledgements">Acknowledgements</h3>
+<p>The project is funded by the Charles University’s Primus programme through the project “Influence of Socioeconomic and Cultural Factors on Urban Structure in Central Europe”, project reference <code>PRIMUS/24/SCI/023</code>.</p>
+<p>We would further like to thank to Claudia Baranzelli and Daniel Arribas-Bel for fruitful discussions helping shape the final outcome, and to Rūta Marija Slavinskaitė, Milda Sutkaitytė, 4ct and Insitute for Planning and Devlopment Prague for their invaluable feedback on the classification and its applicability.</p>
 
 
 </section>
@@ -442,13 +442,6 @@ Names on the level 3
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     

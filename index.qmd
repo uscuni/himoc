@@ -2,6 +2,9 @@
 title: "Urban Taxonomy"
 css: index.css
 toc: false
+format:
+  html:
+    anchor-sections: false
 ---
 
 Urban Taxonomy using Hierarchical Morphotope Classification
@@ -123,19 +126,21 @@ The detailed overview of the method is available in the [research paper](https:/
 
 That is roughly it. Again, all the technical details are in the [paper](https://doi.org/10.48550/arXiv.2509.10083).
 
-#### Code
+### Code
 
 All components of the work rely on open source software and open data, with the
 resulting code and data being openly available. Code, with the specification of a
 reproducible environment, is available at [github.com/uscuni/urban_taxonomy](https://github.com/uscuni/urban_taxonomy) and
-archived at [doi.org/10.5281/zenodo.17105270](https://doi.org/10.5281/zenodo.17105270).
+archived at [doi.org/10.5281/zenodo.17105270](https://doi.org/10.5281/zenodo.17105270). For data, see [Data](data.qmd).
 
 ### Acknowledgements
 
-The authors kindly acknowledge funding by the Charles University’s Primus programme
+The project is funded by the Charles University’s Primus programme
 through the project "Influence of Socioeconomic and Cultural Factors on Urban Structure
-in Central Europe", project reference `PRIMUS/24/SCI/023`. We would further like to
+in Central Europe", project reference `PRIMUS/24/SCI/023`.
+
+We would further like to
 thank to Claudia Baranzelli and Daniel Arribas-Bel for fruitful discussions helping
-shape the final outcome, to Rūta Marija Slavinskaitė, Milda Sutkaitytė, 4ct and Insitute
+shape the final outcome, and to Rūta Marija Slavinskaitė, Milda Sutkaitytė, 4ct and Insitute
 for Planning and Devlopment Prague for their invaluable feedback on the classification
 and its applicability.
