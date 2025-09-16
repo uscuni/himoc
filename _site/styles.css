@@ -36,6 +36,6 @@ body {
   }
 }
 
-ol {
+ol, pre code {
     text-align: left;
 }

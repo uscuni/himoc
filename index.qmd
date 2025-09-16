@@ -84,6 +84,28 @@ Charles University. The team further includes Anna Brázdová, Daniela Dančejov
 
 If you'd like to contact the team, you can drop an email to Martin at [martin.fleischmann@natur.cuni.cz](mailto:martin.fleischmann@natur.cuni.cz).
 
+#### Citation
+
+The paper is currently under review. In the meantime, please cite the preprint.
+
+```bibtex
+@misc{fleischmann2025Hierarchical,
+  title = {The {{Hierarchical Morphotope Classification}}: {{A Theory-Driven Framework}} for {{Large-Scale Analysis}} of {{Built Form}}},
+  shorttitle = {The {{Hierarchical Morphotope Classification}}},
+  author = {Fleischmann, Martin and Samardzhiev, Krasen and Br{\'a}zdov{\'a}, Anna and Dan{\v c}ejov{\'a}, Daniela and Winkler, Lisa},
+  year = {2025},
+  month = sep,
+  number = {arXiv:2509.10083},
+  eprint = {2509.10083},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.2509.10083},
+  urldate = {2025-09-16},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Computers and Society}
+}
+```
+
 ### How
 
 The detailed overview of the method is available in the [research paper](https://doi.org/10.48550/arXiv.2509.10083). Let's take a quick look on how it works.
