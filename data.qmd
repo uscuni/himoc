@@ -3,91 +3,161 @@ title: "Data"
 layout: article
 ---
 
-This data product accompanies a research manuscript entitled “_The Hierarchical Morphotope Classification: A Theory-Driven Framework for Large-Scale Analysis of Built Form_”. It contains the classification of the entire building stock of 6 European countries, geographically split based on NUTS1 regions.
+This data product accompanies a research manuscript entitled “*The Hierarchical
+Morphotope Classification: A Theory-Driven Framework for Large-Scale Analysis of Built
+Form*”. It contains the classification of the entire building stock of 6 European
+countries, geographically split based on [NUTS1 regions (2024)](https://ec.europa.eu/eurostat/web/nuts/maps).
+
 
 ## Available data
 
-Below is an overview of the available data. Applies to both Zenodo and S3.
+Below is an overview of the available data. Applies to both Zenodo and CU repositories.
+
+### Coverage
+
+The current coverage includes Austria, Czechia, Germany. Lithuania, Poland, and Slovakia.
+Other European countries are currently being processed.
 
 ### Contents
 
-- `{NUTS1}.parquet` - Hierarchical Morphotope Classification results linked to building geometry
-- `{NUTS1}_morphotopes.parquet` - Hierarchical Morphotope Classification results linked to morphotope geometry
-- `{NUTS1}_data.parquet` - Underlying morphometric data linkable to building geometry
-- `morphotope_data.parquet` - Aggregate data linkable to individual morphotopes
-- `label_name.json` - Names of the cluster labels for first three levels of taxonomy
-- `pen_portraits.json` - Descriptions of the clusters for first three levels of taxonomy
-- `ward_linkage.npy` - The taxonomy itself encoded as scipy linkage object
+-   `{NUTS1}.parquet` - Hierarchical Morphotope Classification results linked to
+    building geometry
+-   `{NUTS1}_morphotopes.parquet` - Hierarchical Morphotope Classification results
+    linked to morphotope geometry
+-   `{NUTS1}_data.parquet` - Underlying morphometric data linkable to building geometry
+-   `morphotope_data.parquet` - Aggregate data linkable to individual morphotopes
+-   `label_name.json` - Names of the cluster labels for first three levels of taxonomy
+-   `pen_portraits.json` - Descriptions of the clusters for first three levels of
+    taxonomy
+-   `ward_linkage.npy` - The taxonomy itself encoded as scipy linkage object
 
 ### File formats
 
-Majority of the data is stored as Apache Parquet, with geospatial data being encoded as [GeoParquet](https://geoparquet.org/).
+Majority of the data is stored as Apache Parquet, with geospatial data being encoded
+as [GeoParquet](https://geoparquet.org/).
 
 The data is split regionally based on NUTS1 regions.
 
-- `{NUTS1}.parquet` - GeoParquet 1.1.0. ZSTD compressed, with GeoArrow geometry encoding and covering bbox for fast spatial queries.
-- `{NUTS1}_morphotopes.parquet` - GeoParquet 1.1.0. ZSTD compressed, with GeoArrow geometry encoding and covering bbox for fast spatial queries.
-- `{NUTS1}_data.parquet` - Parquet, ZSTD compressed
-- `morphotope_data.parquet` - Parquet, Snappy compressed. All characters for non-outlier morphotopes - used to build the taxonomy.
-- `label_name.json` - JSON
-- `pen_portraits.json` - JSON
-- `ward_linkage.npy` - Numpy NPY
+-   `{NUTS1}.parquet` - GeoParquet 1.1.0. ZSTD compressed, with GeoArrow geometry
+    encoding and covering bbox for fast spatial queries.
+-   `{NUTS1}_morphotopes.parquet` - GeoParquet 1.1.0. ZSTD compressed, with GeoArrow
+    geometry encoding and covering bbox for fast spatial queries.
+-   `{NUTS1}_data.parquet` - Parquet, ZSTD compressed
+-   `morphotope_data.parquet` - Parquet, Snappy compressed. All characters for
+    non-outlier morphotopes - used to build the taxonomy.
+-   `label_name.json` - JSON
+-   `pen_portraits.json` - JSON
+-   `ward_linkage.npy` - Numpy NPY
 
 ## Data repositories
 
-The main data repository is Zenodo, which contains a complete copy of the data product and issues a DOI to each version.
+### Zenodo
 
-See the data product at [doi.org/10.5281/zenodo.17076283](https://doi.org/10.5281/zenodo.17076283).
+The main data repository is Zenodo, which contains a complete copy of the data product
+and issues a DOI to each version.
 
+See the data product at
+[doi.org/10.5281/zenodo.17076283](https://doi.org/10.5281/zenodo.17076283).
 
+### Direct download
 
+You can also download the data directly from the repository managed by Charles
+University.
+
+| NUTS1 | HiMoC on buildings | HiMoC on morphotopes | Morphometric data |
+|----|----|----|----|
+| AT1 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/at1.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/at1_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/at1_data.parquet> |
+| AT2 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/at2.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/at2_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/at2_data.parquet> |
+| AT3 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/at3.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/at3_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/at3_data.parquet> |
+| CZ0 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/cz0.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/cz0_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/cz0_data.parquet> |
+| DE1 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de1.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de1_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de1_data.parquet> |
+| DE2 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de2.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de2_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de2_data.parquet> |
+| DE3 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de3.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de3_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de3_data.parquet> |
+| DE4 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de4.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de4_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de4_data.parquet> |
+| DE5 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de5.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de5_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de5_data.parquet> |
+| DE6 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de6.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de6_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de6_data.parquet> |
+| DE7 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de7.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de7_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de7_data.parquet> |
+| DE1 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de1.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de1_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de1_data.parquet> |
+| DE9 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de9.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de9_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/de9_data.parquet> |
+| DEA | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/dea.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/dea_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/dea_data.parquet> |
+| DEB | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/deb.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/deb_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/deb_data.parquet> |
+| DEC | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/dec.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/dec_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/dec_data.parquet> |
+| DED | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/ded.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/ded_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/ded_data.parquet> |
+| DEE | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/dee.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/dee_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/dee_data.parquet> |
+| DEF | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/def.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/def_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/def_data.parquet> |
+| DEG | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/deg.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/deg_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/deg_data.parquet> |
+| LT0 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/lt0.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/lt0_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/lt0_data.parquet> |
+| PL1 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl2.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl2_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl2_data.parquet> |
+| PL1 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl4.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl4_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl4_data.parquet> |
+| PL1 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl5.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl5_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl5_data.parquet> |
+| PL1 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl6.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl6_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl6_data.parquet> |
+| PL1 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl7.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl7_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl7_data.parquet> |
+| PL1 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl8.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl8_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl8_data.parquet> |
+| PL1 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl9.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl9_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pl9_data.parquet> |
+| SK0 | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/sk0.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/sk0_morphotopes.parquet> | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/sk0_data.parquet> |
 
 ## License
 
-This dataset is based on data from multiple sources. The combined database is licensed under the Open Database License (ODbL) v1.0.
+This dataset is based on data from multiple sources. The combined database is licensed
+under the Open Database License (ODbL) v1.0.
 
-**Attribution:** Contains data © Charles University, OpenStreetMap contributors, TomTom, GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL, IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK (CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT) and others.
+**Attribution:** Contains data © Charles University, OpenStreetMap contributors, TomTom,
+GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL,
+IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische
+Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK
+(CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT) and others.
 
-Individual source building data is available under the following licenses and attributions:
+Individual source building data is available under the following licenses and
+attributions:
 
-- **Brandenburg**: GeoBasis-DE/LGB — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+-   **Brandenburg**: GeoBasis-DE/LGB — [Datenlizenz Deutschland – Namensnennung –
+    Version 2.0](https://www.govdata.de/dl-de/by-2-0)
 
-- **Saxony**: State Office for Geobasis Information Saxony (GeoSN) — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+-   **Saxony**: State Office for Geobasis Information Saxony (GeoSN) — [Datenlizenz
+    Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
 
-- **Baden-Württemberg**: LGL, [www.lgl-bw.de](http://www.lgl-bw.de/) — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+-   **Baden-Württemberg**: LGL, [www.lgl-bw.de](http://www.lgl-bw.de/) — [Datenlizenz
+    Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
 
-- **Mecklenburg-Vorpommern**: GeoBasis-DE/MV — CC-BY 4.0
+-   **Mecklenburg-Vorpommern**: GeoBasis-DE/MV — CC-BY 4.0
 
-- **Rheinland-Pfalz**: GeoBasis-DE/LGB — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+-   **Rheinland-Pfalz**: GeoBasis-DE/LGB — [Datenlizenz Deutschland – Namensnennung –
+    Version 2.0](https://www.govdata.de/dl-de/by-2-0)
 
-- **Saarland**: © GeoBasis-DE/LVGL-SL (2024) — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+-   **Saarland**: © GeoBasis-DE/LVGL-SL (2024) — [Datenlizenz Deutschland –
+    Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
 
-- **Nordrhein-Westfalen**: Geoinformationszentrum, Information und Technik Nordrhein-Westfalen — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+-   **Nordrhein-Westfalen**: Geoinformationszentrum, Information und Technik
+    Nordrhein-Westfalen — [Datenlizenz Deutschland – Namensnennung – Version
+    2.0](https://www.govdata.de/dl-de/by-2-0)
 
-- **Niedersachsen**: © GeoBasis-DE/LGLN — CC-BY 4.0
+-   **Niedersachsen**: © GeoBasis-DE/LGLN — CC-BY 4.0
 
-- **Hessen**: Datenlizenz Deutschland – Zero – Version 2.0
+-   **Hessen**: Datenlizenz Deutschland – Zero – Version 2.0
 
-- **Thuringia**: © GDI-Th — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+-   **Thuringia**: © GDI-Th — [Datenlizenz Deutschland – Namensnennung – Version
+    2.0](https://www.govdata.de/dl-de/by-2-0)
 
-- **Saxony-Anhalt**: GeoBasis-DE / LVermGeo ST — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+-   **Saxony-Anhalt**: GeoBasis-DE / LVermGeo ST — [Datenlizenz Deutschland –
+    Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
 
-- **Schleswig-Holstein**: © GeoBasis-DE/LVermGeo SH — CC-BY-SA 4.0
+-   **Schleswig-Holstein**: © GeoBasis-DE/LVermGeo SH — CC-BY-SA 4.0
 
-- **Bavaria**: Bayerische Vermessungsverwaltung — CC-BY 4.0
+-   **Bavaria**: Bayerische Vermessungsverwaltung — CC-BY 4.0
 
-- **Berlin**: Datenlizenz Deutschland – Zero – Version 2.0
+-   **Berlin**: Datenlizenz Deutschland – Zero – Version 2.0
 
-- **Hamburg**: © LGV Hamburg — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+-   **Hamburg**: © LGV Hamburg — [Datenlizenz Deutschland – Namensnennung – Version
+    2.0](https://www.govdata.de/dl-de/by-2-0)
 
-- **Bremen**: Landesamt GeoInformation Bremen — CC-BY 4.0
+-   **Bremen**: Landesamt GeoInformation Bremen — CC-BY 4.0
 
-- **Poland**: Główny Urząd Geodezji i Kartografii — CC-BY 4.0
+-   **Poland**: Główny Urząd Geodezji i Kartografii — CC-BY 4.0
 
-- **Czechia**: ČÚZK — CC-BY 4.0
+-   **Czechia**: ČÚZK — CC-BY 4.0
 
-- **Slovakia**: Úrad geodézie, kartografie a katastra SR — CC-BY 4.0
+-   **Slovakia**: Úrad geodézie, kartografie a katastra SR — CC-BY 4.0
 
-- **Austria**: BEV — CC-BY 4.0
+-   **Austria**: BEV — CC-BY 4.0
 
-- **Lithuania**: Geoportal.lt — CC-BY 4.0
+-   **Lithuania**: Geoportal.lt — CC-BY 4.0

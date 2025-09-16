@@ -170,11 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#available-data" id="toc-available-data" class="nav-link active" data-scroll-target="#available-data">Available data</a>
-  <ul class="collapse">
-  <li><a href="#file-formats" id="toc-file-formats" class="nav-link" data-scroll-target="#file-formats">File formats</a></li>
-  </ul></li>
-  <li><a href="#required-dependencies" id="toc-required-dependencies" class="nav-link" data-scroll-target="#required-dependencies">Required dependencies</a></li>
+  <li><a href="#required-dependencies" id="toc-required-dependencies" class="nav-link active" data-scroll-target="#required-dependencies">Required dependencies</a></li>
   <li><a href="#plotting-building-data" id="toc-plotting-building-data" class="nav-link" data-scroll-target="#plotting-building-data">Plotting building data</a></li>
   <li><a href="#plotting-morphotope-delineation" id="toc-plotting-morphotope-delineation" class="nav-link" data-scroll-target="#plotting-morphotope-delineation">Plotting morphotope delineation</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
@@ -211,24 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This notebook contains the basic overview how to interact with the data product.</p>
-<section id="available-data" class="level2">
-<h2 class="anchored" data-anchor-id="available-data">Available data</h2>
-<p>Majority of the data is stored as Apache Parquet, with geospatial data being encoded as <a href="https://geoparquet.org">GeoParquet</a>.</p>
-<p>The data is split regionally based on NUTS1 regions.</p>
-<section id="file-formats" class="level3">
-<h3 class="anchored" data-anchor-id="file-formats">File formats</h3>
-<ul>
-<li><code>{NUTS1}.parquet</code> - GeoParquet 1.1.0. ZSTD compressed, with GeoArrow geometry encoding and covering bbox for fast spatial queries.</li>
-<li><code>{NUTS1}_morphotopes.parquet</code> - GeoParquet 1.1.0. ZSTD compressed, with GeoArrow geometry encoding and covering bbox for fast spatial queries.</li>
-<li><code>{NUTS1}_data.parquet</code> - Parquet, ZSTD compressed</li>
-<li><code>morphotope_data.parquet</code> - Parquet, Snappy compressed. All characters for non-outlier morphotopes - used to build the taxonomy.</li>
-<li><code>label_name.json</code> - JSON</li>
-<li><code>pen_portraits.json</code> - JSON</li>
-<li><code>ward_linkage.npy</code> - Numpy NPY</li>
-</ul>
-</section>
-</section>
+<p>This notebook contains the basic overview how to interact with the data product. See the overview of its structure in <a href="./data.html">Data</a>.</p>
 <section id="required-dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="required-dependencies">Required dependencies</h2>
 <p>A list of Python packages required to run this notebook:</p>
@@ -257,7 +236,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="plotting-building-data" class="level2">
 <h2 class="anchored" data-anchor-id="plotting-building-data">Plotting building data</h2>
-<p>The results from the clustering are assigned to buildings and are stored in <code>{NUTS1}.parquet</code>. The data has the following columns: - <code>geometry</code> - the geometry of the building. - <code>morphotope_id</code> - the morphotope, the building falls into. - <code>initially_noise</code> - whether the morphotope and the building were initially noise and assigned to a cluster later. - <code>level_1_label</code> - the level 1 classiffication of the building, corresponding to a cut of the hierarchy of 2500. - <code>level_2_label</code> - the level 2 classiffication of the building, corresponding to a cut of the hierarchy of 1600. - <code>level_3_label</code> - the level 3 classiffication of the building, corresponding to a cut of the hierarchy of 1000. - <code>level_4_label</code> - the level 4 classiffication of the building, corresponding to a cut of the hierarchy of 700. - <code>level_5_label</code> - the level 5 classiffication of the building, corresponding to a cut of the hierarchy of 500. - <code>level_6_label</code> - the level 6 classiffication of the building, corresponding to a cut of the hierarchy of 300. - <code>level_7_label</code> - the level 7 classiffication of the building, corresponding to a cut of the hierarchy of 200.</p>
+<p>The results from the clustering are assigned to buildings and are stored in <code>{NUTS1}.parquet</code>. The data has the following columns:</p>
+<ul>
+<li><code>geometry</code> - the geometry of the building.</li>
+<li><code>morphotope_id</code> - the morphotope, the building falls into.</li>
+<li><code>initially_noise</code> - whether the morphotope and the building were initially noise and assigned to a cluster later.</li>
+<li><code>level_1_label</code> - the level 1 classiffication of the building, corresponding to a cut of the hierarchy of 2500.</li>
+<li><code>level_2_label</code> - the level 2 classiffication of the building, corresponding to a cut of the hierarchy of 1600.</li>
+<li><code>level_3_label</code> - the level 3 classiffication of the building, corresponding to a cut of the hierarchy of 1000.</li>
+<li><code>level_4_label</code> - the level 4 classiffication of the building, corresponding to a cut of the hierarchy of 700.</li>
+<li><code>level_5_label</code> - the level 5 classiffication of the building, corresponding to a cut of the hierarchy of 500.</li>
+<li><code>level_6_label</code> - the level 6 classiffication of the building, corresponding to a cut of the hierarchy of 300.</li>
+<li><code>level_7_label</code> - the level 7 classiffication of the building, corresponding to a cut of the hierarchy of 200.</li>
+</ul>
 <p>You can quickly search the file using the bounding boxes in the <code>EPSG:3035</code> projection.</p>
 <div id="7142f33c-2b55-4a2e-99b2-943454437483" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>

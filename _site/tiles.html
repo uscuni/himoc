@@ -2,47 +2,49 @@
 <!-- TODO: 77516, 114550 are not selectable as it is higher order -->
 
 <head>
-    <title>Urban Landscape of Central Europe</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="./tree-of-life/inspector.css">
-    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.css' />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.js'></script>
-    <script src="https://unpkg.com/pmtiles@4.2.1/dist/pmtiles.js"></script>
-    <script src="https://d3js.org/d3.v6.min.js"></script>
-    <style>
-        body {
-            margin: 0;
-        }
+  <title>Urban Landscape of Central Europe</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="./tree-of-life/inspector.css">
+  <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.css' />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.js'></script>
+  <script src="https://unpkg.com/pmtiles@4.2.1/dist/pmtiles.js"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+    }
 
-        #map {
-            height: 100%;
-            width: 100%;
-        }
-    </style>
+    #map {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
 </head>
 
 <body>
 
-    <div id="tree-of-life-output" style="position: absolute; bottom: 50px; right: 0px; padding: 0px; z-index: 1; min-width: 400px; max-width: 25%">
-    </div>
-    <script>
-        const uniqueColors = [
-          "#4069BC", // Incoherent Large-Scale Homogenous Fabric
-          "#7CBAE4", // Incoherent Large-Scale Heterogenous Fabric
-          "#E69C63", // Incoherent Small-Scale Linear Fabric
-          "#eec1d5", // Incoherent Small-Scale Sparse Fabric
-          "#E0665F", // Incoherent Small-Scale Compact Fabric
-          "#ECBF43", // Coherent Interconnected Fabric
-          "#b2cd32", // Coherent Dense Disjoint Fabric
-          "#1F943E", // Coherent Dense Adjacent Fabric
+  <div id="tree-of-life-output"
+    style="position: absolute; bottom: 50px; right: 0px; padding: 0px; z-index: 1; min-width: 400px; max-width: 25%">
+  </div>
+  <script>
+    const uniqueColors = [
+      "#4069BC", // Incoherent Large-Scale Homogenous Fabric
+      "#7CBAE4", // Incoherent Large-Scale Heterogenous Fabric
+      "#E69C63", // Incoherent Small-Scale Linear Fabric
+      "#eec1d5", // Incoherent Small-Scale Sparse Fabric
+      "#E0665F", // Incoherent Small-Scale Compact Fabric
+      "#ECBF43", // Coherent Interconnected Fabric
+      "#b2cd32", // Coherent Dense Disjoint Fabric
+      "#1F943E", // Coherent Dense Adjacent Fabric
 
-          // 80941F
-        ];
-                  let isDarkMode = false;
-    </script>
-    <script type="module">
-        function _1(md) { return ( md`` ) } function _showLength(html) { const form = html`
+      // 80941F
+    ];
+    let isDarkMode = false;
+  </script>
+  <script type="module">
+    function _1(md) { return (md``) } function _showLength(html) {
+      const form = html`
         <form style="font: 12px var(--sans-serif); display: flex; flex-direction: column; justify-content: center; min-height: 33px;"><label style="display: flex; align-items: center;"><input type=checkbox name=i><span style="margin-left: 0.5em;">Show branch length</span>`;
       const timeout = setTimeout(() => {
         form.i.checked = true;
@@ -315,8 +317,8 @@
       )
     }
 
-      let ids_for_tree = [];  // Initialize as empty array instead of {}
-      fetch('./data/ids_for_tree.json')
+    let ids_for_tree = [];  // Initialize as empty array instead of {}
+    fetch('./data/ids_for_tree.json')
       .then(response => response.json())
       .then(data => {
         ids_for_tree = Object.values(data).map(String);  // Convert to array of strings
@@ -497,7 +499,7 @@
 
     // add mapping from the leaf nodes to higher in regards to colouring
     let mapping = {};
-      fetch('./data/mapping.json')
+    fetch('./data/mapping.json')
       .then(response => response.json())
       .then(data => {
         mapping = data;
@@ -537,67 +539,67 @@
     });
     map.showTileBoundaries = false;
 
-                        // Add dark mode toggle
-              const darkModeButton = document.createElement('button');
-                darkModeButton.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for dark mode
-                darkModeButton.style.position = 'absolute';
-                darkModeButton.style.top = '100px';
-                darkModeButton.style.left = '10px';
-                darkModeButton.style.zIndex = '1000';
-                darkModeButton.style.backgroundColor = 'white';
-                darkModeButton.style.border = '1px solid #ccc';
-                darkModeButton.style.borderRadius = '4px';
-                darkModeButton.style.padding = '6px 6px';
-                darkModeButton.style.cursor = 'pointer';
-                  darkModeButton.style.fontSize = '15px';
-                darkModeButton.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
-                darkModeButton.title = 'Toggle dark mode';
+    // Add dark mode toggle
+    const darkModeButton = document.createElement('button');
+    darkModeButton.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for dark mode
+    darkModeButton.style.position = 'absolute';
+    darkModeButton.style.top = '100px';
+    darkModeButton.style.left = '10px';
+    darkModeButton.style.zIndex = '1000';
+    darkModeButton.style.backgroundColor = 'white';
+    darkModeButton.style.border = '1px solid #ccc';
+    darkModeButton.style.borderRadius = '4px';
+    darkModeButton.style.padding = '6px 6px';
+    darkModeButton.style.cursor = 'pointer';
+    darkModeButton.style.fontSize = '15px';
+    darkModeButton.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+    darkModeButton.title = 'Toggle dark mode';
 
-                darkModeButton.addEventListener('mouseenter', () => {
-                darkModeButton.style.backgroundColor = '#f0f0f0';
-                });
+    darkModeButton.addEventListener('mouseenter', () => {
+      darkModeButton.style.backgroundColor = '#f0f0f0';
+    });
 
-                darkModeButton.addEventListener('mouseleave', () => {
-                darkModeButton.style.backgroundColor = 'white';
-                });
+    darkModeButton.addEventListener('mouseleave', () => {
+      darkModeButton.style.backgroundColor = 'white';
+    });
 
-              darkModeButton.addEventListener('click', () => {
-                isDarkMode = !isDarkMode;
-                if (isDarkMode) {
-                  map.setStyle("data/dark_matter.json");
-                  darkModeButton.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for light mode
-                  // darkModeButton.style.backgroundColor = '#333';
-                  // darkModeButton.style.color = 'white';
-                  // darkModeButton.style.borderColor = '#555';
-                } else {
-                  map.setStyle("data/positron.json");
-                  darkModeButton.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for dark mode
-                  // darkModeButton.style.backgroundColor = 'white';
-                  // darkModeButton.style.color = 'black';
-                  // darkModeButton.style.borderColor = '#ccc';
-                }
-                updateScaleStyle(); // Update scale styling when dark mode changes
+    darkModeButton.addEventListener('click', () => {
+      isDarkMode = !isDarkMode;
+      if (isDarkMode) {
+        map.setStyle("data/dark_matter.json");
+        darkModeButton.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for light mode
+        // darkModeButton.style.backgroundColor = '#333';
+        // darkModeButton.style.color = 'white';
+        // darkModeButton.style.borderColor = '#555';
+      } else {
+        map.setStyle("data/positron.json");
+        darkModeButton.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for dark mode
+        // darkModeButton.style.backgroundColor = 'white';
+        // darkModeButton.style.color = 'black';
+        // darkModeButton.style.borderColor = '#ccc';
+      }
+      updateScaleStyle(); // Update scale styling when dark mode changes
 
-                // Update tree background circle color
-                d3.select("circle").attr("fill", isDarkMode ? "#000000" : "#ffffff");
+      // Update tree background circle color
+      d3.select("circle").attr("fill", isDarkMode ? "#000000" : "#ffffff");
 
-                // Update tree link stroke colors
-                d3.selectAll("#tree-of-life-output svg g path")
-                  .filter(function () {
-                    return d3.select(this.parentNode).attr("stroke") !== null;
-                  })
-                  .each(function (d) {
-                    if (d && d.target && d.target.color) {
-                      // Keep the colored strokes as they are
-                      return;
-                    } else {
-                      // Update the base stroke color for non-colored links
-                      d3.select(this.parentNode).attr("stroke", isDarkMode ? "#fff" : "#000");
-                    }
-                  });
-              });
+      // Update tree link stroke colors
+      d3.selectAll("#tree-of-life-output svg g path")
+        .filter(function () {
+          return d3.select(this.parentNode).attr("stroke") !== null;
+        })
+        .each(function (d) {
+          if (d && d.target && d.target.color) {
+            // Keep the colored strokes as they are
+            return;
+          } else {
+            // Update the base stroke color for non-colored links
+            d3.select(this.parentNode).attr("stroke", isDarkMode ? "#fff" : "#000");
+          }
+        });
+    });
 
-              document.body.appendChild(darkModeButton);
+    document.body.appendChild(darkModeButton);
 
     // Add scale control with inverted colors
     const scale = new maplibregl.ScaleControl({
@@ -607,8 +609,8 @@
 
     // Add custom CSS for the scale control
     const style = document.createElement('style');
-            const updateScaleStyle = () => {
-            style.textContent = `
+    const updateScaleStyle = () => {
+      style.textContent = `
       .maplibregl-ctrl.maplibregl-ctrl-scale {
         background-color: rgba(${isDarkMode ? '0,0,0' : '255,255,255'},0.5);
         color: ${isDarkMode ? '#ffffff' : '#000000'};
@@ -616,10 +618,11 @@
         border-top: none;
       }
       `;
-            };
-            updateScaleStyle();
+    };
+    updateScaleStyle();
     document.head.appendChild(style);
     map.addControl(scale);
+    map.addControl(new maplibregl.FullscreenControl({ container: document.querySelector('body') }));
 
     map.on('load', function () {
       // Store the layer configuration function
@@ -627,7 +630,8 @@
         map.addSource('buildings-source', {
           type: 'vector',
           // url: 'pmtiles://http://127.0.0.1:8000/complete.pmtiles'   // use this when developing locally
-          url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/complete.pmtiles'
+          url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/complete.pmtiles',
+          attribution: '© <a href="https://uscuni.org">Charles University</a>, GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL, IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK (CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT) and others',
         });
 
         const layers = map.getStyle().layers;
