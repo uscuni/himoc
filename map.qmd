@@ -3,6 +3,7 @@ title: "Map"
 format:
   html:
     page-layout: custom
+css: index.css
 ---
 
 An interactive exploration of the taxonomy to the level of individual buildings.

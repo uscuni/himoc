@@ -1,5 +1,6 @@
 ---
 title: "Urban Taxonomy"
+css: index.css
 ---
 
 Urban Taxonomy using Hierarchical Morphotope Classification

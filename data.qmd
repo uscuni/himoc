@@ -1,5 +1,98 @@
 ---
 title: "Data"
+layout: article
 ---
 
-Here will be links to the data
+This data product accompanies a research manuscript entitled “_The Hierarchical Morphotope Classification: A Theory-Driven Framework for Large-Scale Analysis of Built Form_”. It contains the classification of the entire building stock of 6 European countries, geographically split based on NUTS1 regions.
+
+## Available data
+
+Below is an overview of the available data. Applies to both Zenodo and S3.
+
+### Contents
+
+- `{NUTS1}.parquet` - Hierarchical Morphotope Classification results linked to building geometry
+- `{NUTS1}_morphotopes.parquet` - Hierarchical Morphotope Classification results linked to morphotope geometry
+- `{NUTS1}_data.parquet` - Underlying morphometric data linkable to building geometry
+- `morphotope_data.parquet` - Aggregate data linkable to individual morphotopes
+- `label_name.json` - Names of the cluster labels for first three levels of taxonomy
+- `pen_portraits.json` - Descriptions of the clusters for first three levels of taxonomy
+- `ward_linkage.npy` - The taxonomy itself encoded as scipy linkage object
+
+### File formats
+
+Majority of the data is stored as Apache Parquet, with geospatial data being encoded as [GeoParquet](https://geoparquet.org/).
+
+The data is split regionally based on NUTS1 regions.
+
+- `{NUTS1}.parquet` - GeoParquet 1.1.0. ZSTD compressed, with GeoArrow geometry encoding and covering bbox for fast spatial queries.
+- `{NUTS1}_morphotopes.parquet` - GeoParquet 1.1.0. ZSTD compressed, with GeoArrow geometry encoding and covering bbox for fast spatial queries.
+- `{NUTS1}_data.parquet` - Parquet, ZSTD compressed
+- `morphotope_data.parquet` - Parquet, Snappy compressed. All characters for non-outlier morphotopes - used to build the taxonomy.
+- `label_name.json` - JSON
+- `pen_portraits.json` - JSON
+- `ward_linkage.npy` - Numpy NPY
+
+## Data repositories
+
+The data product is available for download from Zenodo and an S3 provided by Charles University.
+
+### Zenodo
+
+The main data repository is Zenodo, which contains a complete copy of the data product and issues a DOI to each version.
+
+See the data product at [doi.org/10.5281/zenodo.17076283](https://doi.org/10.5281/zenodo.17076283).
+
+### S3
+
+The S3 overview here.
+
+## License
+
+This dataset is based on data from multiple sources. The combined database is licensed under the Open Database License (ODbL) v1.0.
+
+**Attribution:** Contains data © Charles University, OpenStreetMap contributors, TomTom, GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL, IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK (CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT) and others.
+
+Individual source building data is available under the following licenses and attributions:
+
+- **Brandenburg**: GeoBasis-DE/LGB — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+
+- **Saxony**: State Office for Geobasis Information Saxony (GeoSN) — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+
+- **Baden-Württemberg**: LGL, [www.lgl-bw.de](http://www.lgl-bw.de/) — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+
+- **Mecklenburg-Vorpommern**: GeoBasis-DE/MV — CC-BY 4.0
+
+- **Rheinland-Pfalz**: GeoBasis-DE/LGB — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+
+- **Saarland**: © GeoBasis-DE/LVGL-SL (2024) — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+
+- **Nordrhein-Westfalen**: Geoinformationszentrum, Information und Technik Nordrhein-Westfalen — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+
+- **Niedersachsen**: © GeoBasis-DE/LGLN — CC-BY 4.0
+
+- **Hessen**: Datenlizenz Deutschland – Zero – Version 2.0
+
+- **Thuringia**: © GDI-Th — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+
+- **Saxony-Anhalt**: GeoBasis-DE / LVermGeo ST — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+
+- **Schleswig-Holstein**: © GeoBasis-DE/LVermGeo SH — CC-BY-SA 4.0
+
+- **Bavaria**: Bayerische Vermessungsverwaltung — CC-BY 4.0
+
+- **Berlin**: Datenlizenz Deutschland – Zero – Version 2.0
+
+- **Hamburg**: © LGV Hamburg — [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
+
+- **Bremen**: Landesamt GeoInformation Bremen — CC-BY 4.0
+
+- **Poland**: Główny Urząd Geodezji i Kartografii — CC-BY 4.0
+
+- **Czechia**: ČÚZK — CC-BY 4.0
+
+- **Slovakia**: Úrad geodézie, kartografie a katastra SR — CC-BY 4.0
+
+- **Austria**: BEV — CC-BY 4.0
+
+- **Lithuania**: Geoportal.lt — CC-BY 4.0

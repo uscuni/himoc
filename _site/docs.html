@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Documentation – Urban Taxonomy</title>
+<title>Data product guide – Urban Taxonomy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,10 +20,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -67,6 +102,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -103,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./docs.html" aria-current="page"> 
-<span class="menu-text">Documentation</span></a>
+<span class="menu-text">Data product guide</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="https://doi.org/10.48550/arXiv.2509.10083"> 
@@ -127,15 +165,36 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#available-data" id="toc-available-data" class="nav-link active" data-scroll-target="#available-data">Available data</a>
+  <ul class="collapse">
+  <li><a href="#file-formats" id="toc-file-formats" class="nav-link" data-scroll-target="#file-formats">File formats</a></li>
+  </ul></li>
+  <li><a href="#required-dependencies" id="toc-required-dependencies" class="nav-link" data-scroll-target="#required-dependencies">Required dependencies</a></li>
+  <li><a href="#plotting-building-data" id="toc-plotting-building-data" class="nav-link" data-scroll-target="#plotting-building-data">Plotting building data</a></li>
+  <li><a href="#plotting-morphotope-delineation" id="toc-plotting-morphotope-delineation" class="nav-link" data-scroll-target="#plotting-morphotope-delineation">Plotting morphotope delineation</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
+  <ul class="collapse">
+  <li><a href="#building-level-data" id="toc-building-level-data" class="nav-link" data-scroll-target="#building-level-data">Building-level data</a></li>
+  <li><a href="#morphotope-level-data" id="toc-morphotope-level-data" class="nav-link" data-scroll-target="#morphotope-level-data">Morphotope-level data</a></li>
+  </ul></li>
+  <li><a href="#taxonomic-tree" id="toc-taxonomic-tree" class="nav-link" data-scroll-target="#taxonomic-tree">Taxonomic tree</a></li>
+  <li><a href="#linking-the-new-cuts-to-the-buildings" id="toc-linking-the-new-cuts-to-the-buildings" class="nav-link" data-scroll-target="#linking-the-new-cuts-to-the-buildings">Linking the new cuts to the buildings</a></li>
+  <li><a href="#handling-noise-and-outliers" id="toc-handling-noise-and-outliers" class="nav-link" data-scroll-target="#handling-noise-and-outliers">Handling noise and outliers</a></li>
+  <li><a href="#naming-clusters-branches" id="toc-naming-clusters-branches" class="nav-link" data-scroll-target="#naming-clusters-branches">Naming clusters &amp; branches</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Documentation</h1>
+<h1 class="title">Data product guide</h1>
 </div>
 
 
@@ -152,9 +211,654 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Here will be docs.</p>
+<p>This notebook contains the basic overview how to interact with the data product.</p>
+<section id="available-data" class="level2">
+<h2 class="anchored" data-anchor-id="available-data">Available data</h2>
+<p>Majority of the data is stored as Apache Parquet, with geospatial data being encoded as <a href="https://geoparquet.org">GeoParquet</a>.</p>
+<p>The data is split regionally based on NUTS1 regions.</p>
+<section id="file-formats" class="level3">
+<h3 class="anchored" data-anchor-id="file-formats">File formats</h3>
+<ul>
+<li><code>{NUTS1}.parquet</code> - GeoParquet 1.1.0. ZSTD compressed, with GeoArrow geometry encoding and covering bbox for fast spatial queries.</li>
+<li><code>{NUTS1}_morphotopes.parquet</code> - GeoParquet 1.1.0. ZSTD compressed, with GeoArrow geometry encoding and covering bbox for fast spatial queries.</li>
+<li><code>{NUTS1}_data.parquet</code> - Parquet, ZSTD compressed</li>
+<li><code>morphotope_data.parquet</code> - Parquet, Snappy compressed. All characters for non-outlier morphotopes - used to build the taxonomy.</li>
+<li><code>label_name.json</code> - JSON</li>
+<li><code>pen_portraits.json</code> - JSON</li>
+<li><code>ward_linkage.npy</code> - Numpy NPY</li>
+</ul>
+</section>
+</section>
+<section id="required-dependencies" class="level2">
+<h2 class="anchored" data-anchor-id="required-dependencies">Required dependencies</h2>
+<p>A list of Python packages required to run this notebook:</p>
+<ul>
+<li><code>numpy</code></li>
+<li><code>pandas</code></li>
+<li><code>scipy</code></li>
+<li><code>geopandas</code></li>
+<li><code>matplotlib</code></li>
+<li><code>pyarrow</code></li>
+</ul>
+<div id="5a760860-9818-4c0a-b930-4fb2f03303c9" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.cluster.hierarchy <span class="im">import</span> fcluster</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.cluster.hierarchy <span class="im">import</span> dendrogram</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Set the path to the files. This assumes a local copy of the data product but note that Zenodo allows direct access to cloud optimized files like these.</p>
+<div id="e3e0f86a-0d33-41e4-9f17-9abfd53381d1" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data_product_dir <span class="op">=</span> <span class="st">'/data/uscuni-ulce/data_product'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="plotting-building-data" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-building-data">Plotting building data</h2>
+<p>The results from the clustering are assigned to buildings and are stored in <code>{NUTS1}.parquet</code>. The data has the following columns: - <code>geometry</code> - the geometry of the building. - <code>morphotope_id</code> - the morphotope, the building falls into. - <code>initially_noise</code> - whether the morphotope and the building were initially noise and assigned to a cluster later. - <code>level_1_label</code> - the level 1 classiffication of the building, corresponding to a cut of the hierarchy of 2500. - <code>level_2_label</code> - the level 2 classiffication of the building, corresponding to a cut of the hierarchy of 1600. - <code>level_3_label</code> - the level 3 classiffication of the building, corresponding to a cut of the hierarchy of 1000. - <code>level_4_label</code> - the level 4 classiffication of the building, corresponding to a cut of the hierarchy of 700. - <code>level_5_label</code> - the level 5 classiffication of the building, corresponding to a cut of the hierarchy of 500. - <code>level_6_label</code> - the level 6 classiffication of the building, corresponding to a cut of the hierarchy of 300. - <code>level_7_label</code> - the level 7 classiffication of the building, corresponding to a cut of the hierarchy of 200.</p>
+<p>You can quickly search the file using the bounding boxes in the <code>EPSG:3035</code> projection.</p>
+<div id="7142f33c-2b55-4a2e-99b2-943454437483" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>buildings_subset <span class="op">=</span> gpd.read_parquet(<span class="ss">f'</span><span class="sc">{</span>data_product_dir<span class="sc">}</span><span class="ss">/cz0.parquet'</span>, bbox<span class="op">=</span>(<span class="dv">4633248</span>, <span class="dv">3007112</span>, <span class="dv">4636735</span>, <span class="dv">3009478</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 749 ms, sys: 485 ms, total: 1.23 s
+Wall time: 407 ms</code></pre>
+</div>
+</div>
+<p>This read a portion of the data from the CZ0 NUTS1 region (Czechia).</p>
+<div id="8108acf6-20e7-465d-8f6c-7f15986cc7c4" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>buildings_subset.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
 
 
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">morphotope_id</th>
+<th data-quarto-table-cell-role="th">initially_noise</th>
+<th data-quarto-table-cell-role="th">level_1_label</th>
+<th data-quarto-table-cell-role="th">level_2_label</th>
+<th data-quarto-table-cell-role="th">level_3_label</th>
+<th data-quarto-table-cell-role="th">level_4_label</th>
+<th data-quarto-table-cell-role="th">level_5_label</th>
+<th data-quarto-table-cell-role="th">level_6_label</th>
+<th data-quarto-table-cell-role="th">level_7_label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">69333_174961</td>
+<td>POLYGON ((4633241.84 3007139.255, 4633252.999 ...</td>
+<td>69333_849_709</td>
+<td>False</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">69333_174926</td>
+<td>POLYGON ((4633264.399 3007127.003, 4633266.132...</td>
+<td>69333_849_709</td>
+<td>False</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>See how it looks like on a map, using the first bifurcation of the taxonomy.</p>
+<div id="65f1675b-f6ac-4f35-8cd2-8936b723d9e9" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>buildings_subset.plot(column<span class="op">=</span><span class="st">'level_1_label'</span>, categorical<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="docs_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="plotting-morphotope-delineation" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-morphotope-delineation">Plotting morphotope delineation</h2>
+<p>The results from the morphotope delineation are stored in <code>{NUTS1}_morphotopes.parquet</code>. The data has the following columns: - <code>geometry</code> - the geometry of the building. - <code>morphotope_id</code> - the morphotope, the building falls into. - <code>initially_noise</code> - whether the morphotope and the building were initially noise and assigned to a cluster later. - <code>level_1_label</code> - the level 1 classiffication of the building, corresponding to a cut of the hierarchy of 2500. - <code>level_2_label</code> - the level 2 classiffication of the building, corresponding to a cut of the hierarchy of 1600. - <code>level_3_label</code> - the level 3 classiffication of the building, corresponding to a cut of the hierarchy of 1000. - <code>level_4_label</code> - the level 4 classiffication of the building, corresponding to a cut of the hierarchy of 700. - <code>level_5_label</code> - the level 5 classiffication of the building, corresponding to a cut of the hierarchy of 500. - <code>level_6_label</code> - the level 6 classiffication of the building, corresponding to a cut of the hierarchy of 300. - <code>level_7_label</code> - the level 7 classiffication of the building, corresponding to a cut of the hierarchy of 200.</p>
+<p>You can quickly search the file using the bounding boxes in the <code>EPSG:3035</code> projection.</p>
+<div id="8881bddd-e7d8-49c1-a6de-b1f61ac8c5df" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>morphotope_subset <span class="op">=</span> gpd.read_parquet(<span class="ss">f'</span><span class="sc">{</span>data_product_dir<span class="sc">}</span><span class="ss">/cz0_morphotopes.parquet'</span>, bbox<span class="op">=</span>(<span class="dv">4633248</span>, <span class="dv">3007112</span>, <span class="dv">4636735</span>, <span class="dv">3009478</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 1.09 s, sys: 298 ms, total: 1.39 s
+Wall time: 1.29 s</code></pre>
+</div>
+</div>
+<p>This read the same spatial portion of Czech data.</p>
+<div id="a650b8d7-4414-4770-aebf-a20592b3a5b1" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>morphotope_subset.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">morphotope_id</th>
+<th data-quarto-table-cell-role="th">initially_noise</th>
+<th data-quarto-table-cell-role="th">level_1_label</th>
+<th data-quarto-table-cell-role="th">level_2_label</th>
+<th data-quarto-table-cell-role="th">level_3_label</th>
+<th data-quarto-table-cell-role="th">level_4_label</th>
+<th data-quarto-table-cell-role="th">level_5_label</th>
+<th data-quarto-table-cell-role="th">level_6_label</th>
+<th data-quarto-table-cell-role="th">level_7_label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2690</td>
+<td>MULTIPOLYGON (((4632562.899 3007004.802, 46325...</td>
+<td>69333_849_709</td>
+<td>False</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4461</td>
+<td>MULTIPOLYGON (((4633261.396 3007177.453, 46332...</td>
+<td>69333_849_-1621</td>
+<td>True</td>
+<td>2</td>
+<td>4</td>
+<td>8</td>
+<td>17</td>
+<td>24</td>
+<td>55</td>
+<td>101</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>These align with the labels allocated to buildings.</p>
+<div id="077fa38b-c28e-44de-9153-e46bd29a0e81" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> morphotope_subset.plot(column<span class="op">=</span><span class="st">'level_6_label'</span>, categorical<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">.5</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>buildings_subset.plot(column<span class="op">=</span><span class="st">'level_6_label'</span>, categorical<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>ax)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="docs_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>The data product also contains the building-level morphometric attributes. The Parquet files are linkable via index and shall be aligned.</p>
+<section id="building-level-data" class="level3">
+<h3 class="anchored" data-anchor-id="building-level-data">Building-level data</h3>
+<div id="2d113864-f057-4aa8-a42a-9979da4fa15c" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_parquet(<span class="ss">f"</span><span class="sc">{</span>data_product_dir<span class="sc">}</span><span class="ss">/cz0_data.parquet"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>data.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sdbAre</th>
+<th data-quarto-table-cell-role="th">sdbPer</th>
+<th data-quarto-table-cell-role="th">sdbCoA</th>
+<th data-quarto-table-cell-role="th">ssbCCo</th>
+<th data-quarto-table-cell-role="th">ssbCor</th>
+<th data-quarto-table-cell-role="th">ssbSqu</th>
+<th data-quarto-table-cell-role="th">ssbERI</th>
+<th data-quarto-table-cell-role="th">ssbElo</th>
+<th data-quarto-table-cell-role="th">ssbCCM</th>
+<th data-quarto-table-cell-role="th">ssbCCD</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">mibElo</th>
+<th data-quarto-table-cell-role="th">mibERI</th>
+<th data-quarto-table-cell-role="th">mibCCo</th>
+<th data-quarto-table-cell-role="th">mibLAL</th>
+<th data-quarto-table-cell-role="th">mibFR</th>
+<th data-quarto-table-cell-role="th">mibSCo</th>
+<th data-quarto-table-cell-role="th">micBAD</th>
+<th data-quarto-table-cell-role="th">licBAD</th>
+<th data-quarto-table-cell-role="th">misBAD</th>
+<th data-quarto-table-cell-role="th">midBAD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">51289_956483</td>
+<td>124.380966</td>
+<td>45.522812</td>
+<td>0.0</td>
+<td>0.513258</td>
+<td>5.0</td>
+<td>18.040710</td>
+<td>1.012931</td>
+<td>0.596085</td>
+<td>7.803086</td>
+<td>1.393862</td>
+<td>...</td>
+<td>0.356651</td>
+<td>1.002488</td>
+<td>0.404339</td>
+<td>27.314951</td>
+<td>3.396414</td>
+<td>3.396414</td>
+<td>48.194645</td>
+<td>42.634842</td>
+<td>167.245316</td>
+<td>122.123451</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">51289_956636</td>
+<td>11.252568</td>
+<td>17.124670</td>
+<td>0.0</td>
+<td>0.272640</td>
+<td>3.0</td>
+<td>30.028931</td>
+<td>0.855039</td>
+<td>0.428266</td>
+<td>3.320516</td>
+<td>0.805084</td>
+<td>...</td>
+<td>0.356651</td>
+<td>1.002488</td>
+<td>0.404339</td>
+<td>27.314951</td>
+<td>3.396414</td>
+<td>3.396414</td>
+<td>79.993858</td>
+<td>42.634842</td>
+<td>167.245316</td>
+<td>122.123451</td>
+</tr>
+</tbody>
+</table>
+
+<p>2 rows × 76 columns</p>
+</div>
+</div>
+</div>
+<p>When joining the data, you can easily visualise it.</p>
+<div id="4895bc4d-a38b-4ed2-8a72-d710dee010d3" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>joined <span class="op">=</span> buildings_subset.join(data, how<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>joined.plot(<span class="st">'mtbSWR'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="docs_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="morphotope-level-data" class="level3">
+<h3 class="anchored" data-anchor-id="morphotope-level-data">Morphotope-level data</h3>
+<p>For each non-noise morphotope, we release aggregated morphometric values for a direct comparison.</p>
+<div id="92f91fb5-f30a-4718-8c52-358f841fbcdd" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>morphotope_data <span class="op">=</span> pd.read_parquet(<span class="st">'/data/uscuni-ulce/data_product/morphotope_data.parquet'</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>morphotope_data.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sdbAre</th>
+<th data-quarto-table-cell-role="th">sdbPer</th>
+<th data-quarto-table-cell-role="th">sdbCoA</th>
+<th data-quarto-table-cell-role="th">ssbCCo</th>
+<th data-quarto-table-cell-role="th">ssbSqu</th>
+<th data-quarto-table-cell-role="th">ssbERI</th>
+<th data-quarto-table-cell-role="th">ssbElo</th>
+<th data-quarto-table-cell-role="th">libNCo</th>
+<th data-quarto-table-cell-role="th">ldbPWL</th>
+<th data-quarto-table-cell-role="th">ltcBuA</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">mibElo</th>
+<th data-quarto-table-cell-role="th">mibERI</th>
+<th data-quarto-table-cell-role="th">mibCCo</th>
+<th data-quarto-table-cell-role="th">mibLAL</th>
+<th data-quarto-table-cell-role="th">mibFR</th>
+<th data-quarto-table-cell-role="th">mibSCo</th>
+<th data-quarto-table-cell-role="th">micBAD</th>
+<th data-quarto-table-cell-role="th">midBAD</th>
+<th data-quarto-table-cell-role="th">limLPS</th>
+<th data-quarto-table-cell-role="th">limAre</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4_0_1</td>
+<td>0.987137</td>
+<td>1.433775</td>
+<td>-0.003262</td>
+<td>-1.949620</td>
+<td>-0.424706</td>
+<td>0.483494</td>
+<td>-2.019151</td>
+<td>-0.08234</td>
+<td>0.208525</td>
+<td>0.081287</td>
+<td>...</td>
+<td>-1.315770</td>
+<td>0.462303</td>
+<td>-0.613538</td>
+<td>0.493512</td>
+<td>1.521773</td>
+<td>1.521773</td>
+<td>3.654263</td>
+<td>4.850005</td>
+<td>0.149898</td>
+<td>3.887056</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4_0_10</td>
+<td>0.999498</td>
+<td>1.196410</td>
+<td>-0.003262</td>
+<td>-0.789406</td>
+<td>-0.342916</td>
+<td>0.486163</td>
+<td>-1.535531</td>
+<td>-0.08234</td>
+<td>0.182541</td>
+<td>-0.233554</td>
+<td>...</td>
+<td>-0.153381</td>
+<td>0.395069</td>
+<td>0.056334</td>
+<td>0.486932</td>
+<td>1.216988</td>
+<td>1.216988</td>
+<td>1.178967</td>
+<td>1.099998</td>
+<td>0.149898</td>
+<td>0.893068</td>
+</tr>
+</tbody>
+</table>
+
+<p>2 rows × 58 columns</p>
+</div>
+</div>
+</div>
+<p>This is joinable to morphotope geometry based on index of data and a <code>morphotope_id</code>. The same can be used to join the data to buildings.</p>
+</section>
+</section>
+<section id="taxonomic-tree" class="level2">
+<h2 class="anchored" data-anchor-id="taxonomic-tree">Taxonomic tree</h2>
+<p>The data for the taxonomic tree - <code>ward_linkage_10.npy</code> - is in <code>scipy.cluster.hierarchical.linkage</code> format.</p>
+<p>The input data for the taxonomy is a subset of morphotopes and their characteristics. Only extreme outliers were dropped from the full morphotope list when producing the taxonomy.</p>
+<div id="68b2809c-5e5a-4450-a572-f9b7b303c517" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>linkage_matrix <span class="op">=</span> np.load(<span class="st">'/data/uscuni-ulce/data_product/ward_linkage.npy'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Since the linkage matrix is large - around 500,000 observations - we do not plot labels</p>
+<div id="d9d2e98f-9d99-40ac-8975-cc0903781f78" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">## final dendrogram</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> dendrogram(linkage_matrix,ax<span class="op">=</span>ax, no_labels<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="docs_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can use fcluster to cut it at arbitrary values.</p>
+<div id="befdafc5-9b5d-458a-95c8-1b6872b71b28" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>cutoffs <span class="op">=</span> [<span class="dv">1000</span>, <span class="dv">1600</span>, <span class="dv">2500</span>]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>cluster_frame <span class="op">=</span> []</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cutoffs:</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    clusters <span class="op">=</span> fcluster(linkage_matrix, t<span class="op">=</span>c, criterion<span class="op">=</span><span class="st">'distance'</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    cluster_frame.append(pd.Series(clusters))</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>cluster_frame <span class="op">=</span> pd.concat(cluster_frame, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>cluster_frame.columns <span class="op">=</span> cutoffs</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>cluster_frame.index <span class="op">=</span> morphotope_data.index</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>cluster_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">1000</th>
+<th data-quarto-table-cell-role="th">1600</th>
+<th data-quarto-table-cell-role="th">2500</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4_0_1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4_0_10</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4_0_100</td>
+<td>7</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4_0_101</td>
+<td>7</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4_0_102</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">152511_809_0</td>
+<td>4</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">152511_8_0</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">152511_8_1</td>
+<td>5</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">152511_8_2</td>
+<td>5</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">152511_901_0</td>
+<td>4</td>
+<td>2</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<p>519259 rows × 3 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="linking-the-new-cuts-to-the-buildings" class="level2">
+<h2 class="anchored" data-anchor-id="linking-the-new-cuts-to-the-buildings">Linking the new cuts to the buildings</h2>
+<p>You have to link back the cluster to the buildings to plot using the morphotope ID. Some buildings are not part of morphotopes, or are part of outlier morphotopes. They come out as NA in the mapping, and they have to be handled seperately.</p>
+<div id="59a4e538-c181-4253-b09c-37329f3b7ec2" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>new_clusters <span class="op">=</span> buildings_subset.morphotope_id.<span class="bu">map</span>(cluster_frame[<span class="dv">1000</span>].to_dict())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="a26ed121-dc16-4ff9-bb7b-6f1b6d445129" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>buildings_subset.plot(column<span class="op">=</span>new_clusters.fillna(<span class="op">-</span><span class="dv">1</span>), categorical<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="docs_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In this case we are mapping the morphotopes to a cut that exists, so we can verify the results</p>
+<div id="c4b1a916-ed54-4550-9529-6c225a19294a" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandas.testing <span class="im">import</span> assert_series_equal</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># drop outliers and noise and compare only morphotopes that are part of the clustering</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>new_assignment <span class="op">=</span> new_clusters.dropna().astype(<span class="bu">int</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>old_assignment <span class="op">=</span> buildings_subset.loc[<span class="op">~</span>buildings_subset.initially_noise, <span class="st">'level_3_label'</span>]</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>assert_series_equal(new_assignment, old_assignment, check_names<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="handling-noise-and-outliers" class="level2">
+<h2 class="anchored" data-anchor-id="handling-noise-and-outliers">Handling noise and outliers</h2>
+<p>The easiest way to deal with outliers is to use the buildings.parquet file, the initially noise column and the lowest level to the custom cut.</p>
+<div id="39c600c4-396b-41f9-bedd-df9e63fa7a38" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mapping_level <span class="op">=</span> <span class="st">'level_7_label'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Create a dictionary that maps the old assignemnts at the specified level to the new cluster values.</p>
+<div id="b122bbad-91de-4153-9eae-aff857da97cb" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>new_assignment_mapping <span class="op">=</span> new_assignment.drop_duplicates()</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>new_assignment_mapping <span class="op">=</span> pd.Series(new_assignment_mapping.values, buildings_subset.loc[new_assignment_mapping.index, mapping_level])</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>new_assignment_mapping</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>level_7_label
+6      1
+77     7
+102    8
+73     6
+18     2
+47     5
+40     4
+dtype: int64</code></pre>
+</div>
+</div>
+<div id="2339df38-7416-4e43-bc34-f6a3af660501" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>new_noise <span class="op">=</span> new_clusters[new_clusters.isna()].index</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>new_clusters.loc[new_noise] <span class="op">=</span> buildings_subset.loc[new_noise, mapping_level].<span class="bu">map</span>(new_assignment_mapping)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="16133eda-1e6d-4b3c-bc0a-b53671c82284" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>buildings_subset.plot(column<span class="op">=</span>new_clusters, categorical<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="docs_files/figure-html/cell-22-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="naming-clusters-branches" class="level2">
+<h2 class="anchored" data-anchor-id="naming-clusters-branches">Naming clusters &amp; branches</h2>
+<p>The data product also contains full names and pen portraits of the first three levels of taxonomy.</p>
+<div id="c283d658-b559-4b09-b5b0-abfdd7574d06" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f"</span><span class="sc">{</span>data_product_dir<span class="sc">}</span><span class="ss">/label_name.json"</span>, <span class="st">'r'</span>) <span class="im">as</span> f:</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    cluster_names <span class="op">=</span> json.load(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5a53a8f1-431a-482b-a690-338449429897" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cluster_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>{'1': {'1': 'Incoherent Fabric', '2': 'Coherent Fabric'},
+ '2': {'1': 'Incoherent Large-Scale Fabric',
+  '2': 'Incoherent Small-Scale Fabric',
+  '3': 'Coherent Interconnected Fabric',
+  '4': 'Coherent Dense Fabric'},
+ '3': {'1': 'Incoherent Large-Scale Homogeneous Fabric',
+  '2': 'Incoherent Large-Scale Heterogeneous Fabric',
+  '3': 'Incoherent Small-Scale Linear Fabric',
+  '4': 'Incoherent Small-Scale Sparse Fabric',
+  '5': 'Incoherent Small-Scale Compact Fabric',
+  '6': 'Coherent Interconnected Fabric',
+  '7': 'Coherent Dense Disjoint Fabric',
+  '8': 'Coherent Dense Adjacent Fabric'}}</code></pre>
+</div>
+</div>
+<p>First level keys capture the level of labels, second level the mapping of a label to a name.</p>
+<div id="1a27b69e-6bb9-4fb8-8718-021d230f0de0" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f"</span><span class="sc">{</span>data_product_dir<span class="sc">}</span><span class="ss">/pen_portraits.json"</span>, <span class="st">'r'</span>) <span class="im">as</span> f:</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    cluster_descriptions <span class="op">=</span> json.load(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b6a51906-9d8a-4ed7-93e6-c52f219b5721" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>cluster_descriptions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>{'1': {'Incoherent Fabric': 'Incoherent fabric covers a wide morphological variety, with a common theme of partial or complete breakage of the traditional structural roles of streets, plots, and buildings. Common for modernist period, post-modern, and industrial developments, this branch has less typically less connected street networks and may showcase buildings facing open spaces and internal parts of blocks rather than streets. At the same time, it contains less defined village developments.',
+  'Coherent Fabric': 'In coherent fabric, all streets, plots, and buildings take their traditional structural roles in defining the spatial arrangement of the urban form. It is common for traditional European development with densely connected street networks and legible plot structure, facilitating direct relation between buildings and streets.'},
+ '2': {'Incoherent Large-Scale Fabric': 'Incoherent large-scale fabric captures typically urban development composed of buildings larger than the average, that may or may not be far from each other, creating large open spaces. Streets tend to be of an utilitarian use, rather than a structural one, typical for modernist housing estates or industrial zones.',
+  'Incoherent Small-Scale Fabric': 'Incoherent small-scale fabric is mostly non-urban development capturing various kinds of villages and small towns, which show high variation of morphological properties. Buildings tend to be smaller, but distances between them vary, as well as the relations between buildings and streets.',
+  'Coherent Interconnected Fabric': 'Coherent interconnected fabric is typical for historical city and town centres, where buildings form intensive development. In this branch, the built-up density and local street connectivity are high, while inter-building distances remain relatively small. Buildings frequently share walls, forming larger structures with courtyards along relatively short and narrow streets.',
+  'Coherent Dense Fabric': 'Coherent dense fabric captures morphology typical for urban residential areas with lower density, where blocks are defined by streets more than buildings. The street networks are well defined and connected with buildings being either adjacent (e.g. row houses) or disjoint (e.g. urban villas).'},
+ '3': {'Incoherent Large-Scale Homogeneous Fabric': 'Incoherent large-scale homogeneous fabric consists of the large buildings with moderate variations in size and shape, as well as low to moderate street connectivity and wide streets. The resulting environment is spacious, with significant open areas between structures, typical of modernist housing, with areas showing a relatively high degree of homogeneity caused by underlying planning principles.',
+  'Incoherent Large-Scale Heterogeneous Fabric': 'Incoherent large-scale heterogeneous fabric consists of the largest buildings with notable variations in size and shape, as well as low to moderate street connectivity and wide streets. The design does not emphasise sunlight exposure, creating broad but less refined configurations, typical of industrial and other service areas.',
+  'Incoherent Small-Scale Linear Fabric': 'Incoherent small-scale linear fabric has a moderate built-up area and low local street connectivity, typically forming long linear villages. Its streets are long, linear, wide, and there are minimal shared walls between structures.',
+  'Incoherent Small-Scale Sparse Fabric': 'Incoherent small-scale sparse fabric is characterised by low built-up density, low street connectivity, large distances between buildings, few shared walls, and large open spaces around buildings. The streets are few, open, and wide. The buildings are small to moderate in size, and their layout is more typical of rural areas.',
+  'Incoherent Small-Scale Compact Fabric': 'Incoherent small-scale compact fabric has low to moderate built-up area and street connectivity. Buildings exhibit a consistent alignment among themselves and also along streets of varying length, width, and linearity. There is also a significant number of shared walls between structures, typical for more traditional villages.',
+  'Coherent Interconnected Fabric': 'Coherent interconnected fabric is typical for historical city and town centres, where buildings form intensive development. In this branch, the built-up density and local street connectivity are high, while inter-building distances remain relatively small. Buildings frequently share walls, forming larger structures with courtyards along relatively short and narrow streets.',
+  'Coherent Dense Disjoint Fabric': 'The coherent dense disjoint fabric has moderate to high built-up density and local street connectivity, with longer and wider streets compared to other dense developments. Shared walls between buildings are less common, and distances within buildings are moderate, reflecting a pattern of standalone structures within a robust street network.',
+  'Coherent Dense Adjacent Fabric': 'In coherent dense adjacent fabric, the built-up density and local street connectivity are high, while inter-building distances remain relatively small. Buildings frequently share walls, forming larger structures along relatively short and narrow streets.'}}</code></pre>
+</div>
+</div>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -557,6 +1261,19 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2025, Charles University</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

@@ -103,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./docs.html"> 
-<span class="menu-text">Documentation</span></a>
+<span class="menu-text">Data product guide</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="https://doi.org/10.48550/arXiv.2509.10083"> 
@@ -127,8 +127,24 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#available-data" id="toc-available-data" class="nav-link active" data-scroll-target="#available-data">Available data</a>
+  <ul class="collapse">
+  <li><a href="#contents" id="toc-contents" class="nav-link" data-scroll-target="#contents">Contents</a></li>
+  <li><a href="#file-formats" id="toc-file-formats" class="nav-link" data-scroll-target="#file-formats">File formats</a></li>
+  </ul></li>
+  <li><a href="#data-repositories" id="toc-data-repositories" class="nav-link" data-scroll-target="#data-repositories">Data repositories</a>
+  <ul class="collapse">
+  <li><a href="#zenodo" id="toc-zenodo" class="nav-link" data-scroll-target="#zenodo">Zenodo</a></li>
+  <li><a href="#s3" id="toc-s3" class="nav-link" data-scroll-target="#s3">S3</a></li>
+  </ul></li>
+  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -152,9 +168,81 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Here will be links to the data</p>
+<p>This data product accompanies a research manuscript&nbsp;entitled “<em>The Hierarchical Morphotope Classification: A Theory-Driven Framework for Large-Scale Analysis of Built Form</em>”. It contains the classification of the entire building stock of 6 European countries, geographically split based on NUTS1 regions.</p>
+<section id="available-data" class="level2">
+<h2 class="anchored" data-anchor-id="available-data">Available data</h2>
+<p>Below is an overview of the available data. Applies to both Zenodo and S3.</p>
+<section id="contents" class="level3">
+<h3 class="anchored" data-anchor-id="contents">Contents</h3>
+<ul>
+<li><code>{NUTS1}.parquet</code>&nbsp;- Hierarchical Morphotope Classification results linked to building geometry</li>
+<li><code>{NUTS1}_morphotopes.parquet</code>&nbsp;- Hierarchical Morphotope Classification results linked to morphotope geometry</li>
+<li><code>{NUTS1}_data.parquet</code>&nbsp;- Underlying morphometric data linkable to building geometry</li>
+<li><code>morphotope_data.parquet</code>&nbsp;- Aggregate data linkable to individual morphotopes</li>
+<li><code>label_name.json</code>&nbsp;- Names of the cluster labels for first three levels of taxonomy</li>
+<li><code>pen_portraits.json</code>&nbsp;- Descriptions of the clusters for first three levels of taxonomy</li>
+<li><code>ward_linkage.npy</code>&nbsp;- The taxonomy itself encoded as scipy linkage object</li>
+</ul>
+</section>
+<section id="file-formats" class="level3">
+<h3 class="anchored" data-anchor-id="file-formats">File formats</h3>
+<p>Majority of the data is stored as Apache Parquet, with geospatial data being encoded as&nbsp;<a href="https://geoparquet.org/">GeoParquet</a>.</p>
+<p>The data is split regionally based on NUTS1 regions.</p>
+<ul>
+<li><code>{NUTS1}.parquet</code>&nbsp;- GeoParquet 1.1.0. ZSTD compressed, with GeoArrow geometry encoding and covering bbox for fast spatial queries.</li>
+<li><code>{NUTS1}_morphotopes.parquet</code>&nbsp;- GeoParquet 1.1.0. ZSTD compressed, with GeoArrow geometry encoding and covering bbox for fast spatial queries.</li>
+<li><code>{NUTS1}_data.parquet</code>&nbsp;- Parquet, ZSTD compressed</li>
+<li><code>morphotope_data.parquet</code>&nbsp;- Parquet, Snappy compressed. All characters for non-outlier morphotopes - used to build the taxonomy.</li>
+<li><code>label_name.json</code>&nbsp;- JSON</li>
+<li><code>pen_portraits.json</code>&nbsp;- JSON</li>
+<li><code>ward_linkage.npy</code>&nbsp;- Numpy NPY</li>
+</ul>
+</section>
+</section>
+<section id="data-repositories" class="level2">
+<h2 class="anchored" data-anchor-id="data-repositories">Data repositories</h2>
+<p>The data product is available for download from Zenodo and an S3 provided by Charles University.</p>
+<section id="zenodo" class="level3">
+<h3 class="anchored" data-anchor-id="zenodo">Zenodo</h3>
+<p>The main data repository is Zenodo, which contains a complete copy of the data product and issues a DOI to each version.</p>
+<p>See the data product at <a href="https://doi.org/10.5281/zenodo.17076283">doi.org/10.5281/zenodo.17076283</a>.</p>
+</section>
+<section id="s3" class="level3">
+<h3 class="anchored" data-anchor-id="s3">S3</h3>
+<p>The S3 overview here.</p>
+</section>
+</section>
+<section id="license" class="level2">
+<h2 class="anchored" data-anchor-id="license">License</h2>
+<p>This dataset is based on data from multiple sources. The combined database is licensed under the&nbsp;Open Database License (ODbL) v1.0.</p>
+<p><strong>Attribution:</strong>&nbsp;Contains data © Charles University, OpenStreetMap contributors, TomTom, GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL, IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK (CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT) and others.</p>
+<p>Individual source building data is available under the following licenses and attributions:</p>
+<ul>
+<li><p><strong>Brandenburg</strong>: GeoBasis-DE/LGB —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
+<li><p><strong>Saxony</strong>: State Office for Geobasis Information Saxony (GeoSN) —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
+<li><p><strong>Baden-Württemberg</strong>: LGL,&nbsp;<a href="http://www.lgl-bw.de/">www.lgl-bw.de</a>&nbsp;—&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
+<li><p><strong>Mecklenburg-Vorpommern</strong>: GeoBasis-DE/MV —&nbsp;CC-BY 4.0</p></li>
+<li><p><strong>Rheinland-Pfalz</strong>: GeoBasis-DE/LGB —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
+<li><p><strong>Saarland</strong>: © GeoBasis-DE/LVGL-SL (2024) —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
+<li><p><strong>Nordrhein-Westfalen</strong>: Geoinformationszentrum, Information und Technik Nordrhein-Westfalen —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
+<li><p><strong>Niedersachsen</strong>: © GeoBasis-DE/LGLN —&nbsp;CC-BY 4.0</p></li>
+<li><p><strong>Hessen</strong>:&nbsp;Datenlizenz Deutschland – Zero – Version 2.0</p></li>
+<li><p><strong>Thuringia</strong>: © GDI-Th —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
+<li><p><strong>Saxony-Anhalt</strong>: GeoBasis-DE / LVermGeo ST —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
+<li><p><strong>Schleswig-Holstein</strong>: © GeoBasis-DE/LVermGeo SH —&nbsp;CC-BY-SA 4.0</p></li>
+<li><p><strong>Bavaria</strong>: Bayerische Vermessungsverwaltung —&nbsp;CC-BY 4.0</p></li>
+<li><p><strong>Berlin</strong>:&nbsp;Datenlizenz Deutschland – Zero – Version 2.0</p></li>
+<li><p><strong>Hamburg</strong>: © LGV Hamburg —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
+<li><p><strong>Bremen</strong>: Landesamt GeoInformation Bremen —&nbsp;CC-BY 4.0</p></li>
+<li><p><strong>Poland</strong>: Główny Urząd Geodezji i Kartografii —&nbsp;CC-BY 4.0</p></li>
+<li><p><strong>Czechia</strong>: ČÚZK —&nbsp;CC-BY 4.0</p></li>
+<li><p><strong>Slovakia</strong>: Úrad geodézie, kartografie a katastra SR —&nbsp;CC-BY 4.0</p></li>
+<li><p><strong>Austria</strong>: BEV —&nbsp;CC-BY 4.0</p></li>
+<li><p><strong>Lithuania</strong>: Geoportal.lt —&nbsp;CC-BY 4.0</p></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -557,6 +645,19 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2025, Charles University</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

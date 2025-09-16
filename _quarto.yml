@@ -3,7 +3,7 @@ project:
   resources:
     - tree-of-life/*
     - data/*
-    
+
 
 website:
   title: "Urban Taxonomy"
@@ -19,12 +19,14 @@ website:
         text: Home
       - map.qmd
       - data.qmd
-      - docs.qmd
+      - docs.ipynb
       - href: https://doi.org/10.48550/arXiv.2509.10083
         text: Paper
     right:
       - icon: github
         href: "https://github.com/uscuni/himoc"
+  repo-url: "https://github.com/uscuni/himoc"
+  page-footer: "Copyright 2025, Charles University"
 
 format:
   html:
