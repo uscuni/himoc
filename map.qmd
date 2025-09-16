@@ -1,5 +1,5 @@
 ---
-title: "Map"
+title: "Map of Urban Taxonomy"
 format:
   html:
     page-layout: custom

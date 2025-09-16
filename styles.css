@@ -35,3 +35,7 @@ body {
     margin-right: auto;
   }
 }
+
+ol {
+    text-align: left;
+}

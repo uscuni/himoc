@@ -3,6 +3,7 @@ project:
   resources:
     - tree-of-life/*
     - data/*
+    - imgs/*
 
 
 website:
@@ -17,7 +18,8 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - map.qmd
+      - href: map.qmd
+        text: Map
       - data.qmd
       - docs.ipynb
       - href: https://doi.org/10.48550/arXiv.2509.10083
