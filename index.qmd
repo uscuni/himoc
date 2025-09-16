@@ -18,27 +18,27 @@ Urban Taxonomy using Hierarchical Morphotope Classification
 ### What
 
 Urban Taxonomy is a **classification** of built-up fabric. It divides cities into regions of
-consistent **patterns of urban form** (think about buildings and street layouts, compositions and configurations)
-and connects them via a **taxonomic tree**. That in turn encodes how similar different regions
+consistent **patterns of urban form** (think about buildings and street layouts, compositions, and configurations)
+and connects them via a **taxonomic tree**. That, in turn, encodes how similar different regions
 are.
 
 The images above show just one level of the taxonomy in two cities, Prague and Vienna. However, the classification
-currently covers **6 countries** (Austria, Czechia, Germany. Lithuania, Poland, and Slovakia) with more to come soon.
+currently covers **6 countries** (Austria, Czechia, Germany, Lithuania, Poland, and Slovakia), with more to come soon.
 
 What do we mean by taxonomic tree?
 
 ![](imgs/taxonomy.png)
 
-The central part of the image contains top branches of the taxonomy with examples of patterns for each branch on the outside of the figure. The more similar their patterns are, the closer they are in the hierarchy.
+The central part of the image contains the top branches of the taxonomy with examples of patterns for each branch on the outside of the figure. The more similar their patterns are, the closer they are in the hierarchy.
 
-First three levels of the taxonomy are named. You can check the names alongside a short description below. To see them, check the [map](map.qmd).
+The first three levels of the taxonomy are named. You can check the names alongside a short description below. To see them, check the [map](map.qmd).
 
 :::: {.callout-tip collapse=true appearance="minimal"}
-#### Types of buit-up fabric
+#### Types of built-up fabric
 
 ::: {.callout-tip collapse=true appearance="minimal"}
 
-##### Names on the level 1
+##### Names on level 1
 
 | **Cluster name**      	| **Cluster Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                	|
 |-----------------------	|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
@@ -49,7 +49,7 @@ First three levels of the taxonomy are named. You can check the names alongside 
 :::
 ::: {.callout-tip collapse=true appearance="minimal"}
 
-##### Names on the level 2
+##### Names on level 2
 
 | **Cluster name**                   	| **Cluster Description**                                                                                                                                                                                                                                                                                                      	|
 |------------------------------------	|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
@@ -63,7 +63,7 @@ First three levels of the taxonomy are named. You can check the names alongside 
 
 ::: {.callout-tip collapse=true appearance="minimal"}
 
-###### Names on the level 3
+###### Names on level 3
 
 | **Cluster name**                                	| **Cluster Description**                                                                                                                                                                                                                                                                                                           	|
 |-------------------------------------------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
@@ -87,7 +87,7 @@ The flexibility of the hierarchy means that you can subdivide a city into many t
 ### Who
 
 The classification has been developed by [Dr. Martin Fleischmann](https://martinfleischmann.net) and Dr. Krasen Samardzhiev from the Department of Social Geography and Regional Planning of
-Charles University. The team further includes Anna Brázdová, Daniela Dančejová, Lisa Winkler (Uni of Freiburg), and Eliška Pospěchová.
+Charles University. The team further includes Anna Brázdová, Daniela Dančejová, Lisa Winkler (University of Freiburg), and Eliška Pospěchová.
 
 If you'd like to contact the team, you can drop an email to Martin at [martin.fleischmann@natur.cuni.cz](mailto:martin.fleischmann@natur.cuni.cz).
 
@@ -115,16 +115,16 @@ The paper is currently under review. In the meantime, please cite the preprint.
 
 ### How
 
-The detailed overview of the method is available in the [research paper](https://doi.org/10.48550/arXiv.2509.10083). Let's take a quick look on how it works.
+The detailed overview of the method is available in the [research paper](https://doi.org/10.48550/arXiv.2509.10083). Let's take a quick look at how it works.
 
 ![](imgs/method.png)
 
 
-1. Gather building footprints and street networks. Clean them up and generate few more elements capturing built fabric.
+1. Gather building footprints and street networks. Clean them up and generate a few more elements capturing built fabric.
 2. Measure morphometric attributes on all of the elements. See [`momepy`](https://docs.momepy.org) Python package for details.
-3. Link all of the numbers to buildings. By distance or co-location.
-4. Generate **morphotopes**. Those are the smallest localities with a distinctive character among their neighbours. We use bespoke regionalisation algorithm  [$SA^3$](https://pysal.org/spopt/generated/spopt.region.SA3.html).
-5. Aggregate morphometric data onto morphotope level and measure a few more.
+3. Link all of the numbers to buildings, by distance or co-location.
+4. Generate **morphotopes**. These are the smallest localities with a distinctive character among their neighbours. We use a bespoke regionalisation algorithm  [$SA^3$](https://pysal.org/spopt/generated/spopt.region.SA3.html).
+5. Aggregate morphometric data onto the morphotope level and measure a few more.
 6. Generate the tree, capturing the similarity between morphotopes.
 7. Get clusters based on a custom level from the tree.
 
@@ -139,12 +139,12 @@ archived at [doi.org/10.5281/zenodo.17105270](https://doi.org/10.5281/zenodo.171
 
 ### Acknowledgements
 
-The project is funded by the Charles University’s Primus programme
+The project is funded by Charles University’s Primus programme
 through the project "Influence of Socioeconomic and Cultural Factors on Urban Structure
 in Central Europe", project reference `PRIMUS/24/SCI/023`.
 
 We would further like to
-thank to Claudia Baranzelli and Daniel Arribas-Bel for fruitful discussions helping
-shape the final outcome, and to Rūta Marija Slavinskaitė, Milda Sutkaitytė, 4ct and Insitute
-for Planning and Devlopment Prague for their invaluable feedback on the classification
+thank Claudia Baranzelli and Daniel Arribas-Bel for fruitful discussions helping
+shape the final outcome, and Rūta Marija Slavinskaitė, Milda Sutkaitytė, 4ct, and the Institute
+for Planning and Development Prague for their invaluable feedback on the classification
 and its applicability.

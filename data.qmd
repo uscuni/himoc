@@ -12,7 +12,7 @@ Below is an overview of the available data.
 
 ### Coverage
 
-The current coverage includes Austria, Czechia, Germany. Lithuania, Poland, and Slovakia.
+The current coverage includes Austria, Czechia, Germany, Lithuania, Poland, and Slovakia.
 Other European countries are currently being processed.
 
 ### Contents
@@ -23,21 +23,21 @@ Other European countries are currently being processed.
     linked to morphotope geometry
 -   `{NUTS1}_data.parquet` - Underlying morphometric data linkable to building geometry
 -   `morphotope_data.parquet` - Aggregated data linkable to individual morphotopes
--   `label_name.json` - Names of the cluster labels for first three levels of taxonomy
--   `pen_portraits.json` - Descriptions of the clusters for first three levels of
+-   `label_name.json` - Names of the cluster labels for the first three levels of taxonomy
+-   `pen_portraits.json` - Descriptions of the clusters for the first three levels of
     taxonomy
--   `ward_linkage.npy` - The taxonomy itself encoded as scipy linkage object
+-   `ward_linkage.npy` - The taxonomy itself encoded as a scipy linkage object
 
 ### File formats
 
-Majority of the data is stored as Apache Parquet, with geospatial data being encoded
+The majority of the data is stored as Apache Parquet, with geospatial data being encoded
 as [GeoParquet](https://geoparquet.org/).
 
 The data is split regionally based on NUTS1 regions.
 
--   `{NUTS1}.parquet` - GeoParquet 1.1.0. ZSTD compressed, with GeoArrow geometry
+-   `{NUTS1}.parquet` - GeoParquet 1.1.0, ZSTD compressed, with GeoArrow geometry
     encoding and covering bbox for fast spatial queries.
--   `{NUTS1}_morphotopes.parquet` - GeoParquet 1.1.0. ZSTD compressed, with GeoArrow
+-   `{NUTS1}_morphotopes.parquet` - GeoParquet 1.1.0, ZSTD compressed, with GeoArrow
     geometry encoding and covering bbox for fast spatial queries.
 -   `{NUTS1}_data.parquet` - Parquet, ZSTD compressed
 -   `morphotope_data.parquet` - Parquet, Snappy compressed. All characters for
@@ -153,7 +153,7 @@ under the Open Database License (ODbL) v1.0.
 GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL,
 IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische
 Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK
-(CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT) and others.
+(CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT), and others.
 
 Individual source building data is available under the following licenses and
 attributions:
