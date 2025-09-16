@@ -175,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Below is an overview of the available data.</p>
 <section id="coverage" class="level3">
 <h3 class="anchored" data-anchor-id="coverage">Coverage</h3>
-<p>The current coverage includes Austria, Czechia, Germany. Lithuania, Poland, and Slovakia. Other European countries are currently being processed.</p>
+<p>The current coverage includes Austria, Czechia, Germany, Lithuania, Poland, and Slovakia. Other European countries are currently being processed.</p>
 </section>
 <section id="contents" class="level3">
 <h3 class="anchored" data-anchor-id="contents">Contents</h3>
@@ -184,18 +184,18 @@ ul.task-list li input[type="checkbox"] {
 <li><code>{NUTS1}_morphotopes.parquet</code>&nbsp;- Hierarchical Morphotope Classification results linked to morphotope geometry</li>
 <li><code>{NUTS1}_data.parquet</code>&nbsp;- Underlying morphometric data linkable to building geometry</li>
 <li><code>morphotope_data.parquet</code>&nbsp;- Aggregated data linkable to individual morphotopes</li>
-<li><code>label_name.json</code>&nbsp;- Names of the cluster labels for first three levels of taxonomy</li>
-<li><code>pen_portraits.json</code>&nbsp;- Descriptions of the clusters for first three levels of taxonomy</li>
-<li><code>ward_linkage.npy</code>&nbsp;- The taxonomy itself encoded as scipy linkage object</li>
+<li><code>label_name.json</code>&nbsp;- Names of the cluster labels for the first three levels of taxonomy</li>
+<li><code>pen_portraits.json</code>&nbsp;- Descriptions of the clusters for the first three levels of taxonomy</li>
+<li><code>ward_linkage.npy</code>&nbsp;- The taxonomy itself encoded as a scipy linkage object</li>
 </ul>
 </section>
 <section id="file-formats" class="level3">
 <h3 class="anchored" data-anchor-id="file-formats">File formats</h3>
-<p>Majority of the data is stored as Apache Parquet, with geospatial data being encoded as&nbsp;<a href="https://geoparquet.org/">GeoParquet</a>.</p>
+<p>The majority of the data is stored as Apache Parquet, with geospatial data being encoded as&nbsp;<a href="https://geoparquet.org/">GeoParquet</a>.</p>
 <p>The data is split regionally based on NUTS1 regions.</p>
 <ul>
-<li><code>{NUTS1}.parquet</code>&nbsp;- GeoParquet 1.1.0. ZSTD compressed, with GeoArrow geometry encoding and covering bbox for fast spatial queries.</li>
-<li><code>{NUTS1}_morphotopes.parquet</code>&nbsp;- GeoParquet 1.1.0. ZSTD compressed, with GeoArrow geometry encoding and covering bbox for fast spatial queries.</li>
+<li><code>{NUTS1}.parquet</code>&nbsp;- GeoParquet 1.1.0, ZSTD compressed, with GeoArrow geometry encoding and covering bbox for fast spatial queries.</li>
+<li><code>{NUTS1}_morphotopes.parquet</code>&nbsp;- GeoParquet 1.1.0, ZSTD compressed, with GeoArrow geometry encoding and covering bbox for fast spatial queries.</li>
 <li><code>{NUTS1}_data.parquet</code>&nbsp;- Parquet, ZSTD compressed</li>
 <li><code>morphotope_data.parquet</code>&nbsp;- Parquet, Snappy compressed. All characters for non-outlier morphotopes - used to build the taxonomy.</li>
 <li><code>label_name.json</code>&nbsp;- JSON</li>
@@ -596,7 +596,7 @@ Common files
 <section id="license" class="level2">
 <h2 class="anchored" data-anchor-id="license">License</h2>
 <p>This dataset is based on data from multiple sources. The combined database is licensed under the&nbsp;Open Database License (ODbL) v1.0.</p>
-<p><strong>Attribution:</strong>&nbsp;Contains data © Charles University, OpenStreetMap contributors, TomTom, GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL, IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK (CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT) and others.</p>
+<p><strong>Attribution:</strong>&nbsp;Contains data © Charles University, OpenStreetMap contributors, TomTom, GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL, IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK (CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT), and others.</p>
 <p>Individual source building data is available under the following licenses and attributions:</p>
 <ul>
 <li><p><strong>Brandenburg</strong>: GeoBasis-DE/LGB —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>

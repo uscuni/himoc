@@ -227,19 +227,19 @@ Technical paper
 </button>
 <section id="what" class="level3">
 <h3 data-anchor-id="what">What</h3>
-<p>Urban Taxonomy is a <strong>classification</strong> of built-up fabric. It divides cities into regions of consistent <strong>patterns of urban form</strong> (think about buildings and street layouts, compositions and configurations) and connects them via a <strong>taxonomic tree</strong>. That in turn encodes how similar different regions are.</p>
-<p>The images above show just one level of the taxonomy in two cities, Prague and Vienna. However, the classification currently covers <strong>6 countries</strong> (Austria, Czechia, Germany. Lithuania, Poland, and Slovakia) with more to come soon.</p>
+<p>Urban Taxonomy is a <strong>classification</strong> of built-up fabric. It divides cities into regions of consistent <strong>patterns of urban form</strong> (think about buildings and street layouts, compositions, and configurations) and connects them via a <strong>taxonomic tree</strong>. That, in turn, encodes how similar different regions are.</p>
+<p>The images above show just one level of the taxonomy in two cities, Prague and Vienna. However, the classification currently covers <strong>6 countries</strong> (Austria, Czechia, Germany, Lithuania, Poland, and Slovakia), with more to come soon.</p>
 <p>What do we mean by taxonomic tree?</p>
 <p><img src="imgs/taxonomy.png" class="img-fluid"></p>
-<p>The central part of the image contains top branches of the taxonomy with examples of patterns for each branch on the outside of the figure. The more similar their patterns are, the closer they are in the hierarchy.</p>
-<p>First three levels of the taxonomy are named. You can check the names alongside a short description below. To see them, check the <a href="./map.html">map</a>.</p>
+<p>The central part of the image contains the top branches of the taxonomy with examples of patterns for each branch on the outside of the figure. The more similar their patterns are, the closer they are in the hierarchy.</p>
+<p>The first three levels of the taxonomy are named. You can check the names alongside a short description below. To see them, check the <a href="./map.html">map</a>.</p>
 <div class="callout callout-style-simple callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Types of buit-up fabric
+Types of built-up fabric
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -251,7 +251,7 @@ Types of buit-up fabric
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Names on the level 1
+Names on level 1
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -289,7 +289,7 @@ Names on the level 1
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Names on the level 2
+Names on level 2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -335,7 +335,7 @@ Names on the level 2
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Names on the level 3
+Names on level 3
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -399,7 +399,7 @@ Names on the level 3
 </section>
 <section id="who" class="level3">
 <h3 data-anchor-id="who">Who</h3>
-<p>The classification has been developed by <a href="https://martinfleischmann.net">Dr.&nbsp;Martin Fleischmann</a> and Dr.&nbsp;Krasen Samardzhiev from the Department of Social Geography and Regional Planning of Charles University. The team further includes Anna Brázdová, Daniela Dančejová, Lisa Winkler (Uni of Freiburg), and Eliška Pospěchová.</p>
+<p>The classification has been developed by <a href="https://martinfleischmann.net">Dr.&nbsp;Martin Fleischmann</a> and Dr.&nbsp;Krasen Samardzhiev from the Department of Social Geography and Regional Planning of Charles University. The team further includes Anna Brázdová, Daniela Dančejová, Lisa Winkler (University of Freiburg), and Eliška Pospěchová.</p>
 <p>If you’d like to contact the team, you can drop an email to Martin at <a href="mailto:martin.fleischmann@natur.cuni.cz">martin.fleischmann@natur.cuni.cz</a>.</p>
 <section id="citation" class="level4">
 <h4 data-anchor-id="citation">Citation</h4>
@@ -423,14 +423,14 @@ Names on the level 3
 </section>
 <section id="how" class="level3">
 <h3 data-anchor-id="how">How</h3>
-<p>The detailed overview of the method is available in the <a href="https://doi.org/10.48550/arXiv.2509.10083">research paper</a>. Let’s take a quick look on how it works.</p>
+<p>The detailed overview of the method is available in the <a href="https://doi.org/10.48550/arXiv.2509.10083">research paper</a>. Let’s take a quick look at how it works.</p>
 <p><img src="imgs/method.png" class="img-fluid"></p>
 <ol type="1">
-<li>Gather building footprints and street networks. Clean them up and generate few more elements capturing built fabric.</li>
+<li>Gather building footprints and street networks. Clean them up and generate a few more elements capturing built fabric.</li>
 <li>Measure morphometric attributes on all of the elements. See <a href="https://docs.momepy.org"><code>momepy</code></a> Python package for details.</li>
-<li>Link all of the numbers to buildings. By distance or co-location.</li>
-<li>Generate <strong>morphotopes</strong>. Those are the smallest localities with a distinctive character among their neighbours. We use bespoke regionalisation algorithm <a href="https://pysal.org/spopt/generated/spopt.region.SA3.html"><span class="math inline">\(SA^3\)</span></a>.</li>
-<li>Aggregate morphometric data onto morphotope level and measure a few more.</li>
+<li>Link all of the numbers to buildings, by distance or co-location.</li>
+<li>Generate <strong>morphotopes</strong>. These are the smallest localities with a distinctive character among their neighbours. We use a bespoke regionalisation algorithm <a href="https://pysal.org/spopt/generated/spopt.region.SA3.html"><span class="math inline">\(SA^3\)</span></a>.</li>
+<li>Aggregate morphometric data onto the morphotope level and measure a few more.</li>
 <li>Generate the tree, capturing the similarity between morphotopes.</li>
 <li>Get clusters based on a custom level from the tree.</li>
 </ol>
@@ -442,8 +442,8 @@ Names on the level 3
 </section>
 <section id="acknowledgements" class="level3">
 <h3 data-anchor-id="acknowledgements">Acknowledgements</h3>
-<p>The project is funded by the Charles University’s Primus programme through the project “Influence of Socioeconomic and Cultural Factors on Urban Structure in Central Europe”, project reference <code>PRIMUS/24/SCI/023</code>.</p>
-<p>We would further like to thank to Claudia Baranzelli and Daniel Arribas-Bel for fruitful discussions helping shape the final outcome, and to Rūta Marija Slavinskaitė, Milda Sutkaitytė, 4ct and Insitute for Planning and Devlopment Prague for their invaluable feedback on the classification and its applicability.</p>
+<p>The project is funded by Charles University’s Primus programme through the project “Influence of Socioeconomic and Cultural Factors on Urban Structure in Central Europe”, project reference <code>PRIMUS/24/SCI/023</code>.</p>
+<p>We would further like to thank Claudia Baranzelli and Daniel Arribas-Bel for fruitful discussions helping shape the final outcome, and Rūta Marija Slavinskaitė, Milda Sutkaitytė, 4ct, and the Institute for Planning and Development Prague for their invaluable feedback on the classification and its applicability.</p>
 
 
 </section>

@@ -70,10 +70,9 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="index.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -125,10 +124,12 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
+    
 <!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -150,14 +151,24 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>An interactive exploration of the taxonomy at the level of individual buildings.</p>
-<div style="height: 80vh; width: 100%;">
+<div class="column-screen-inset">
+<div style="height: 80vh; width: 100%; margin-bottom: 40px;">
 <iframe src="./tiles.html" width="100%" height="100%" style="border: none;"></iframe>
 </div>
+</div>
+<section id="how-to-work-with-the-map" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-work-with-the-map">How to work with the map?</h2>
+<p>The map provides interactivity beyond panning an zooming.</p>
+<ul>
+<li>Clicking on a building shows opens an information about the branch it belongs to, including its description. At the same time, the branch gets highlighted in the taxonomic tree on bottom right.</li>
+<li>Clicking on a branch in a tree filters the map to show only that branch. You can even combine named (and coloured) levels together or dig deeper into them.</li>
+</ul>
 <p>See the <a href="./docs.html">documentation</a> for more details or get the <a href="./data.html">data</a>.</p>
 
 
+</section>
 
-
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

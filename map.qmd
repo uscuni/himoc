@@ -1,17 +1,29 @@
 ---
 title: "Map of Urban Taxonomy"
+toc: false
 format:
   html:
-    page-layout: custom
-css: index.css
+    page-layout: article
+# css: index.css
 ---
 
 An interactive exploration of the taxonomy at the level of individual buildings.
 
+:::{.column-screen-inset}
 ```{=html}
-<div style="height: 80vh; width: 100%;">
+<div style="height: 80vh; width: 100%; margin-bottom: 40px;">
 <iframe src="./tiles.html" width="100%" height="100%" style="border: none;"></iframe>
 </div>
 ```
+:::
 
-See the [documentation](docs.ipynb) for more details or get the [data](data.qmd).
+
+## How to work with the map?
+
+The map provides interactivity beyond panning an zooming.
+
+- Clicking on a building shows opens an information about the branch it belongs to, including its description. At the same time, the branch gets highlighted in the taxonomic tree on bottom right.
+- Clicking on a branch in a tree filters the map to show only that branch. You can even combine named (and coloured) levels together or dig deeper into them.
+
+
+See the [documentation](docs.ipynb) for more details and get the [data](data.qmd).
