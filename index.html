@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,14 +67,14 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9344fb9851b4da3cab95007ef9d770dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-bc5f272aabf31a6516b6b55f79e390ab.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,18 +103,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="index.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Urban Taxonomy</span>
     </a>
@@ -107,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Guide</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://doi.org/10.48550/arXiv.2509.10083"> 
+    <a class="nav-link" href="https://doi.org/10.48550/arXiv.2509.10083" target="_blank"> 
 <span class="menu-text">Paper</span></a>
   </li>  
 </ul>
@@ -128,9 +194,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -154,20 +218,242 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Urban Taxonomy using Hierarchical Morphotope Classification</p>
-<p>The site is under construction.</p>
+<p><a href="./map.html"><img src="imgs/cities.png" class="img-fluid"></a></p>
+<button class="butt" onclick="location.href='./map.html';" style="display: inline">
+Interactive map
+</button>
+<button class="butt" onclick="location.href='./data.html';" style="display: inline">
+Data download
+</button>
+<button class="butt" onclick="location.href='https://doi.org/10.48550/arXiv.2509.10083';" style="display: inline">
+Technical paper
+</button>
+<section id="what" class="level3">
+<h3 data-anchor-id="what">What</h3>
+<p>Urban Taxonomy is a <strong>classification</strong> of built-up fabric. It divides cities into regions of consistent <strong>patterns of urban form</strong> (think about buildings and street layouts, compositions, and configurations) and connects them via a <strong>taxonomic tree</strong>. That, in turn, encodes how similar different regions are.</p>
+<p>The images above show just one level of the taxonomy in two cities, Prague and Vienna. However, the classification currently covers <strong>6 countries</strong> (Austria, Czechia, Germany, Lithuania, Poland, and Slovakia), with more to come soon.</p>
+<p>What do we mean by taxonomic tree?</p>
+<p><img src="imgs/taxonomy.png" class="img-fluid"></p>
+<p>The central part of the image contains the top branches of the taxonomy with examples of patterns for each branch on the outside of the figure. The more similar their patterns are, the closer they are in the hierarchy.</p>
+<p>The first three levels of the taxonomy are named. You can check the names alongside a short description below. To see them, check the <a href="./map.html">map</a>.</p>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Types of built-up fabric
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Names on level 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="table-striped caption-top table">
+<caption>Descriptions and names for the first two branches (level 1)</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 80%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Cluster name</strong></th>
+<th><strong>Cluster Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Incoherent Fabric</strong></td>
+<td>Incoherent fabric covers a wide morphological variety, with a common theme of partial or complete breakage of the traditional structural roles of streets, plots, and buildings. Common for modernist period, post-modern, and industrial developments, this branch typically has a less connected street network and may showcase buildings facing open spaces and internal parts of blocks rather than streets. At the same time, it contains less defined village developments.</td>
+</tr>
+<tr class="even">
+<td><strong>Coherent Fabric</strong></td>
+<td>In coherent fabric, all streets, plots, and buildings take their traditional structural roles in defining the spatial arrangement of the urban form. It is common for traditional European development with densely connected street networks and legible plot structure, facilitating direct relation between buildings and streets.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Names on level 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="table-striped caption-top table">
+<caption>Descriptions and names for the first four branches (level 2)</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 80%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Cluster name</strong></th>
+<th><strong>Cluster Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Incoherent Large-scale Fabric</strong></td>
+<td>Incoherent large-scale fabric captures typically urban development composed of buildings larger than the average, that may or may not be far from each other, creating large open spaces. Streets tend to be of an utilitarian use, rather than a structural one, typical for modernist housing estates or industrial zones.</td>
+</tr>
+<tr class="even">
+<td><strong>Incoherent Small-scale Fabric</strong></td>
+<td>Incoherent small-scale fabric is mostly non-urban development capturing various kinds of villages and small towns, which show high variation of morphological properties. Buildings tend to be smaller, but distances between them vary, as well as the relations between buildings and streets.</td>
+</tr>
+<tr class="odd">
+<td><strong>Coherent Interconnected Fabric</strong></td>
+<td>This cluster has very high built-up density and local street connectivity, with narrow and short streets. It is primarily characterised by a high count of connected buildings forming enclosed blocks with courtyards. Furthermore, the distances between the formed blocks is small.</td>
+</tr>
+<tr class="even">
+<td><strong>Coherent Dense Fabric</strong></td>
+<td>Dense fabric captures morphology typical for urban residential areas with lower density, where blocks are defined by streets more than buildings. The street networks are well defined and connected with buildings being either adjacent (e.g.&nbsp;row houses) or disjoint (e.g.&nbsp;urban villas).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Names on level 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="table-striped caption-top table">
+<caption>Descriptions and names for the first eight branches (level 3)</caption>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Cluster name</strong></th>
+<th><strong>Cluster Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Incoherent Large-scale Homogeneous Fabric</strong></td>
+<td>This cluster consists of the large buildings with moderate variations in size and shape, as well as low to moderate street connectivity and wide streets. The resulting environment is spacious, with significant open areas between structures, typical of modernist housing.</td>
+</tr>
+<tr class="even">
+<td><strong>Incoherent Large-scale Heterogeneous Fabric</strong></td>
+<td>This cluster consists of the largest buildings with notable variations in size and shape, as well as low to moderate street connectivity and wide streets. The design does not emphasize sunlight exposure, creating broad but less refined configurations, typical of industrial and other service areas.</td>
+</tr>
+<tr class="odd">
+<td><strong>Incoherent Small-scale Linear Fabric</strong></td>
+<td>This cluster has a moderate built up area and the low local street connectivity in the taxonomy, typically forming long linear villages. Its streets are long, linear, wide and there are minimal shared walls between structures.</td>
+</tr>
+<tr class="even">
+<td><strong>Incoherent Small-scale Sparse Fabric</strong></td>
+<td>This cluster is characterized by low built-up density, low street connectivity, large distances between buildings, few shared walls, and large open spaces around buildings. The streets are few, open and wide. The buildings are small to moderate in size and their layout is more typical of rural areas.</td>
+</tr>
+<tr class="odd">
+<td><strong>Incoherent Small-scale Compact fabric</strong></td>
+<td>This cluster has low to moderate built-up area and street connectivity. Buildings exhibit a consistent alignment among themselves and also along streets of varying length, width and linearity. There is also a significant number of shared walls between structures.</td>
+</tr>
+<tr class="even">
+<td><strong>Coherent Interconnected Fabric</strong></td>
+<td>This cluster has very high built-up density and local street connectivity, with narrow and short streets. It is primarily characterised by a high count of connected buildings forming enclosed blocks with courtyards. Furthermore, the distances between the formed blocks is small.</td>
+</tr>
+<tr class="odd">
+<td><strong>Coherent Dense Disjoint Fabric</strong></td>
+<td>This cluster has moderate to high built-up density and local street connectivity, with longer and wider streets compared to other dense developments. Shared walls between buildings are less common, and distances within buildings are moderate, reflecting a pattern of standalone structures within a robust street network .</td>
+</tr>
+<tr class="even">
+<td><strong>Coherent Dense Adjacent Fabric</strong></td>
+<td>In this cluster, the built-up density and local street connectivity are high, while inter-building distances remain relatively small. Buildings frequently share walls, forming larger structures along relatively short and narrow streets.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The flexibility of the hierarchy means that you can subdivide a city into many types based on your preference. From 2 (Coherent and Incoherent) to thousands, if you wish.</p>
+<p><img src="imgs/prague_taxonomy.png" class="img-fluid"></p>
+</section>
+<section id="who" class="level3">
+<h3 data-anchor-id="who">Who</h3>
+<p>The classification has been developed by <a href="https://martinfleischmann.net">Dr.&nbsp;Martin Fleischmann</a> and Dr.&nbsp;Krasen Samardzhiev from the Department of Social Geography and Regional Planning of Charles University. The team further includes Anna Brázdová, Daniela Dančejová, Lisa Winkler (University of Freiburg), and Eliška Pospěchová.</p>
+<p>If you’d like to contact the team, you can drop an email to Martin at <a href="mailto:martin.fleischmann@natur.cuni.cz">martin.fleischmann@natur.cuni.cz</a>.</p>
+<section id="citation" class="level4">
+<h4 data-anchor-id="citation">Citation</h4>
+<p>The paper is currently under review. In the meantime, please cite the preprint.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">fleischmann2025Hierarchical</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {The {{Hierarchical Morphotope Classification}}: {{A Theory-Driven Framework}} for {{Large-Scale Analysis}} of {{Built Form}}},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">shorttitle</span> = {The {{Hierarchical Morphotope Classification}}},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Fleischmann, Martin and Samardzhiev, Krasen and Br{<span class="ch">\'</span>a}zdov{<span class="ch">\'</span>a}, Anna and Dan{<span class="ch">\v</span> c}ejov{<span class="ch">\'</span>a}, Daniela and Winkler, Lisa},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {2025},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">month</span> = <span class="st">sep</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">number</span> = {arXiv:2509.10083},</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">eprint</span> = {2509.10083},</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">primaryclass</span> = {cs},</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span> = {arXiv},</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">doi</span> = {10.48550/arXiv.2509.10083},</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">urldate</span> = {2025-09-16},</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">archiveprefix</span> = {arXiv},</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">keywords</span> = {Computer Science - Computers and Society}</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="how" class="level3">
+<h3 data-anchor-id="how">How</h3>
+<p>The detailed overview of the method is available in the <a href="https://doi.org/10.48550/arXiv.2509.10083">research paper</a>. Let’s take a quick look at how it works.</p>
+<p><img src="imgs/method.png" class="img-fluid"></p>
+<ol type="1">
+<li>Gather building footprints and street networks. Clean them up and generate a few more elements capturing built fabric.</li>
+<li>Measure morphometric attributes on all of the elements. See <a href="https://docs.momepy.org"><code>momepy</code></a> Python package for details.</li>
+<li>Link all of the numbers to buildings, by distance or co-location.</li>
+<li>Generate <strong>morphotopes</strong>. These are the smallest localities with a distinctive character among their neighbours. We use a bespoke regionalisation algorithm <a href="https://pysal.org/spopt/generated/spopt.region.SA3.html"><span class="math inline">\(SA^3\)</span></a>.</li>
+<li>Aggregate morphometric data onto the morphotope level and measure a few more.</li>
+<li>Generate the tree, capturing the similarity between morphotopes.</li>
+<li>Get clusters based on a custom level from the tree.</li>
+</ol>
+<p>That is roughly it. Again, all the technical details are in the <a href="https://doi.org/10.48550/arXiv.2509.10083">paper</a>.</p>
+</section>
+<section id="code" class="level3">
+<h3 data-anchor-id="code">Code</h3>
+<p>All components of the work rely on open source software and open data, with the resulting code and data being openly available. Code, with the specification of a reproducible environment, is available at <a href="https://github.com/uscuni/urban_taxonomy">github.com/uscuni/urban_taxonomy</a> and archived at <a href="https://doi.org/10.5281/zenodo.17105270">doi.org/10.5281/zenodo.17105270</a>. For data, see <a href="./data.html">Data</a>.</p>
+</section>
+<section id="acknowledgements" class="level3">
+<h3 data-anchor-id="acknowledgements">Acknowledgements</h3>
+<p>The project is funded by Charles University’s Primus programme through the project “Influence of Socioeconomic and Cultural Factors on Urban Structure in Central Europe”, project reference <code>PRIMUS/24/SCI/023</code>.</p>
+<p>We would further like to thank Claudia Baranzelli and Daniel Arribas-Bel for fruitful discussions helping shape the final outcome, and Rūta Marija Slavinskaitė, Milda Sutkaitytė, 4ct, and the Institute for Planning and Development Prague for their invaluable feedback on the classification and its applicability.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -210,13 +496,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -231,7 +518,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/uscuni\.github\.io\/himoc\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
