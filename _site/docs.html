@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data product guide – Urban Taxonomy</title>
+<title>Guide – Urban Taxonomy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -141,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./docs.html" aria-current="page"> 
-<span class="menu-text">Data product guide</span></a>
+<span class="menu-text">Guide</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="https://doi.org/10.48550/arXiv.2509.10083"> 
@@ -194,7 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data product guide</h1>
+<h1 class="title">Guide</h1>
 </div>
 
 
@@ -251,8 +251,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Set the path to the files. This assumes a local copy of the data product but note that Zenodo allows direct access to cloud optimized files like these.</p>
-<div id="e3e0f86a-0d33-41e4-9f17-9abfd53381d1" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data_product_dir <span class="op">=</span> <span class="st">'/data/uscuni-ulce/data_product'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e3e0f86a-0d33-41e4-9f17-9abfd53381d1" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data_product_dir <span class="op">=</span> <span class="st">'./data_product'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="plotting-building-data" class="level2">
@@ -528,8 +528,8 @@ Wall time: 1.29 s</code></pre>
 <section id="morphotope-level-data" class="level3">
 <h3 class="anchored" data-anchor-id="morphotope-level-data">Morphotope-level data</h3>
 <p>For each non-noise morphotope, we release aggregated morphometric values for a direct comparison.</p>
-<div id="92f91fb5-f30a-4718-8c52-358f841fbcdd" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>morphotope_data <span class="op">=</span> pd.read_parquet(<span class="st">'/data/uscuni-ulce/data_product/morphotope_data.parquet'</span>)</span>
+<div id="92f91fb5-f30a-4718-8c52-358f841fbcdd" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>morphotope_data <span class="op">=</span> pd.read_parquet(<span class="ss">f'</span><span class="sc">{</span>data_product_dir<span class="sc">}</span><span class="ss">/morphotope_data.parquet'</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>morphotope_data.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
@@ -625,8 +625,8 @@ Wall time: 1.29 s</code></pre>
 <h2 class="anchored" data-anchor-id="taxonomic-tree">Taxonomic tree</h2>
 <p>The data for the taxonomic tree - <code>ward_linkage_10.npy</code> - is in <code>scipy.cluster.hierarchical.linkage</code> format.</p>
 <p>The input data for the taxonomy is a subset of morphotopes and their characteristics. Only extreme outliers were dropped from the full morphotope list when producing the taxonomy.</p>
-<div id="68b2809c-5e5a-4450-a572-f9b7b303c517" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>linkage_matrix <span class="op">=</span> np.load(<span class="st">'/data/uscuni-ulce/data_product/ward_linkage.npy'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="68b2809c-5e5a-4450-a572-f9b7b303c517" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>linkage_matrix <span class="op">=</span> np.load(<span class="ss">f'</span><span class="sc">{</span>data_product_dir<span class="sc">}</span><span class="ss">ward_linkage.npy'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Since the linkage matrix is large - around 500,000 observations - we do not plot labels</p>
 <div id="d9d2e98f-9d99-40ac-8975-cc0903781f78" class="cell" data-execution_count="14">

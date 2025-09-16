@@ -35,17 +35,12 @@ The data is split regionally based on NUTS1 regions.
 
 ## Data repositories
 
-The data product is available for download from Zenodo and an S3 provided by Charles University.
-
-### Zenodo
-
 The main data repository is Zenodo, which contains a complete copy of the data product and issues a DOI to each version.
 
 See the data product at [doi.org/10.5281/zenodo.17076283](https://doi.org/10.5281/zenodo.17076283).
 
-### S3
 
-The S3 overview here.
+
 
 ## License
 

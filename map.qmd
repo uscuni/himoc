@@ -14,4 +14,4 @@ An interactive exploration of the taxonomy to the level of individual buildings.
 </div>
 ```
 
-See the [documentation](docs.qmd) for more details or get the [data](data.qmd).
+See the [documentation](docs.ipynb) for more details or get the [data](data.qmd).
