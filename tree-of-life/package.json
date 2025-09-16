@@ -1,0 +1,14 @@
+{
+  "name": "@d3/tree-of-life",
+  "main": "05775bc344fcf638@146.js",
+  "version": "146.0.0",
+  "homepage": "https://observablehq.com/@d3/tree-of-life",
+  "author": {
+    "name": "D3",
+    "url": "https://observablehq.com/@d3"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4 - 5"
+  }
+}

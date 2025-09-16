@@ -1,0 +1,37 @@
+/* css styles */
+:root {
+  --background: white;
+  --foreground: #222222;
+  --content-width: 1000px;
+  --active: #E0665F;
+  --hover: #7CBAE4;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.navbar, .navbar-brand, .nav-link {
+  background: var(--background);
+  text-align: left;
+  color: var(--foreground);
+  font-size: 16px;
+}
+
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+    color: var(--active);
+    font-weight: 700;
+}
+
+.nav-link:hover, .nav-link:focus, .navbar-brand:hover {
+    color: var(--hover)
+}
+
+@media(min-width: 1200px) {
+  .content-block {
+    max-width: 2000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
