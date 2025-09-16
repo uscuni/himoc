@@ -6,7 +6,7 @@ format:
 css: index.css
 ---
 
-An interactive exploration of the taxonomy to the level of individual buildings.
+An interactive exploration of the taxonomy at the level of individual buildings.
 
 ```{=html}
 <div style="height: 80vh; width: 100%;">

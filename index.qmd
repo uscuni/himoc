@@ -9,7 +9,11 @@ format:
 
 Urban Taxonomy using Hierarchical Morphotope Classification
 
-![](imgs/cities.png)
+[![](imgs/cities.png)](map.qmd)
+
+<button class="butt" onclick="location.href='./map.html';" style="display: inline">Interactive map</button>
+<button class="butt" onclick="location.href='./data.html';" style="display: inline">Data download</button>
+<button class="butt" onclick="location.href='https://doi.org/10.48550/arXiv.2509.10083';" style="display: inline">Technical paper</button>
 
 ### What
 
