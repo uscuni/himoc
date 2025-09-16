@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "Data",
+    "section": "",
+    "text": "Here will be links to the data"
+  },
+  {
+    "objectID": "ReadMe.html",
+    "href": "ReadMe.html",
+    "title": "Urban Taxonomy",
+    "section": "",
+    "text": "To run locally:\npixi run npm install -g http-server\npixi run http-server -p 8000 --cors"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Urban Taxonomy",
+    "section": "",
+    "text": "Urban Taxonomy using Hierarchical Morphotope Classification\nThe site is under construction."
+  },
+  {
+    "objectID": "docs.html",
+    "href": "docs.html",
+    "title": "Documentation",
+    "section": "",
+    "text": "Here will be docs."
+  }
+]

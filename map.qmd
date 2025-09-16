@@ -1,0 +1,16 @@
+---
+title: "Map"
+format:
+  html:
+    page-layout: custom
+---
+
+An interactive exploration of the taxonomy to the level of individual buildings.
+
+```{=html}
+<div style="height: 80vh; width: 100%;">
+<iframe src="./tiles.html" width="100%" height="100%" style="border: none;"></iframe>
+</div>
+```
+
+See the [documentation](docs.qmd) for more details or get the [data](data.qmd).

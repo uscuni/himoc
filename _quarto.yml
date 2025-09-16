@@ -1,0 +1,37 @@
+project:
+  type: website
+  resources:
+    - tree-of-life/*
+    - data/*
+    
+
+website:
+  title: "Urban Taxonomy"
+  navbar:
+    background: primary
+    search: true
+    collapse-below: lg
+    twitter-card: true
+    open-graph: true
+    repo-actions: [issue]
+    left:
+      - href: index.qmd
+        text: Home
+      - map.qmd
+      - data.qmd
+      - docs.qmd
+      - href: https://doi.org/10.48550/arXiv.2509.10083
+        text: Paper
+    right:
+      - icon: github
+        href: "https://github.com/uscuni/himoc"
+
+format:
+  html:
+    theme:
+      - cosmo
+    css: styles.css
+    toc: true
+
+
+

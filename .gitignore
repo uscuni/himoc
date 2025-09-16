@@ -4,3 +4,7 @@
 *.egg-info
 
 *.pmtiles
+/.quarto/
+# pixi environments
+.pixi/*
+!.pixi/config.toml

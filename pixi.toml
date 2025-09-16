@@ -1,0 +1,11 @@
+[workspace]
+authors = ["Martin Fleischmann <martin@martinfleischmann.net>"]
+channels = ["conda-forge"]
+name = "himoc"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+nodejs = ">=24.4.1,<24.5"
