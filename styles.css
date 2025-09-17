@@ -47,3 +47,29 @@ button.butt.clicked {
     box-shadow: 0px 0px 0px var(--active) !important;
     border: 1px solid #e0655f7e;
 }
+
+
+#navbarCollapse > ul.navbar-nav.navbar-nav-scroll.ms-auto > li > a {
+  /* background-image: url("assets/icons/button/arrow_cl.svg"); */
+  /* background-repeat: no-repeat;
+  background-position: right 15px center; */
+  /* background-size:$button-font-size auto; */
+  border: 1px solid var(--active);
+  /* border-radius: 8px; */
+  color:var(--active);
+  padding-top: 10px;
+  padding-bottom:10px;
+  padding-left:30px;
+  padding-right:25px;
+  /* text-decoration: none; */
+  font-weight: 700;
+}
+
+#navbarCollapse > ul.navbar-nav.navbar-nav-scroll.ms-auto > li > a:link {
+  color: var(--active);
+}
+
+#navbarCollapse > ul.navbar-nav.navbar-nav-scroll.ms-auto > li > a:hover {
+  border: 1px solid var(--hover);
+  color: var(--hover);
+}
