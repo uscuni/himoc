@@ -11,7 +11,7 @@ website:
   navbar:
     background: white
     foreground: '#222222'
-    search: true
+    search: false
     twitter-card: true
     open-graph: true
     repo-actions: [issue]
@@ -25,12 +25,18 @@ website:
       - href: https://doi.org/10.48550/arXiv.2509.10083
         text: Paper
         target: _blank
+      # - icon: github
+      #   href: "https://github.com/uscuni/himoc"
+    right:
+      - href: data.qmd
+        text: DATA DOWNLOAD {{< fa arrow-right >}}
+  repo-url: "https://github.com/uscuni/himoc"
+  page-footer:
+    center:
+      - text: "Copyright 2025, Charles University"
     right:
       - icon: github
         href: "https://github.com/uscuni/himoc"
-  repo-url: "https://github.com/uscuni/himoc"
-  page-footer: "Copyright 2025, Charles University"
-
 format:
   html:
     theme:
