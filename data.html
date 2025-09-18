@@ -191,6 +191,10 @@ ul.task-list li input[type="checkbox"] {
 <li><code>pen_portraits.json</code>&nbsp;- Descriptions of the clusters for the first three levels of taxonomy</li>
 <li><code>ward_linkage.npy</code>&nbsp;- The taxonomy itself encoded as a scipy linkage object</li>
 </ul>
+<p>Additionally, the repository managed by Charles University contains PMTiles representation.</p>
+<ul>
+<li><code>complete.pmtiles</code> - Hierarchical Morphotope Classification results linked to building geometry as a single PMTiles object</li>
+</ul>
 </section>
 <section id="file-formats" class="level3">
 <h3 class="anchored" data-anchor-id="file-formats">File formats</h3>
@@ -204,6 +208,7 @@ ul.task-list li input[type="checkbox"] {
 <li><code>label_name.json</code>&nbsp;- JSON</li>
 <li><code>pen_portraits.json</code>&nbsp;- JSON</li>
 <li><code>ward_linkage.npy</code>&nbsp;- Numpy NPY</li>
+<li><code>complete.pmtiles</code> - PMTiles</li>
 </ul>
 </section>
 </section>
@@ -589,6 +594,10 @@ ul.task-list li input[type="checkbox"] {
 <td>Taxonomy linkage</td>
 <td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/ward_linkage.npy" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/ward_linkage.npy</a></td>
 </tr>
+<tr class="odd">
+<td>Complete classification as PMtiles</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/complete.pmtiles" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/complete.pmtiles</a></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -602,27 +611,27 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Attribution:</strong>&nbsp;Contains data © Charles University, OpenStreetMap contributors, TomTom, GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL, IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK (CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT), and others.</p>
 <p>Individual source building data is available under the following licenses and attributions:</p>
 <ul>
-<li><p><strong>Brandenburg</strong>: GeoBasis-DE/LGB —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
-<li><p><strong>Saxony</strong>: State Office for Geobasis Information Saxony (GeoSN) —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
-<li><p><strong>Baden-Württemberg</strong>: LGL,&nbsp;<a href="http://www.lgl-bw.de/">www.lgl-bw.de</a>&nbsp;—&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
-<li><p><strong>Mecklenburg-Vorpommern</strong>: GeoBasis-DE/MV —&nbsp;CC-BY 4.0</p></li>
-<li><p><strong>Rheinland-Pfalz</strong>: GeoBasis-DE/LGB —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
-<li><p><strong>Saarland</strong>: © GeoBasis-DE/LVGL-SL (2024) —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
-<li><p><strong>Nordrhein-Westfalen</strong>: Geoinformationszentrum, Information und Technik Nordrhein-Westfalen —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
-<li><p><strong>Niedersachsen</strong>: © GeoBasis-DE/LGLN —&nbsp;CC-BY 4.0</p></li>
-<li><p><strong>Hessen</strong>:&nbsp;Datenlizenz Deutschland – Zero – Version 2.0</p></li>
-<li><p><strong>Thuringia</strong>: © GDI-Th —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
-<li><p><strong>Saxony-Anhalt</strong>: GeoBasis-DE / LVermGeo ST —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
-<li><p><strong>Schleswig-Holstein</strong>: © GeoBasis-DE/LVermGeo SH —&nbsp;CC-BY-SA 4.0</p></li>
-<li><p><strong>Bavaria</strong>: Bayerische Vermessungsverwaltung —&nbsp;CC-BY 4.0</p></li>
-<li><p><strong>Berlin</strong>:&nbsp;Datenlizenz Deutschland – Zero – Version 2.0</p></li>
-<li><p><strong>Hamburg</strong>: © LGV Hamburg —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></p></li>
-<li><p><strong>Bremen</strong>: Landesamt GeoInformation Bremen —&nbsp;CC-BY 4.0</p></li>
-<li><p><strong>Poland</strong>: Główny Urząd Geodezji i Kartografii —&nbsp;CC-BY 4.0</p></li>
-<li><p><strong>Czechia</strong>: ČÚZK —&nbsp;CC-BY 4.0</p></li>
-<li><p><strong>Slovakia</strong>: Úrad geodézie, kartografie a katastra SR —&nbsp;CC-BY 4.0</p></li>
-<li><p><strong>Austria</strong>: BEV —&nbsp;CC-BY 4.0</p></li>
-<li><p><strong>Lithuania</strong>: Geoportal.lt —&nbsp;CC-BY 4.0</p></li>
+<li><strong>Brandenburg</strong>: GeoBasis-DE/LGB —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></li>
+<li><strong>Saxony</strong>: State Office for Geobasis Information Saxony (GeoSN) —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></li>
+<li><strong>Baden-Württemberg</strong>: LGL,&nbsp;<a href="http://www.lgl-bw.de/">www.lgl-bw.de</a>&nbsp;—&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></li>
+<li><strong>Mecklenburg-Vorpommern</strong>: GeoBasis-DE/MV —&nbsp;CC-BY 4.0</li>
+<li><strong>Rheinland-Pfalz</strong>: GeoBasis-DE/LGB —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></li>
+<li><strong>Saarland</strong>: © GeoBasis-DE/LVGL-SL (2024) —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></li>
+<li><strong>Nordrhein-Westfalen</strong>: Geoinformationszentrum, Information und Technik Nordrhein-Westfalen —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></li>
+<li><strong>Niedersachsen</strong>: © GeoBasis-DE/LGLN —&nbsp;CC-BY 4.0</li>
+<li><strong>Hessen</strong>:&nbsp;Datenlizenz Deutschland – Zero – Version 2.0</li>
+<li><strong>Thuringia</strong>: © GDI-Th —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></li>
+<li><strong>Saxony-Anhalt</strong>: GeoBasis-DE / LVermGeo ST —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></li>
+<li><strong>Schleswig-Holstein</strong>: © GeoBasis-DE/LVermGeo SH —&nbsp;CC-BY-SA 4.0</li>
+<li><strong>Bavaria</strong>: Bayerische Vermessungsverwaltung —&nbsp;CC-BY 4.0</li>
+<li><strong>Berlin</strong>:&nbsp;Datenlizenz Deutschland – Zero – Version 2.0</li>
+<li><strong>Hamburg</strong>: © LGV Hamburg —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></li>
+<li><strong>Bremen</strong>: Landesamt GeoInformation Bremen —&nbsp;CC-BY 4.0</li>
+<li><strong>Poland</strong>: Główny Urząd Geodezji i Kartografii —&nbsp;CC-BY 4.0</li>
+<li><strong>Czechia</strong>: ČÚZK —&nbsp;CC-BY 4.0</li>
+<li><strong>Slovakia</strong>: Úrad geodézie, kartografie a katastra SR —&nbsp;CC-BY 4.0</li>
+<li><strong>Austria</strong>: BEV —&nbsp;CC-BY 4.0</li>
+<li><strong>Lithuania</strong>: Geoportal.lt —&nbsp;CC-BY 4.0</li>
 </ul>
 
 
