@@ -25,8 +25,6 @@ website:
       - href: https://doi.org/10.48550/arXiv.2509.10083
         text: Paper
         target: _blank
-      # - icon: github
-      #   href: "https://github.com/uscuni/himoc"
     right:
       - href: data.qmd
         text: DATA DOWNLOAD {{< fa arrow-right >}}

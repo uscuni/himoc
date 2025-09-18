@@ -236,7 +236,7 @@
         const layersToUpdate = ['buildings', 'morphotopes', 'h3', 'grid'];
         layersToUpdate.forEach(layer => {
           if (map.getLayer(layer)) {
-            map.setFilter(layer, ['in', ['get', 'final_without_noise'], ['literal', leafIds]]);
+            map.setFilter(layer, ['in', ['get', 'level_7_label'], ['literal', leafIds]]);
           }
         });
 
@@ -630,7 +630,7 @@
         map.addSource('buildings-source', {
           type: 'vector',
           // url: 'pmtiles://http://127.0.0.1:8000/complete.pmtiles'   // use this when developing locally
-          url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/complete.pmtiles',
+          url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/complete.pmtiles',
           attribution: '© <a href="https://uscuni.org">Charles University</a>, GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL, IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK (CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT) and others',
         });
 
@@ -647,7 +647,7 @@
 
         const fillColor = [
           "match",
-          ["get", "final_without_noise"],
+          ["get", "level_7_label"],
           ...Object.entries(mapping).flatMap(([key, value]) => [key, uniqueColors[parseInt(value) - 1]]),
           "#cccccc" // default color
         ];
@@ -665,11 +665,11 @@
 
         // Add event handlers
         const handleLayerClick = (e) => {
-          const leafId = e.features[0].properties.final_without_noise;
+          const leafId = e.features[0].properties.level_7_label;
 
           new maplibregl.Popup()
             .setLngLat(e.lngLat)
-            .setHTML('<h4>' + clusterNames[mapping[leafId]] + '</h4>' + clusterDescriptions[mapping[leafId]] + '</br><small>label: [' + leafId + "] original label: " + e.features[0].properties.final + "<br>morphotope: " + e.features[0].properties.morph + " branch: " + mapping[leafId] + "</small>")
+            .setHTML('<h4>' + clusterNames[mapping[leafId]] + '</h4>' + clusterDescriptions[mapping[leafId]] + "</br><small>morphotope ID: " + e.features[0].properties.morphotope_id + "<br>intially noise: " + e.features[0].properties.initially_noise + "</small>")
             .addTo(map);
 
           highlightTreeSegments(leafId);

@@ -28,6 +28,11 @@ Other European countries are currently being processed.
     taxonomy
 -   `ward_linkage.npy` - The taxonomy itself encoded as a scipy linkage object
 
+Additionally, the repository managed by Charles University contains PMTiles representation.
+
+- `complete.pmtiles` - Hierarchical Morphotope Classification results linked to
+    building geometry as a single PMTiles object
+
 ### File formats
 
 The majority of the data is stored as Apache Parquet, with geospatial data being encoded
@@ -45,6 +50,7 @@ The data is split regionally based on NUTS1 regions.
 -   `label_name.json` - JSON
 -   `pen_portraits.json` - JSON
 -   `ward_linkage.npy` - Numpy NPY
+-   `complete.pmtiles` - PMTiles
 
 ## Data repositories
 
@@ -141,6 +147,7 @@ University.
 | Label to name mapping | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/label_name.json> |
 | Descriptions of named branches | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/pen_portraits.json> |
 | Taxonomy linkage | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/ward_linkage.npy> |
+| Complete classification as PMtiles | <https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/complete.pmtiles> |
 :::
 
 
@@ -160,52 +167,32 @@ attributions:
 
 -   **Brandenburg**: GeoBasis-DE/LGB — [Datenlizenz Deutschland – Namensnennung –
     Version 2.0](https://www.govdata.de/dl-de/by-2-0)
-
 -   **Saxony**: State Office for Geobasis Information Saxony (GeoSN) — [Datenlizenz
     Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
-
 -   **Baden-Württemberg**: LGL, [www.lgl-bw.de](http://www.lgl-bw.de/) — [Datenlizenz
     Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
-
 -   **Mecklenburg-Vorpommern**: GeoBasis-DE/MV — CC-BY 4.0
-
 -   **Rheinland-Pfalz**: GeoBasis-DE/LGB — [Datenlizenz Deutschland – Namensnennung –
     Version 2.0](https://www.govdata.de/dl-de/by-2-0)
-
 -   **Saarland**: © GeoBasis-DE/LVGL-SL (2024) — [Datenlizenz Deutschland –
     Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
-
 -   **Nordrhein-Westfalen**: Geoinformationszentrum, Information und Technik
     Nordrhein-Westfalen — [Datenlizenz Deutschland – Namensnennung – Version
     2.0](https://www.govdata.de/dl-de/by-2-0)
-
 -   **Niedersachsen**: © GeoBasis-DE/LGLN — CC-BY 4.0
-
 -   **Hessen**: Datenlizenz Deutschland – Zero – Version 2.0
-
 -   **Thuringia**: © GDI-Th — [Datenlizenz Deutschland – Namensnennung – Version
     2.0](https://www.govdata.de/dl-de/by-2-0)
-
 -   **Saxony-Anhalt**: GeoBasis-DE / LVermGeo ST — [Datenlizenz Deutschland –
     Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0)
-
 -   **Schleswig-Holstein**: © GeoBasis-DE/LVermGeo SH — CC-BY-SA 4.0
-
 -   **Bavaria**: Bayerische Vermessungsverwaltung — CC-BY 4.0
-
 -   **Berlin**: Datenlizenz Deutschland – Zero – Version 2.0
-
 -   **Hamburg**: © LGV Hamburg — [Datenlizenz Deutschland – Namensnennung – Version
     2.0](https://www.govdata.de/dl-de/by-2-0)
-
 -   **Bremen**: Landesamt GeoInformation Bremen — CC-BY 4.0
-
 -   **Poland**: Główny Urząd Geodezji i Kartografii — CC-BY 4.0
-
 -   **Czechia**: ČÚZK — CC-BY 4.0
-
 -   **Slovakia**: Úrad geodézie, kartografie a katastra SR — CC-BY 4.0
-
 -   **Austria**: BEV — CC-BY 4.0
-
 -   **Lithuania**: Geoportal.lt — CC-BY 4.0
