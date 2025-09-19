@@ -516,7 +516,7 @@
   <div id="map"></div>
   <!-- Add legend div for cluster colors and names -->
   <div id="legend"
-    style="position: absolute; top: 131px; left: 10px; background: rgba(255,255,255,0.9); border: 1px solid #ccc; border-radius: 4px; padding: 0; z-index: 1001; font-size: 12px; font-family: sans-serif; max-width: 280px; box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;">
+    style="position: absolute; top: 131px; left: 10px; background: rgba(255,255,255); border: 1px solid #ccc; border-radius: 4px; padding: 0; z-index: 1001; font-size: 12px; font-family: sans-serif; max-width: 280px; box-shadow: 0 0 0 1px rgba(0,0,0,.1);">
   </div>
   <script type="text/javascript">
     // add the PMTiles plugin to the maplibregl global.
@@ -581,7 +581,7 @@
     darkModeButton.style.padding = '6px 6px';
     darkModeButton.style.cursor = 'pointer';
     darkModeButton.style.fontSize = '15px';
-    darkModeButton.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+    darkModeButton.style.boxShadow = '0 0 0 1px rgba(0,0,0,.1)';
     darkModeButton.title = 'Toggle dark mode';
 
     darkModeButton.addEventListener('mouseenter', () => {
@@ -763,6 +763,14 @@
           legendItems.style.display = 'none';
           // toggleButton.textContent = '+';
         }
+      });
+
+      // Add hover effect when legend is closed
+      toggleButton.addEventListener('mouseenter', () => {
+        toggleButton.style.backgroundColor = 'rgba(0,0,0,0.05)';
+      });
+      toggleButton.addEventListener('mouseleave', () => {
+        toggleButton.style.backgroundColor = 'white';
       });
 
       map.on('click', function (e) {
