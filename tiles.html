@@ -88,7 +88,7 @@
 
     function clearSelection() {
       // Clear map filters
-      const layersToUpdate = ['buildings', 'morphotopes', 'h3', 'grid'];
+      const layersToUpdate = ['buildings'];
       layersToUpdate.forEach(layer => {
         if (map.getLayer(layer)) {
           map.setFilter(layer, null);
@@ -233,7 +233,7 @@
         });
 
         // Update map layers
-        const layersToUpdate = ['buildings', 'morphotopes', 'h3', 'grid'];
+        const layersToUpdate = ['buildings'];
         layersToUpdate.forEach(layer => {
           if (map.getLayer(layer)) {
             map.setFilter(layer, ['in', ['get', 'level_7_label'], ['literal', leafIds]]);
@@ -676,7 +676,7 @@
           e.preventDefault();
         };
 
-        ['buildings', 'morphotopes', 'h3', 'grid'].forEach(layer => {
+        ['buildings'].forEach(layer => {
           if (map.getLayer(layer)) {
             map.on('click', layer, handleLayerClick);
           }
@@ -705,7 +705,7 @@
       map.on('click', function (e) {
         // Check if any features were clicked
         const features = map.queryRenderedFeatures(e.point, {
-          layers: ['buildings', 'morphotopes', 'h3', 'grid']
+          layers: ['buildings']
         });
 
         // Only clear if we didn't click on any features
