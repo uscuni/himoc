@@ -514,6 +514,10 @@
   </script>
 
   <div id="map"></div>
+  <!-- Add legend div for cluster colors and names -->
+  <div id="legend"
+    style="position: absolute; top: 131px; left: 10px; background: rgba(255,255,255,0.9); border: 1px solid #ccc; border-radius: 4px; padding: 0; z-index: 1001; font-size: 12px; font-family: sans-serif; max-width: 280px; box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;">
+  </div>
   <script type="text/javascript">
     // add the PMTiles plugin to the maplibregl global.
     // setting metadata = true fills out the "attribution" field of the source, and is required for some inspector applications,
@@ -535,14 +539,14 @@
       });
 
     let clusterNames = {
+      "6": "Coherent Interconnected Fabric",
+      "8": "Coherent Dense Adjacent Fabric",
+      "7": "Coherent Dense Disjoint Fabric",
       "1": "Incoherent Large-Scale Homogenous Fabric",
       "2": "Incoherent Large-Scale Heterogenous Fabric",
       "3": "Incoherent Small-Scale Linear Fabric",
       "4": "Incoherent Small-Scale Sparse Fabric",
       "5": "Incoherent Small-Scale Compact Fabric",
-      "6": "Coherent Interconnected Fabric",
-      "7": "Coherent Dense Disjoint Fabric",
-      "8": "Coherent Dense Adjacent Fabric"
     };
 
     let clusterDescriptions = {
@@ -724,6 +728,40 @@
         // Only re-add layers if they don't exist (to avoid duplicate additions)
         if (!map.getSource('buildings-source')) {
           addMapLayers();
+        }
+      });
+
+      // Add legend items
+      const legend = document.getElementById('legend');
+      let legendHTML = `<div style="display: flex; justify-content: space-between; align-items: center; padding: 0">
+                          <button id="legend-toggle" style="background: none; border: none; cursor: pointer; font-size: 16px; padding: 0; width:27px; height: 27px;"><i class="fa-solid fa-list"></i></button>
+                        </div>
+                        <div id="legend-items" style="display: none; padding-bottom: 6px;">`;
+      const orderedKeys = ["6", "8", "7", "1", "2", "3", "4", "5"]; // keep this in the desired display order
+      orderedKeys.forEach(key => {
+        const clusterNum = parseInt(key, 10);
+        const color = uniqueColors[clusterNum - 1];
+        const name = clusterNames[key];
+        legendHTML += `
+          <div style="display: flex; align-items: center; margin-bottom: 2px; padding-right: 10px;">
+        <div style="width: 18px; height: 12px; background-color: ${color}; margin-right: 5px; margin-left: 5px; border-radius: 2px;"></div>
+        <span>${name}</span>
+          </div>
+        `;
+      });
+      legendHTML += '</div>';
+      legend.innerHTML = legendHTML;
+
+      // Add toggle functionality
+      const toggleButton = document.getElementById('legend-toggle');
+      const legendItems = document.getElementById('legend-items');
+      toggleButton.addEventListener('click', () => {
+        if (legendItems.style.display === 'none') {
+          legendItems.style.display = 'block';
+          // toggleButton.textContent = '<i class="fa-solid fa-list"';
+        } else {
+          legendItems.style.display = 'none';
+          // toggleButton.textContent = '+';
         }
       });
 
