@@ -105,6 +105,9 @@
 
 
     function _chart(d3, data, cluster, setRadius, innerRadius, maxLength, setColor, outerRadius, width, linkExtensionConstant, linkConstant, linkExtensionVariable, linkVariable) {
+      // Disable pointer events on the div to allow clicks through to the map
+      d3.select("#tree-of-life-output").style("pointer-events", "none");
+
       const root = d3.hierarchy(data, d => d.branchset)
         .sum(d => d.branchset ? 0 : 1)
         .sort((a, b) => (a.value - b.value) || d3.ascending(a.data.length, b.data.length));
@@ -116,7 +119,8 @@
       const svg = d3.create("svg")
         .attr("viewBox", [-outerRadius, -outerRadius, width, width])
         .attr("font-family", "sans-serif")
-        .attr("font-size", 22);
+        .attr("font-size", 22)
+        .style("pointer-events", "none");  // Disable pointer events on the SVG to allow clicks through empty areas
 
       // Add background circle
       const backgroundCircle = svg.append("circle")
@@ -124,7 +128,8 @@
         .attr("cy", 0)
         .attr("r", innerRadius)
         .attr("fill", () => isDarkMode ? "#000000" : "#ffffff")
-        .attr("opacity", 0.75);
+        .attr("opacity", 0.75)
+        .style("pointer-events", "none");  // Ensure the background doesn't capture events
 
       svg.append("style").text(`
 
@@ -154,7 +159,8 @@
         .data(root.links().filter(d => !d.target.children))
         .join("path")
         .each(function (d) { d.target.linkExtensionNode = this; })
-        .attr("d", linkExtensionConstant);
+        .attr("d", linkExtensionConstant)
+        .style("pointer-events", "auto");  // Re-enable pointer events on link extensions for interaction
 
       const link = svg.append("g")
         .attr("fill", "none")
@@ -166,6 +172,7 @@
         .each(function (d) { d.target.linkNode = this; })
         .attr("d", linkConstant)
         .attr("stroke", d => d.target.color)
+        .style("pointer-events", "auto")  // Re-enable pointer events on links for interaction
         .on("mouseover", mouseovered(true))
         .on("mouseout", mouseovered(false));
 
