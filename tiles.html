@@ -27,6 +27,10 @@
   <div id="tree-of-life-output"
     style="position: absolute; bottom: 25px; right: 0px; padding: 0px; z-index: 1; min-width: 400px; max-width: 25%">
   </div>
+  <!-- Add tooltip div for displaying cluster names on hover -->
+  <div id="tooltip"
+    style="position: absolute; display: none; background: rgba(255,255,255,0.9); border: 1px solid #ccc; padding: 5px; border-radius: 4px; z-index: 1000; font-size: 12px; font-family: sans-serif; pointer-events: none; margin-right: 10px;">
+  </div>
   <script>
     const uniqueColors = [
       "#4069BC", // Incoherent Large-Scale Homogenous Fabric
@@ -192,6 +196,18 @@
           d3.select(linkNode).classed("link--active", true);
         });
         d3.select(d.target.linkExtensionNode).classed("link-extension--active", true);
+
+        // Show tooltip with cluster name
+        const tooltip = d3.select("#tooltip");
+        const colorIndex = uniqueColors.indexOf(d.target.color);
+        if (colorIndex !== -1) {
+          const clusterNum = colorIndex + 1;
+          const clusterName = clusterNames[clusterNum] || "Unknown";
+          tooltip.style("display", "block")
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px")
+            .html(clusterName);
+        }
       })
         .on("mouseout", function (event, d) {
           const descendantLinks = new Set();
@@ -209,6 +225,9 @@
             d3.select(linkNode).classed("link--active", false);
           });
           d3.select(d.target.linkExtensionNode).classed("link-extension--active", false);
+
+          // Hide tooltip
+          d3.select("#tooltip").style("display", "none");
         });
       function handleTreeClick(event, d, element) {
         // Clear previous selections first
@@ -261,10 +280,25 @@
       linkExtension.on("mouseover", function (event, d) {
         d3.select(this).classed("link-extension--active", true);
         d3.select(d.target.linkNode).classed("link--active", true);
+
+        // Show tooltip for link extensions as well
+        const tooltip = d3.select("#tooltip");
+        const colorIndex = uniqueColors.indexOf(d.target.color);
+        if (colorIndex !== -1) {
+          const clusterNum = colorIndex + 1;
+          const clusterName = clusterNames[clusterNum] || "Unknown";
+          tooltip.style("display", "block")
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px")
+            .html(clusterName);
+        }
       })
         .on("mouseout", function (event, d) {
           d3.select(this).classed("link-extension--active", false);
           d3.select(d.target.linkNode).classed("link--active", false);
+
+          // Hide tooltip
+          d3.select("#tooltip").style("display", "none");
         });
 
       svg.on("click", function (event) {
@@ -273,22 +307,6 @@
           d3.selectAll(".link--selected").classed("link--selected", false);
         }
       });
-
-      // svg.append("g")
-      //   .selectAll("text")
-      //   .data(root.leaves())
-      //   .join("text")
-      //   .attr("dy", ".31em")
-      //   .attr("transform", d => `rotate(${d.x - 90}) translate(${innerRadius + 4},0)${d.x < 180 ? "" : " rotate(180)"}`)
-      //   .attr("text-anchor", d => d.x < 180 ? "start" : "end")
-      //   .attr("fill", "white") // Added fill attribute
-      //   .text(d => d.data.name.replace(/_/g, " "))
-      //   .on("mouseover", mouseovered(true))
-      //   .on("mouseout", mouseovered(false))
-      //   .on("click", function (event, d) {
-      //     event.stopPropagation();
-      //     handleTreeClick(event, { target: d }, this.parentNode.querySelector('.link'));
-      //   });
 
       function update(checked) {
         const t = d3.transition().duration(750);
