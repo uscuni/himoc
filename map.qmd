@@ -20,10 +20,90 @@ An interactive exploration of the taxonomy at the level of individual buildings.
 
 ## How to work with the map?
 
-The map provides interactivity beyond panning an zooming.
+The map supports interactivity beyond panning and zooming.
 
-- Clicking on a building shows opens an information about the branch it belongs to, including its description. At the same time, the branch gets highlighted in the taxonomic tree on bottom right.
-- Clicking on a branch in a tree filters the map to show only that branch. You can even combine named (and coloured) levels together or dig deeper into them.
+:::: {layout="[ 50, 50 ]"}
 
+::: {#first-column}
+### Taxonomy details
+
+When you click on a building on the map, two things happen. First, you will see a popup with information about the branch (at level 3) that the building belongs to, including a short description. Second, the diagram showcasing the structure of the taxonomy in the bottom-right corner will highlight the specific branch (up to level 7) that the building belongs to.
+:::
+
+::: {#second-column}
+![](imgs/onclick.png)
+:::
+
+::::
+
+:::: {layout="[ 50, 50 ]"}
+
+::: {#first-column}
+### Taxonomy filtering
+
+The taxonomy diagram in the bottom-right corner can also be used to filter the map. When you click a branch at a chosen level, the map will filter to show only the contents of that branch.
+:::
+
+::: {#second-column}
+
+::: {.panel-tabset}
+## Filter disabled
+![](imgs/pre-filter.png)
+
+## Filter enabled
+![](imgs/post-filter.png)
+:::
+:::
+
+::::
+
+:::: {layout="[ 50, 50 ]"}
+
+::: {#first-column}
+### Legend
+
+In addition to the tree diagram and the popup, the names of individual branches shown on the map are available in the collapsible legend in the left control centre.
+:::
+
+::: {#second-column}
+![](imgs/legend.png)
+:::
+
+::::
+
+:::: {layout="[ 50, 50 ]"}
+
+::: {#first-column}
+### Dark mode
+
+If you prefer to explore the map in dark mode, you can toggle it on in the control centre. We recommend using dark mode when viewing a large-scale overview of large regions, as small, scattered development is typically more visible thanks to the higher contrast.
+:::
+
+::: {#second-column}
+
+::: {.panel-tabset}
+## Light mode
+![](imgs/light.png)
+
+## Dark mode
+![](imgs/dark.png)
+:::
+:::
+
+::::
+
+:::: {layout="[ 50, 50 ]"}
+
+::: {#first-column}
+### Fullscreen
+
+You can open the map in fullscreen using the button in the top-right corner. Clicking it again will close it.
+:::
+
+::: {#second-column}
+![](imgs/fullscreen.png)
+:::
+
+::::
 
 See the [documentation](docs.ipynb) for more details and get the [data](data.qmd).
