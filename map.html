@@ -161,11 +161,92 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="how-to-work-with-the-map" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-work-with-the-map">How to work with the map?</h2>
-<p>The map provides interactivity beyond panning an zooming.</p>
-<ul>
-<li>Clicking on a building shows opens an information about the branch it belongs to, including its description. At the same time, the branch gets highlighted in the taxonomic tree on bottom right.</li>
-<li>Clicking on a branch in a tree filters the map to show only that branch. You can even combine named (and coloured) levels together or dig deeper into them.</li>
-</ul>
+<p>The map supports interactivity beyond panning and zooming.</p>
+<div class="quarto-layout-panel" data-layout="[ 50, 50 ]">
+<div class="quarto-layout-row">
+<div id="first-column" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<section id="taxonomy-details" class="level3">
+<h3 class="anchored" data-anchor-id="taxonomy-details">Taxonomy details</h3>
+<p>When you click on a building on the map, two things happen. First, you will see a popup with information about the branch (at level 3) that the building belongs to, including a short description. Second, the diagram showcasing the structure of the taxonomy in the bottom-right corner will highlight the specific branch (up to level 7) that the building belongs to.</p>
+</section>
+</div>
+<div id="second-column" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="imgs/onclick.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[ 50, 50 ]">
+<div class="quarto-layout-row">
+<div id="first-column" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<section id="taxonomy-filtering" class="level3">
+<h3 class="anchored" data-anchor-id="taxonomy-filtering">Taxonomy filtering</h3>
+<p>The taxonomy diagram in the bottom-right corner can also be used to filter the map. When you click a branch at a chosen level, the map will filter to show only the contents of that branch.</p>
+</section>
+</div>
+<div id="second-column" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Filter disabled</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Filter enabled</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><img src="imgs/pre-filter.png" class="img-fluid"></p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><img src="imgs/post-filter.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[ 50, 50 ]">
+<div class="quarto-layout-row">
+<div id="first-column" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<section id="legend" class="level3">
+<h3 class="anchored" data-anchor-id="legend">Legend</h3>
+<p>In addition to the tree diagram and the popup, the names of individual branches shown on the map are available in the collapsible legend in the left control centre.</p>
+</section>
+</div>
+<div id="second-column" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="imgs/legend.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[ 50, 50 ]">
+<div class="quarto-layout-row">
+<div id="first-column" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<section id="dark-mode" class="level3">
+<h3 class="anchored" data-anchor-id="dark-mode">Dark mode</h3>
+<p>If you prefer to explore the map in dark mode, you can toggle it on in the control centre. We recommend using dark mode when viewing a large-scale overview of large regions, as small, scattered development is typically more visible thanks to the higher contrast.</p>
+</section>
+</div>
+<div id="second-column" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Light mode</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Dark mode</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p><img src="imgs/light.png" class="img-fluid"></p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p><img src="imgs/dark.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[ 50, 50 ]">
+<div class="quarto-layout-row">
+<div id="first-column" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<section id="fullscreen" class="level3">
+<h3 class="anchored" data-anchor-id="fullscreen">Fullscreen</h3>
+<p>You can open the map in fullscreen using the button in the top-right corner. Clicking it again will close it.</p>
+</section>
+</div>
+<div id="second-column" class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="imgs/fullscreen.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
 <p>See the <a href="./docs.html">documentation</a> for more details and get the <a href="./data.html">data</a>.</p>
 
 
