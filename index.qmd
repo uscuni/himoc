@@ -89,8 +89,6 @@ The flexibility of the hierarchy means that you can subdivide a city into many t
 The classification has been developed by [Dr. Martin Fleischmann](https://martinfleischmann.net) and Dr. Krasen Samardzhiev from the Department of Social Geography and Regional Planning of
 Charles University. The team further includes Anna Brázdová, Daniela Dančejová, Lisa Winkler (University of Freiburg), and Eliška Pospěchová.
 
-If you'd like to contact the team, you can drop an email to Martin at [martin.fleischmann@natur.cuni.cz](mailto:martin.fleischmann@natur.cuni.cz).
-
 #### Citation
 
 The paper is currently under review. In the meantime, please cite the preprint.
@@ -148,3 +146,7 @@ thank Claudia Baranzelli and Daniel Arribas-Bel for fruitful discussions helping
 shape the final outcome, and Rūta Marija Slavinskaitė, Milda Sutkaitytė, 4ct, and the Institute
 for Planning and Development Prague for their invaluable feedback on the classification
 and its applicability.
+
+### Contact
+
+If you'd like to contact the team, you can drop an email to Martin at [martin.fleischmann@natur.cuni.cz](mailto:martin.fleischmann@natur.cuni.cz).
