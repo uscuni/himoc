@@ -12,9 +12,14 @@ website:
     background: white
     foreground: '#222222'
     search: false
-    twitter-card: true
-    open-graph: true
-    repo-actions: [issue]
+    twitter-card:
+      title: Urban Taxonomy
+      description: A classification of built-up fabric. It divides cities into regions of consistent patterns of urban form and connects them via a taxonomic tree.
+      image: imgs/preview.jpg
+    open-graph:
+      title: Urban Taxonomy
+      description: A classification of built-up fabric. It divides cities into regions of consistent patterns of urban form and connects them via a taxonomic tree.
+      image: imgs/preview.jpg
     left:
       - href: index.qmd
         text: Home
