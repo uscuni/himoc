@@ -48,7 +48,7 @@ The taxonomy diagram in the bottom-right corner can also be used to filter the m
 
 ::: {.panel-tabset}
 ## Filter disabled
-![](imgs/pre-filter.png)
+![](imgs/pre-filter.jpg)
 
 ## Filter enabled
 ![](imgs/post-filter.png)
