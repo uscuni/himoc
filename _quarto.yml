@@ -4,6 +4,7 @@ project:
     - tree-of-life/*
     - data/*
     - imgs/*
+    - tiles_v2.html
 
 
 website:
