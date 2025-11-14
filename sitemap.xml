@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://urbantaxonomy.org/map.html</loc>
-    <lastmod>2025-10-17T17:36:21.335Z</lastmod>
-  </url>
-  <url>
-    <loc>https://urbantaxonomy.org/index.html</loc>
-    <lastmod>2025-10-17T17:36:21.335Z</lastmod>
+    <loc>https://urbantaxonomy.org/docs.html</loc>
+    <lastmod>2025-11-14T12:04:04.645Z</lastmod>
   </url>
   <url>
     <loc>https://urbantaxonomy.org/ReadMe.html</loc>
-    <lastmod>2025-10-17T17:36:21.300Z</lastmod>
-  </url>
-  <url>
-    <loc>https://urbantaxonomy.org/docs.html</loc>
-    <lastmod>2025-10-17T17:36:21.311Z</lastmod>
+    <lastmod>2025-11-14T12:04:04.633Z</lastmod>
   </url>
   <url>
     <loc>https://urbantaxonomy.org/data.html</loc>
-    <lastmod>2025-10-17T17:36:21.306Z</lastmod>
+    <lastmod>2025-11-14T12:04:04.639Z</lastmod>
+  </url>
+  <url>
+    <loc>https://urbantaxonomy.org/index.html</loc>
+    <lastmod>2025-11-14T12:04:04.669Z</lastmod>
+  </url>
+  <url>
+    <loc>https://urbantaxonomy.org/map.html</loc>
+    <lastmod>2025-11-14T12:04:04.669Z</lastmod>
   </url>
 </urlset>

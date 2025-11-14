@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-34132728f2a50a100322c593fb22c955.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a4383530934b66e852b5e341a097eb6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -90,8 +90,6 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Urban Taxonomy</span>
     </a>
@@ -146,6 +144,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#available-data" id="toc-available-data" class="nav-link active" data-scroll-target="#available-data">Available data</a>
   <ul class="collapse">
   <li><a href="#coverage" id="toc-coverage" class="nav-link" data-scroll-target="#coverage">Coverage</a></li>
+  <li><a href="#releases" id="toc-releases" class="nav-link" data-scroll-target="#releases">Releases</a></li>
   <li><a href="#contents" id="toc-contents" class="nav-link" data-scroll-target="#contents">Contents</a></li>
   <li><a href="#file-formats" id="toc-file-formats" class="nav-link" data-scroll-target="#file-formats">File formats</a></li>
   </ul></li>
@@ -180,21 +179,29 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This data product contains the classification of the entire building stock of 6 European countries, geographically split based on <a href="https://ec.europa.eu/eurostat/web/nuts/maps">NUTS1 regions (2024)</a>.</p>
+<p>This data product contains the classification of the entire building stock of 10 European countries, geographically split based on <a href="https://ec.europa.eu/eurostat/web/nuts/maps">NUTS1 regions (2024)</a>.</p>
 <section id="available-data" class="level2">
 <h2 class="anchored" data-anchor-id="available-data">Available data</h2>
 <p>Below is an overview of the available data.</p>
 <section id="coverage" class="level3">
 <h3 class="anchored" data-anchor-id="coverage">Coverage</h3>
-<p>The current coverage includes Austria, Czechia, Germany, Lithuania, Poland, and Slovakia. Other European countries are currently being processed.</p>
+<p>The current coverage includes Austria, Belgium, Czechia, France, Germany, Lithuania, the Netherlands, Poland, Slovakia, and Spain. Additional European countries are expected in 2026.</p>
+</section>
+<section id="releases" class="level3">
+<h3 class="anchored" data-anchor-id="releases">Releases</h3>
+<p>The dataset is currently split in two releases. The first one, from September 2025, covers Austria, Czechia, Germany, Lithuania, Poland, and Slovakia. The second, from November 2025 covers Belgium, France, the Netherlands, and Spain (withut Basque region). The countries from the latter release are assgined to the existing taxonomic tree (as of now).</p>
 </section>
 <section id="contents" class="level3">
 <h3 class="anchored" data-anchor-id="contents">Contents</h3>
+<p>Structure of all releases:</p>
 <ul>
 <li><code>{NUTS1}.parquet</code>&nbsp;- Hierarchical Morphotope Classification results linked to building geometry</li>
 <li><code>{NUTS1}_morphotopes.parquet</code>&nbsp;- Hierarchical Morphotope Classification results linked to morphotope geometry</li>
 <li><code>{NUTS1}_data.parquet</code>&nbsp;- Underlying morphometric data linkable to building geometry</li>
 <li><code>morphotope_data.parquet</code>&nbsp;- Aggregated data linkable to individual morphotopes</li>
+</ul>
+<p>Additional files available in the initial release (2025-09):</p>
+<ul>
 <li><code>label_name.json</code>&nbsp;- Names of the cluster labels for the first three levels of taxonomy</li>
 <li><code>pen_portraits.json</code>&nbsp;- Descriptions of the clusters for the first three levels of taxonomy</li>
 <li><code>ward_linkage.npy</code>&nbsp;- The taxonomy itself encoded as a scipy linkage object</li>
@@ -225,11 +232,20 @@ ul.task-list li input[type="checkbox"] {
 <section id="zenodo" class="level3">
 <h3 class="anchored" data-anchor-id="zenodo">Zenodo</h3>
 <p>The main data repository is Zenodo, which contains a complete copy of the data product and issues a DOI to each version.</p>
-<p>See the data product at <a href="https://doi.org/10.5281/zenodo.17076283">doi.org/10.5281/zenodo.17076283</a>.</p>
+<section id="release" class="level4">
+<h4 class="anchored" data-anchor-id="release">2025-09 release</h4>
+<p>The initial release covering <strong>AT, CZ, DE, LT, PL, SK</strong> is avaialble from <a href="https://doi.org/10.5281/zenodo.17076283">doi.org/10.5281/zenodo.17076283</a>.</p>
+</section>
+<section id="release-1" class="level4">
+<h4 class="anchored" data-anchor-id="release-1">2025-11 release</h4>
+<p>The first expansion covering <strong>BE, NL, FR, ES</strong> is asvailable from <a href="https://doi.org/10.5281/zenodo.17600617">doi.org/10.5281/zenodo.17600617</a>.</p>
+</section>
 </section>
 <section id="direct-download" class="level3">
 <h3 class="anchored" data-anchor-id="direct-download">Direct download</h3>
 <p>You can also download the data directly from the repository managed by Charles University.</p>
+<section id="release-2" class="level4">
+<h4 class="anchored" data-anchor-id="release-2">2025-09 release</h4>
 <div class="callout callout-style-simple callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -612,11 +628,319 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
+<section id="release-3" class="level4">
+<h4 class="anchored" data-anchor-id="release-3">2025-11 release</h4>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Belgium
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>NUTS1</th>
+<th>HiMoC on buildings</th>
+<th>HiMoC on morphotopes</th>
+<th>Morphometric data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BE1</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be1.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be1.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be1_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be1_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be1_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be1_data.parquet</a></td>
+</tr>
+<tr class="even">
+<td>BE2</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be2.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be2.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be2_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be2_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be2_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be2_data.parquet</a></td>
+</tr>
+<tr class="odd">
+<td>BE3</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be3.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be3.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be3_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be3_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be3_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/be3_data.parquet</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>France
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>NUTS1</th>
+<th>HiMoC on buildings</th>
+<th>HiMoC on morphotopes</th>
+<th>Morphometric data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FR1</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fr1.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fr1.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fr1_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fr1_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fr1_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fr1_data.parquet</a></td>
+</tr>
+<tr class="even">
+<td>FRB</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frb.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frb.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frb_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frb_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frb_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frb_data.parquet</a></td>
+</tr>
+<tr class="odd">
+<td>FRC</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frc.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frc.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frc_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frc_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frc_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frc_data.parquet</a></td>
+</tr>
+<tr class="even">
+<td>FRD</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frd.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frd.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frd_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frd_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frd_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frd_data.parquet</a></td>
+</tr>
+<tr class="odd">
+<td>FRE</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fre.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fre.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fre_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fre_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fre_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fre_data.parquet</a></td>
+</tr>
+<tr class="even">
+<td>FRF</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frf.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frf.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frf_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frf_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frf_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frf_data.parquet</a></td>
+</tr>
+<tr class="odd">
+<td>FRG</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frg.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frg.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frg_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frg_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frg_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frg_data.parquet</a></td>
+</tr>
+<tr class="even">
+<td>FRH</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frh.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frh.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frh_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frh_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frh_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frh_data.parquet</a></td>
+</tr>
+<tr class="odd">
+<td>FRI</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fri.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fri.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fri_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fri_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fri_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/fri_data.parquet</a></td>
+</tr>
+<tr class="even">
+<td>FRJ</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frj.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frj.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frj_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frj_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frj_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frj_data.parquet</a></td>
+</tr>
+<tr class="odd">
+<td>FRK</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frk.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frk.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frk_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frk_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frk_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frk_data.parquet</a></td>
+</tr>
+<tr class="even">
+<td>FRL</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frl.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frl.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frl_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frl_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frl_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frl_data.parquet</a></td>
+</tr>
+<tr class="odd">
+<td>FRM</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frm.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frm.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frm_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frm_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frm_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/frm_data.parquet</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The Netherlands
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>NUTS1</th>
+<th>HiMoC on buildings</th>
+<th>HiMoC on morphotopes</th>
+<th>Morphometric data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NL1</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl1.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl1.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl1_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl1_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl1_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl1_data.parquet</a></td>
+</tr>
+<tr class="even">
+<td>NL2</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl2.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl2.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl2_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl2_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl2_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl2_data.parquet</a></td>
+</tr>
+<tr class="odd">
+<td>NL3</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl3.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl3.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl3_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl3_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl3_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl3_data.parquet</a></td>
+</tr>
+<tr class="even">
+<td>NL4</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl4.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl4.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl4_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl4_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl4_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/nl4_data.parquet</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Spain
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Spain currently does not contain Basque region.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>NUTS1</th>
+<th>HiMoC on buildings</th>
+<th>HiMoC on morphotopes</th>
+<th>Morphometric data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ES1</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es1.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es1.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es1_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es1_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es1_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es1_data.parquet</a></td>
+</tr>
+<tr class="even">
+<td>ES2</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es2.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es2.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es2_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es2_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es2_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es2_data.parquet</a></td>
+</tr>
+<tr class="odd">
+<td>ES3</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es3.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es3.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es3_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es3_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es3_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es3_data.parquet</a></td>
+</tr>
+<tr class="even">
+<td>ES4</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es4.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es4.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es4_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es4_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es4_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es4_data.parquet</a></td>
+</tr>
+<tr class="odd">
+<td>ES5</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es5.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es5.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es5_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es5_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es5_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es5_data.parquet</a></td>
+</tr>
+<tr class="even">
+<td>ES6</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es6.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es6.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es6_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es6_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es6_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es6_data.parquet</a></td>
+</tr>
+<tr class="odd">
+<td>ES7</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es7.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es7.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es7_morphotopes.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es7_morphotopes.parquet</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es7_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/es7_data.parquet</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Common files
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>File name</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Morphotope data</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/morphotope_data.parquet" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/morphotope_data.parquet</a></td>
+</tr>
+<tr class="even">
+<td>Complete classification as PMtiles</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/complete.pmtiles" class="uri">https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/complete.pmtiles</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</section>
 </section>
 <section id="license" class="level2">
 <h2 class="anchored" data-anchor-id="license">License</h2>
 <p>This dataset is based on data from multiple sources. The combined database is licensed under the&nbsp;Open Database License (ODbL) v1.0.</p>
-<p><strong>Attribution:</strong>&nbsp;Contains data © Charles University, OpenStreetMap contributors, TomTom, GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL, IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK (CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT), and others.</p>
+<p><strong>Attribution:</strong>&nbsp;Contains data © Charles University, OpenStreetMap contributors, TomTom, GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL, IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK (CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT), IGN, 3DGI, DGC, and others.</p>
 <p>Individual source building data is available under the following licenses and attributions:</p>
 <ul>
 <li><strong>Brandenburg</strong>: GeoBasis-DE/LGB —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></li>
@@ -640,6 +964,10 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Slovakia</strong>: Úrad geodézie, kartografie a katastra SR —&nbsp;CC-BY 4.0</li>
 <li><strong>Austria</strong>: BEV —&nbsp;CC-BY 4.0</li>
 <li><strong>Lithuania</strong>: Geoportal.lt —&nbsp;CC-BY 4.0</li>
+<li><strong>France</strong>: Licence Ouverte / Open Licence 2.0 © IGN</li>
+<li><strong>Belgium</strong>: Open Database License (ODbL) OpenStreetMap Contributors</li>
+<li><strong>Netherlands</strong>: CC-BY-4.0 © 3DBAG by tudelft3d and 3DGI</li>
+<li><strong>Spain</strong>: LICENCIA DE ACCESO Y USO DE LOS SERVICIOS Y CONJUNTOS DE DATOS INSPIRE DE LA DIRECCIÓN GENERAL DEL CATASTRO © DGC</li>
 </ul>
 
 

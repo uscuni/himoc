@@ -1,8 +1,6 @@
 <html>
-<!-- TODO: 77516, 114550 are not selectable as it is higher order -->
-
 <head>
-  <title>Urban Landscape of Central Europe</title>
+  <title>Urban Taxonomy</title>
   <meta charset="utf-8" />
   <link rel="stylesheet" type="text/css" href="./tree-of-life/inspector.css">
   <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.css' />
@@ -659,9 +657,9 @@
         map.addSource('buildings-source', {
           type: 'vector',
           // url: 'pmtiles://http://127.0.0.1:8000/complete.pmtiles'   // use this when developing locally
-          url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202509/complete.pmtiles',
-          attribution: '© <a href="https://uscuni.org">Charles University</a>, GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL, IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK (CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT) and others',
-        });
+           url: 'pmtiles://https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/complete.pmtiles',
+          attribution: '© <a href="https://uscuni.org">Charles University</a>, GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL, IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK (CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT), IGN, 3DGI, DGC, and others',
+       });
 
         const layers = map.getStyle().layers;
         // Find the index of the first symbol layer in the map style
