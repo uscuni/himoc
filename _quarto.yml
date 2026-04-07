@@ -29,7 +29,7 @@ website:
         text: Map
       - data.qmd
       - docs.ipynb
-      - href: https://doi.org/10.48550/arXiv.2509.10083
+      - href: https://doi.org/10.1016/j.cities.2026.107047
         text: Paper
         target: _blank
     right:

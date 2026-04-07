@@ -13,7 +13,7 @@ Urban Taxonomy using Hierarchical Morphotope Classification
 
 <button class="butt" onclick="location.href='./map.html';" style="display: inline">Interactive map</button>
 <button class="butt" onclick="location.href='./data.html';" style="display: inline">Data download</button>
-<button class="butt" onclick="location.href='https://doi.org/10.48550/arXiv.2509.10083';" style="display: inline">Technical paper</button>
+<button class="butt" onclick="location.href='https://doi.org/10.1016/j.cities.2026.107047';" style="display: inline">Technical paper</button>
 
 ### What
 
@@ -96,29 +96,31 @@ Charles University. The team further includes Anna Brázdová, Daniela Dančejov
 
 #### Citation
 
-The paper is currently under review. In the meantime, please cite the preprint.
+The paper documenting the method used to produce this data product has been published in *Cities*.
+
+> Fleischmann, Martin, Krasen Samardzhiev, Anna Brázdová, Daniela Dančejová, and Lisa Winkler. 2026. “The Hierarchical Morphotope Classification: A Theory-Driven Framework for Large-Scale Analysis of Built Form.” Cities 174 (July): 107047. https://doi.org/10.1016/j.cities.2026.107047.
+
 
 ```bibtex
-@misc{fleischmann2025Hierarchical,
-  title = {The {{Hierarchical Morphotope Classification}}: {{A Theory-Driven Framework}} for {{Large-Scale Analysis}} of {{Built Form}}},
-  shorttitle = {The {{Hierarchical Morphotope Classification}}},
+@article{fleischmann2026Hierarchical,
+  title = {The Hierarchical Morphotope Classification: {{A}} Theory-Driven Framework for Large-Scale Analysis of Built Form},
+  shorttitle = {The Hierarchical Morphotope Classification},
   author = {Fleischmann, Martin and Samardzhiev, Krasen and Br{\'a}zdov{\'a}, Anna and Dan{\v c}ejov{\'a}, Daniela and Winkler, Lisa},
-  year = {2025},
-  month = sep,
-  number = {arXiv:2509.10083},
-  eprint = {2509.10083},
-  primaryclass = {cs},
-  publisher = {arXiv},
-  doi = {10.48550/arXiv.2509.10083},
-  urldate = {2025-09-16},
-  archiveprefix = {arXiv},
-  keywords = {Computer Science - Computers and Society}
+  year = 2026,
+  month = jul,
+  journal = {Cities},
+  volume = {174},
+  pages = {107047},
+  issn = {02642751},
+  doi = {10.1016/j.cities.2026.107047},
+  urldate = {2026-04-07},
+  langid = {english}
 }
 ```
 
 ### How
 
-The detailed overview of the method is available in the [research paper](https://doi.org/10.48550/arXiv.2509.10083). Let's take a quick look at how it works.
+The detailed overview of the method is available in the [research paper](https://doi.org/10.1016/j.cities.2026.107047). Let's take a quick look at how it works.
 
 ![](imgs/method.png)
 
@@ -131,7 +133,7 @@ The detailed overview of the method is available in the [research paper](https:/
 6. Generate the tree, capturing the similarity between morphotopes.
 7. Get clusters based on a custom level from the tree.
 
-That is roughly it. Again, all the technical details are in the [paper](https://doi.org/10.48550/arXiv.2509.10083).
+That is roughly it. Again, all the technical details are in the [paper](https://doi.org/10.1016/j.cities.2026.107047).
 
 ### Code
 

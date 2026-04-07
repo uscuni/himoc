@@ -10,3 +10,4 @@
 !.pixi/config.toml
 
 /_site/
+**/*.quarto_ipynb
