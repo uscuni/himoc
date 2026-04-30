@@ -75,11 +75,11 @@ and issues a DOI to each version.
 
 #### 2025-09 release
 
-The initial release covering **AT, CZ, DE, LT, PL, SK** is avaialble from [doi.org/10.5281/zenodo.17076283](https://doi.org/10.5281/zenodo.17076283).
+The initial release covering **AT, CZ, DE, LT, PL, SK** is available from [doi.org/10.5281/zenodo.17076283](https://doi.org/10.5281/zenodo.17076283).
 
 #### 2025-11 release
 
-The first expansion covering **BE, NL, FR, ES** is asvailable from [doi.org/10.5281/zenodo.17600617](https://doi.org/10.5281/zenodo.17600617).
+The first expansion covering **BE, NL, FR, ES** is available from [doi.org/10.5281/zenodo.17600617](https://doi.org/10.5281/zenodo.17600617).
 
 ### Direct download
 
