@@ -11,3 +11,6 @@
 
 /_site/
 **/*.quarto_ipynb
+
+# Node.js
+node_modules/

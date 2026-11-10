@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "pmtiles": "^4.2.1"
+    "pmtiles": "^4.5.0"
   }
 }
