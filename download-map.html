@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Regional data downloads</title>
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.css">
+  <script src="https://unpkg.com/maplibre-gl@5.0.1/dist/maplibre-gl.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font: 14px/1.4 system-ui, sans-serif;
+    }
+
+    #map {
+      position: absolute;
+      inset: 0;
+    }
+
+    .panel {
+      position: absolute;
+      z-index: 1;
+      background: white;
+      border-radius: 4px;
+      box-shadow: 0 1px 5px #0004;
+      padding: 12px;
+    }
+
+    #status {
+      top: 10px;
+      left: 10px;
+      max-width: calc(100% - 85px);
+    }
+
+    .maplibregl-popup {
+      width: min(320px, 60vw);
+    }
+
+    .maplibregl-popup-content {
+      padding: 18px;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px #0003;
+    }
+
+    .maplibregl-popup-close-button {
+      right: 8px;
+      top: 6px;
+      width: 28px;
+      height: 28px;
+      color: #536274;
+      font-size: 22px;
+      border-radius: 4px;
+    }
+
+    .region-details {
+      max-height: min(55vh, 360px);
+      overflow-y: auto;
+    }
+
+    .region-details h2 {
+      color: #192b47;
+      font-size: 17px;
+      margin: 0 28px 2px 0;
+    }
+
+    .region-code {
+      color: #65748b;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .region-details h3 {
+      color: #536274;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      margin: 16px 0 6px;
+      text-transform: uppercase;
+    }
+
+    .region-details ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .region-details a {
+      border-top: 1px solid #e8edf4;
+      color: #2455a4;
+      display: block;
+      padding: 6px 0;
+      text-decoration: none;
+    }
+
+    .region-details a:hover,
+    .region-details a:focus-visible {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map" aria-label="Map of NUTS1 regions"></div>
+  <script>
+      const map = new maplibregl.Map({
+        container: "map",
+        style: "./data/positron.json",
+        center: [10, 55],
+        zoom: 2.75,
+        attributionControl: true
+      });
+      map.on("style.load", () => {
+        map.setProjection({ type: "globe" });
+      });
+      map.addControl(new maplibregl.NavigationControl(), "top-right");
+      map.addControl(new maplibregl.FullscreenControl({ container: document.documentElement }), "top-right");
+
+      async function getText(url) {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Could not load ${url} (${response.status}).`);
+        return response.text();
+      }
+
+      function readDownloads(html) {
+        const page = new DOMParser().parseFromString(html, "text/html");
+        const downloads = new Map();
+        for (const link of page.querySelectorAll("a[href]")) {
+          const url = new URL(link.getAttribute("href"), location.href);
+          const match = url.pathname.match(
+            /^\/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public\/urban_taxonomy\/v(\d{6})\/([a-z]{2}[a-z0-9])(\.parquet|\.gpkg|_morphotopes\.parquet|_morphotopes\.gpkg|_data\.parquet)$/
+          );
+          if (url.origin !== "https://s3.cl4.du.cesnet.cz" || !match) continue;
+          const [, version, region, suffix] = match;
+          const types = {
+            ".parquet": "Buildings",
+            ".gpkg": "Buildings",
+            "_morphotopes.parquet": "Morphotopes",
+            "_morphotopes.gpkg": "Morphotopes",
+            "_data.parquet": "Morphometric data"
+          };
+          const id = region.toUpperCase();
+          if (!downloads.has(id)) downloads.set(id, new Map());
+          const releases = downloads.get(id);
+          if (!releases.has(version)) releases.set(version, []);
+          releases.get(version).push({
+            href: url.href,
+            label: `${types[suffix]}: ${link.textContent.trim()}`
+          });
+        }
+        if (!downloads.size) throw new Error("No regional download links were found in data.html.");
+        return downloads;
+      }
+
+      function showRegion(properties, downloads, lngLat) {
+        const id = properties.NUTS_ID;
+        const releases = downloads.get(id);
+        const content = document.createElement("section");
+        content.className = "region-details";
+        const heading = document.createElement("h2");
+        heading.textContent = properties.NAME_LATN || id;
+        const code = document.createElement("div");
+        code.className = "region-code";
+        code.textContent = `NUTS1 / ${id}`;
+        content.append(heading, code);
+        const [version, links] = [...releases].sort(([a], [b]) => b.localeCompare(a))[0];
+        const title = document.createElement("h3");
+        title.textContent = `${version.slice(0, 4)}-${version.slice(4)} release`;
+        const list = document.createElement("ul");
+        for (const { href, label } of links) {
+          const item = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = href;
+          link.textContent = label;
+          item.append(link);
+          list.append(item);
+        }
+        content.append(title, list);
+        popup.setDOMContent(content).setLngLat(lngLat).addTo(map);
+      }
+
+      const popup = new maplibregl.Popup({ maxWidth: "320px", focusAfterOpen: false, closeOnClick: false });
+
+      Promise.all([
+        getText("./data/nuts1.geojson").then(JSON.parse),
+        getText("./data.html").then(readDownloads),
+        new Promise((resolve, reject) => {
+          map.once("load", resolve);
+          map.on("error", event => {
+            if (!map.getStyle()?.layers?.length) reject(event.error);
+          });
+        })
+      ]).then(([regions, downloads]) => {
+        regions.features = regions.features.filter(feature => downloads.has(feature.properties.NUTS_ID));
+        map.addSource("nuts1", { type: "geojson", data: regions, promoteId: "NUTS_ID" });
+        map.addLayer({
+          id: "nuts1-fill",
+          type: "fill",
+          source: "nuts1",
+          paint: {
+            "fill-color": ["case", ["boolean", ["feature-state", "hover"], false], "#18428c", "#4069bc"],
+            "fill-opacity": ["case", ["boolean", ["feature-state", "hover"], false], 0.8, 0.55]
+          }
+        });
+        map.addLayer({
+          id: "nuts1-outline",
+          type: "line",
+          source: "nuts1",
+          paint: { "line-color": "#ffffff", "line-width": 1 }
+        });
+        let hoveredId = null;
+        map.on("click", event => {
+          const features = map.queryRenderedFeatures(event.point, { layers: ["nuts1-fill"] });
+          if (features.length) {
+            showRegion(features[0].properties, downloads, event.lngLat);
+          } else {
+            popup.remove();
+          }
+        });
+        map.on("mouseenter", "nuts1-fill", () => { map.getCanvas().style.cursor = "pointer"; });
+        map.on("mousemove", "nuts1-fill", event => {
+          const id = event.features[0].id;
+          if (hoveredId === id) return;
+          if (hoveredId !== null) map.setFeatureState({ source: "nuts1", id: hoveredId }, { hover: false });
+          hoveredId = id;
+          map.setFeatureState({ source: "nuts1", id: hoveredId }, { hover: true });
+        });
+        map.on("mouseleave", "nuts1-fill", () => {
+          if (hoveredId !== null) map.setFeatureState({ source: "nuts1", id: hoveredId }, { hover: false });
+          hoveredId = null;
+          map.getCanvas().style.cursor = "";
+        });
+      }).catch(error => {
+        console.error(error);
+      });
+  </script>
+</body>
+
+</html>

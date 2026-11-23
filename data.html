@@ -46,7 +46,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0fc399dc83cb84dab7be469acfef6adc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6ebcac5224b81b3ff1364519573fa143.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -187,17 +187,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This data product contains the classification of the entire building stock of 10 European countries, geographically split based on <a href="https://ec.europa.eu/eurostat/web/nuts/maps">NUTS1 regions (2024)</a>.</p>
+<p>This data product contains the classification of the entire building stock of 19 European countries, geographically split based on <a href="https://ec.europa.eu/eurostat/web/nuts/maps">NUTS1 regions (2024)</a>.</p>
 <section id="available-data" class="level2">
 <h2 class="anchored" data-anchor-id="available-data">Available data</h2>
 <p>Below is an overview of the available data.</p>
 <section id="coverage" class="level3">
 <h3 class="anchored" data-anchor-id="coverage">Coverage</h3>
-<p>The current coverage includes Austria, Belgium, Czechia, France, Germany, Lithuania, the Netherlands, Poland, Slovakia, and Spain. Additional European countries are expected in 2026.</p>
+<p>The current coverage includes Austria, Belgium, Czechia, Denmark, Estonia, Finland, France, Germany, Latvia, Liechtenstein, Lithuania, Luxembourg, the Netherlands, Norway, Poland, Slovakia, Spain, Sweden, and Switzerland.</p>
+<p>Extension is currently not planned due to insufficient data quality of open data products in other European countries.</p>
 </section>
 <section id="releases" class="level3">
 <h3 class="anchored" data-anchor-id="releases">Releases</h3>
-<p>The dataset is currently split in two releases. The first one, from September 2025, covers Austria, Czechia, Germany, Lithuania, Poland, and Slovakia. The second, from November 2025 covers Belgium, France, the Netherlands, and Spain (withut Basque region). The countries from the latter release are assgined to the existing taxonomic tree (as of now).</p>
+<p>The dataset is currently split in three releases. The first one, from September 2025, covers Austria, Czechia, Germany, Lithuania, Poland, and Slovakia. The second, from November 2025 covers Belgium, France, the Netherlands, and Spain (withut Basque region). The last release from November 2026 covers the remaining countries and re-releases Spain including Basque region.</p>
+<p>The countries from the latter release are assgined to the existing taxonomic tree outlined in the <a href="https://doi.org/10.1016/j.cities.2026.107047">research paper</a>.</p>
 </section>
 <section id="contents" class="level3">
 <h3 class="anchored" data-anchor-id="contents">Contents</h3>
@@ -250,12 +252,18 @@ ul.task-list li input[type="checkbox"] {
 <h4 class="anchored" data-anchor-id="release-1">2025-11 release</h4>
 <p>The first expansion covering <strong>BE, NL, FR, ES</strong> is available from <a href="https://doi.org/10.5281/zenodo.17600617">doi.org/10.5281/zenodo.17600617</a>.</p>
 </section>
+<section id="release-2" class="level4">
+<h4 class="anchored" data-anchor-id="release-2">2026-11 release</h4>
+<p>The second expansion covering <strong>CH, DK, EE, ES, FI, LI, LU, LV, NO, SE</strong> will be available on Zenodo shortly.</p>
+</section>
 </section>
 <section id="direct-download" class="level3">
 <h3 class="anchored" data-anchor-id="direct-download">Direct download</h3>
 <p>You can also download the data directly from the repository managed by Charles University.</p>
-<section id="release-2" class="level4">
-<h4 class="anchored" data-anchor-id="release-2">2025-09 release</h4>
+<p>Select a highlighted region on the map to see downloads from its latest release. The full file lists, including older releases, are available below the map.</p>
+<iframe src="./download-map.html" title="Map of regional data downloads" width="100%" height="600" style="border: 0;" allowfullscreen=""></iframe>
+<section id="release-3" class="level4">
+<h4 class="anchored" data-anchor-id="release-3">2025-09 release</h4>
 <div class="callout callout-style-simple callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -638,8 +646,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="release-3" class="level4">
-<h4 class="anchored" data-anchor-id="release-3">2025-11 release</h4>
+<section id="release-4" class="level4">
+<h4 class="anchored" data-anchor-id="release-4">2025-11 release</h4>
 <div class="callout callout-style-simple callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -936,8 +944,428 @@ ul.task-list li input[type="checkbox"] {
 <td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/morphotope_data.parquet">Parquet (184M)</a></td>
 </tr>
 <tr class="even">
-<td>Complete classification as PMtiles</td>
+<td>Complete classification including previous release as PMtiles</td>
 <td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/complete.pmtiles">PMTiles (16G)</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="release-5" class="level4">
+<h4 class="anchored" data-anchor-id="release-5">2026-11 release</h4>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Denmark
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>NUTS1</th>
+<th>HiMoC on buildings</th>
+<th>HiMoC on morphotopes</th>
+<th>Morphometric data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DK0</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/dk0.parquet">Parquet (522M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/dk0.gpkg">GPKG (1.5G)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/dk0_morphotopes.parquet">Parquet (566M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/dk0_morphotopes.gpkg">GPKG (1.2G)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/dk0_data.parquet">Parquet (909M)</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Estonia
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>NUTS1</th>
+<th>HiMoC on buildings</th>
+<th>HiMoC on morphotopes</th>
+<th>Morphometric data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>EE0</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ee0.parquet">Parquet (83M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ee0.gpkg">GPKG (306M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ee0_morphotopes.parquet">Parquet (110M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ee0_morphotopes.gpkg">GPKG (265M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ee0_data.parquet">Parquet (211M)</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Finland
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>NUTS1</th>
+<th>HiMoC on buildings</th>
+<th>HiMoC on morphotopes</th>
+<th>Morphometric data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FI1</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi1.parquet">Parquet (324M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi1.gpkg">GPKG (1.1G)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi1_morphotopes.parquet">Parquet (595M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi1_morphotopes.gpkg">GPKG (1.4G)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi1_data.parquet">Parquet (771M)</a></td>
+</tr>
+<tr class="even">
+<td>FI2</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi2.parquet">Parquet (3M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi2.gpkg">GPKG (8M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi2_morphotopes.parquet">Parquet (6M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi2_morphotopes.gpkg">GPKG (12M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi2_data.parquet">Parquet (128M)</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Latvia
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>NUTS1</th>
+<th>HiMoC on buildings</th>
+<th>HiMoC on morphotopes</th>
+<th>Morphometric data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>LV0</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lv0.parquet">Parquet (116M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lv0.gpkg">GPKG (498M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lv0_morphotopes.parquet">Parquet (151M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lv0_morphotopes.gpkg">GPKG (368M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lv0_data.parquet">Parquet (405M)</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Liechtenstein
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>NUTS1</th>
+<th>HiMoC on buildings</th>
+<th>HiMoC on morphotopes</th>
+<th>Morphometric data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>LI0</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/li0.parquet">Parquet (3M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/li0.gpkg">GPKG (5M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/li0_morphotopes.parquet">Parquet (3M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/li0_morphotopes.gpkg">GPKG (5M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/li0_data.parquet">Parquet (96M)</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Luxembourg
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>NUTS1</th>
+<th>HiMoC on buildings</th>
+<th>HiMoC on morphotopes</th>
+<th>Morphometric data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>LU0</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lu0.parquet">Parquet (28M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lu0.gpkg">GPKG (102M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lu0_morphotopes.parquet">Parquet (22M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lu0_morphotopes.gpkg">GPKG (46M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lu0_data.parquet">Parquet (218M)</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Norway
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>NUTS1</th>
+<th>HiMoC on buildings</th>
+<th>HiMoC on morphotopes</th>
+<th>Morphometric data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NO0</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/no0.parquet">Parquet (397M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/no0.gpkg">GPKG (1.1G)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/no0_morphotopes.parquet">Parquet (492M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/no0_morphotopes.gpkg">GPKG (1.1G)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/no0_data.parquet">Parquet (804M)</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Sweden
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>NUTS1</th>
+<th>HiMoC on buildings</th>
+<th>HiMoC on morphotopes</th>
+<th>Morphometric data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SE1</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se1.parquet">Parquet (200M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se1.gpkg">GPKG (639M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se1_morphotopes.parquet">Parquet (237M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se1_morphotopes.gpkg">GPKG (536M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se1_data.parquet">Parquet (487M)</a></td>
+</tr>
+<tr class="even">
+<td>SE2</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se2.parquet">Parquet (319M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se2.gpkg">GPKG (1014M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se2_morphotopes.parquet">Parquet (386M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se2_morphotopes.gpkg">GPKG (888M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se2_data.parquet">Parquet (742M)</a></td>
+</tr>
+<tr class="odd">
+<td>SE3</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se3.parquet">Parquet (199M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se3.gpkg">GPKG (664M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se3_morphotopes.parquet">Parquet (279M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se3_morphotopes.gpkg">GPKG (657M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se3_data.parquet">Parquet (795M)</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Spain
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>NUTS1</th>
+<th>HiMoC on buildings</th>
+<th>HiMoC on morphotopes</th>
+<th>Morphometric data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ES1</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es1.parquet">Parquet (212M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es1.gpkg">GPKG (628M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es1_morphotopes.parquet">Parquet (219M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es1_morphotopes.gpkg">GPKG (482M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es1_data.parquet">Parquet (473M)</a></td>
+</tr>
+<tr class="even">
+<td>ES2</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es2.parquet">Parquet (122M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es2.gpkg">GPKG (507M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es2_morphotopes.parquet">Parquet (135M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es2_morphotopes.gpkg">GPKG (311M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es2_data.parquet">Parquet (565M)</a></td>
+</tr>
+<tr class="odd">
+<td>ES3</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es3.parquet">Parquet (93M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es3.gpkg">GPKG (255M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es3_morphotopes.parquet">Parquet (64M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es3_morphotopes.gpkg">GPKG (134M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es3_data.parquet">Parquet (295M)</a></td>
+</tr>
+<tr class="even">
+<td>ES4</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es4.parquet">Parquet (390M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es4.gpkg">GPKG (1.2G)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es4_morphotopes.parquet">Parquet (382M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es4_morphotopes.gpkg">GPKG (881M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es4_data.parquet">Parquet (1.2G)</a></td>
+</tr>
+<tr class="odd">
+<td>ES5</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es5.parquet">Parquet (406M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es5.gpkg">GPKG (1.6G)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es5_morphotopes.parquet">Parquet (358M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es5_morphotopes.gpkg">GPKG (783M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es5_data.parquet">Parquet (807M)</a></td>
+</tr>
+<tr class="even">
+<td>ES6</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es6.parquet">Parquet (391M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es6.gpkg">GPKG (1.1G)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es6_morphotopes.parquet">Parquet (337M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es6_morphotopes.gpkg">GPKG (757M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es6_data.parquet">Parquet (748M)</a></td>
+</tr>
+<tr class="odd">
+<td>ES7</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es7.parquet">Parquet (73M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es7.gpkg">GPKG (194M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es7_morphotopes.parquet">Parquet (59M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es7_morphotopes.gpkg">GPKG (120M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es7_data.parquet">Parquet (105M)</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Switzerland
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>NUTS1</th>
+<th>HiMoC on buildings</th>
+<th>HiMoC on morphotopes</th>
+<th>Morphometric data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CH0</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ch0.parquet">Parquet (249M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ch0.gpkg">GPKG (1.0G)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ch0_morphotopes.parquet">Parquet (309M)</a><br><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ch0_morphotopes.gpkg">GPKG (668M)</a></td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ch0_data.parquet">Parquet (752M)</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Common files
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>File name</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Morphotope data extension 2</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/morphotope_data_extension_2.parquet">Parquet (369M)</a></td>
+</tr>
+<tr class="even">
+<td>Complete classification including previous releases as PMtiles</td>
+<td><a href="https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/complete_v3.pmtiles">PMTiles (19G)</a></td>
 </tr>
 </tbody>
 </table>
@@ -950,7 +1378,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="license" class="level2">
 <h2 class="anchored" data-anchor-id="license">License</h2>
 <p>This dataset is based on data from multiple sources. The combined database is licensed under the&nbsp;Open Database License (ODbL) v1.0.</p>
-<p><strong>Attribution:</strong>&nbsp;Contains data © Charles University, OpenStreetMap contributors, TomTom, GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL, IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK (CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT), IGN, 3DGI, DGC, and others.</p>
+<p><strong>Attribution:</strong>&nbsp;Contains data © Charles University, OpenStreetMap contributors, TomTom, GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL, IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK (CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT), IGN, 3DGI, DGC, Vurderingsstyrelsen (DK), Maa- ja Ruumiamet (EE), VZD (LV), ACT (LU), Lantmäteriet (SE), Arabako Foru Aldundia, Gipuzkoako Foru Aldundia, Bizkaiko Foru Aldundia, Gobierno de Navarra, and others.</p>
 <p>Individual source building data is available under the following licenses and attributions:</p>
 <ul>
 <li><strong>Brandenburg</strong>: GeoBasis-DE/LGB —&nbsp;<a href="https://www.govdata.de/dl-de/by-2-0">Datenlizenz Deutschland – Namensnennung – Version 2.0</a></li>
@@ -978,6 +1406,19 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Belgium</strong>: Open Database License (ODbL) OpenStreetMap Contributors</li>
 <li><strong>Netherlands</strong>: CC-BY-4.0 © 3DBAG by tudelft3d and 3DGI</li>
 <li><strong>Spain</strong>: LICENCIA DE ACCESO Y USO DE LOS SERVICIOS Y CONJUNTOS DE DATOS INSPIRE DE LA DIRECCIÓN GENERAL DEL CATASTRO © DGC</li>
+<li><strong>Araba/Álava</strong>: Arabako Foru Aldundia / Diputación Foral de Álava — CC-BY 4.0</li>
+<li><strong>Gipuzkoa</strong>: Diputación Foral de Gipuzkoa / Gipuzkoako Foru Aldundia -— CC-BY 4.0</li>
+<li><strong>Bizkaia</strong>: Bizkaiko Foru Aldundia / Diputación Foral de Bizkaia -— CC BY 3.0 ES</li>
+<li><strong>Navarra</strong>: Servicio proporcionado por el Gobierno de Navarra -— CC-BY 4.0</li>
+<li><strong>Denmark</strong>: Vurderingsstyrelsen (BBR) -— <a href="https://dataforsyningen.dk/asset/PDF/rettigheder_vilkaar/Vilk%C3%A5r%20for%20brug%20af%20data%20fra%20BBR.pdf">Vilkår for brug af data fra BBR (29.05.2019)</a></li>
+<li><strong>Estonia</strong>: Map data by Republic of Estonia Land and Spatial Development Board 11.08.2026 -— <a href="https://geoportaal.maaruum.ee/opendata-licence">Open data licence</a></li>
+<li><strong>Finland</strong>: Open Database License (ODbL) OpenStreetMap Contributors</li>
+<li><strong>Latvia</strong>: Valsts zemes dienests (State Land Service of Latvia) — CC-BY 4.0</li>
+<li><strong>Liechtenstein</strong>: Open Database License (ODbL) OpenStreetMap Contributors</li>
+<li><strong>Luxembourg</strong>: Administration du cadastre et de la topographie -— Creative Commons Zero (CC0)</li>
+<li><strong>Norway</strong>: Open Database License (ODbL) OpenStreetMap Contributors</li>
+<li><strong>Sweden</strong>: Byggnad Nedladdning, vektor © Lantmäteriet — CC-BY 4.0</li>
+<li><strong>Switzerland</strong>: Open Database License (ODbL) OpenStreetMap Contributors</li>
 </ul>
 
 
