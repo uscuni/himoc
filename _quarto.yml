@@ -5,6 +5,7 @@ project:
     - data/*
     - imgs/*
     - tiles_v2.html
+    - download-map.html
 
 
 website:

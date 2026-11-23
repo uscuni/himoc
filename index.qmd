@@ -84,7 +84,7 @@ The flexibility of the hierarchy means that you can subdivide a city into many t
 ### Coverage
 
 The images above show just one level of the taxonomy in two cities, Prague and Vienna. However, the classification
-currently covers **10 countries** (Austria, Belgium, Czechia, France, Germany, Lithuania, the Netherlands, Poland, Slovakia, and Spain), with more to come in 2026.
+currently covers **19 countries** (Austria, Belgium, Czechia, Denmark, Estonia, Finland, France, Germany, Latvia, Liechtenstein, Lithuania, Luxembourg, the Netherlands, Norway, Poland, Slovakia, Spain, Sweden, and Switzerland).
 
 ![](imgs/timeline.svg)
 
