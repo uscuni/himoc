@@ -85,7 +85,7 @@ The first expansion covering **BE, NL, FR, ES** is available from [doi.org/10.52
 
 #### 2026-11 release
 
-The second expansion covering **CH, DK, EE, ES, FI, LI, LU, LV, NO, SE** will be available on Zenodo shortly.
+The second expansion covering **CH, DK, EE, ES, FI, LI, LU, LV, NO, SE** is available from [doi.org/10.5281/zenodo.24465996](https://doi.org/10.5281/zenodo.24465996).
 
 ### Direct download
 
