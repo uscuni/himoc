@@ -4,7 +4,7 @@ layout: article
 ---
 
 
-This data product contains the classification of the entire building stock of 10 European countries, geographically split based on [NUTS1 regions (2024)](https://ec.europa.eu/eurostat/web/nuts/maps).
+This data product contains the classification of the entire building stock of 19 European countries, geographically split based on [NUTS1 regions (2024)](https://ec.europa.eu/eurostat/web/nuts/maps).
 
 
 
@@ -14,15 +14,17 @@ Below is an overview of the available data.
 
 ### Coverage
 
-The current coverage includes Austria, Belgium, Czechia, France, Germany, Lithuania, the Netherlands, Poland, Slovakia, and Spain.
-Additional European countries are expected in 2026.
+The current coverage includes Austria, Belgium, Czechia, Denmark, Estonia, Finland, France, Germany, Latvia, Liechtenstein, Lithuania, Luxembourg, the Netherlands, Norway, Poland, Slovakia, Spain, Sweden, and Switzerland.
+
+Extension is currently not planned due to insufficient data quality of open data products in other European countries.
 
 ### Releases
 
-The dataset is currently split in two releases. The first one, from September 2025, covers
+The dataset is currently split in three releases. The first one, from September 2025, covers
 Austria, Czechia, Germany, Lithuania, Poland, and Slovakia. The second, from November 2025
-covers Belgium, France, the Netherlands, and Spain (withut Basque region). The countries
-from the latter release are assgined to the existing taxonomic tree (as of now).
+covers Belgium, France, the Netherlands, and Spain (withut Basque region). The last release from November 2026 covers the remaining countries and re-releases Spain including Basque region.
+
+The countries from the latter release are assgined to the existing taxonomic tree outlined in the [research paper](https://doi.org/10.1016/j.cities.2026.107047).
 
 ### Contents
 
@@ -80,6 +82,10 @@ The initial release covering **AT, CZ, DE, LT, PL, SK** is available from [doi.o
 #### 2025-11 release
 
 The first expansion covering **BE, NL, FR, ES** is available from [doi.org/10.5281/zenodo.17600617](https://doi.org/10.5281/zenodo.17600617).
+
+#### 2026-11 release
+
+The second expansion covering **CH, DK, EE, ES, FI, LI, LU, LV, NO, SE** will be available on Zenodo shortly.
 
 ### Direct download
 
@@ -239,7 +245,107 @@ Spain currently does not contain Basque region.
 | File name | Download |
 |----|----|
 | Morphotope data | [Parquet (184M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/morphotope_data.parquet) |
-| Complete classification as PMtiles | [PMTiles (16G)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/complete.pmtiles) |
+| Complete classification including previous release as PMtiles | [PMTiles (16G)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202511/complete.pmtiles) |
+:::
+
+#### 2026-11 release
+
+::: {.callout-tip collapse=true appearance="minimal"}
+#### Switzerland
+
+| NUTS1 | HiMoC on buildings | HiMoC on morphotopes | Morphometric data |
+|----|----|----|----|
+| CH0 | [Parquet (249M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ch0.parquet)<br>[GPKG (1.0G)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ch0.gpkg) | [Parquet (309M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ch0_morphotopes.parquet)<br>[GPKG (668M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ch0_morphotopes.gpkg) | [Parquet (752M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ch0_data.parquet) |
+:::
+
+::: {.callout-tip collapse=true appearance="minimal"}
+#### Denmark
+
+| NUTS1 | HiMoC on buildings | HiMoC on morphotopes | Morphometric data |
+|----|----|----|----|
+| DK0 | [Parquet (522M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/dk0.parquet)<br>[GPKG (1.5G)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/dk0.gpkg) | [Parquet (566M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/dk0_morphotopes.parquet)<br>[GPKG (1.2G)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/dk0_morphotopes.gpkg) | [Parquet (909M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/dk0_data.parquet) |
+:::
+
+::: {.callout-tip collapse=true appearance="minimal"}
+#### Estonia
+
+| NUTS1 | HiMoC on buildings | HiMoC on morphotopes | Morphometric data |
+|----|----|----|----|
+| EE0 | [Parquet (83M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ee0.parquet)<br>[GPKG (306M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ee0.gpkg) | [Parquet (110M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ee0_morphotopes.parquet)<br>[GPKG (265M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ee0_morphotopes.gpkg) | [Parquet (211M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/ee0_data.parquet) |
+:::
+
+::: {.callout-tip collapse=true appearance="minimal"}
+#### Spain
+
+| NUTS1 | HiMoC on buildings | HiMoC on morphotopes | Morphometric data |
+|----|----|----|----|
+| ES1 | [Parquet (212M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es1.parquet)<br>[GPKG (628M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es1.gpkg) | [Parquet (219M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es1_morphotopes.parquet)<br>[GPKG (482M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es1_morphotopes.gpkg) | [Parquet (473M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es1_data.parquet) |
+| ES2 | [Parquet (122M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es2.parquet)<br>[GPKG (507M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es2.gpkg) | [Parquet (135M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es2_morphotopes.parquet)<br>[GPKG (311M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es2_morphotopes.gpkg) | [Parquet (565M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es2_data.parquet) |
+| ES3 | [Parquet (93M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es3.parquet)<br>[GPKG (255M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es3.gpkg) | [Parquet (64M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es3_morphotopes.parquet)<br>[GPKG (134M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es3_morphotopes.gpkg) | [Parquet (295M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es3_data.parquet) |
+| ES4 | [Parquet (390M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es4.parquet)<br>[GPKG (1.2G)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es4.gpkg) | [Parquet (382M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es4_morphotopes.parquet)<br>[GPKG (881M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es4_morphotopes.gpkg) | [Parquet (1.2G)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es4_data.parquet) |
+| ES5 | [Parquet (406M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es5.parquet)<br>[GPKG (1.6G)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es5.gpkg) | [Parquet (358M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es5_morphotopes.parquet)<br>[GPKG (783M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es5_morphotopes.gpkg) | [Parquet (807M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es5_data.parquet) |
+| ES6 | [Parquet (391M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es6.parquet)<br>[GPKG (1.1G)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es6.gpkg) | [Parquet (337M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es6_morphotopes.parquet)<br>[GPKG (757M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es6_morphotopes.gpkg) | [Parquet (748M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es6_data.parquet) |
+| ES7 | [Parquet (73M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es7.parquet)<br>[GPKG (194M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es7.gpkg) | [Parquet (59M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es7_morphotopes.parquet)<br>[GPKG (120M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es7_morphotopes.gpkg) | [Parquet (105M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/es7_data.parquet) |
+:::
+
+::: {.callout-tip collapse=true appearance="minimal"}
+#### Finland
+
+| NUTS1 | HiMoC on buildings | HiMoC on morphotopes | Morphometric data |
+|----|----|----|----|
+| FI1 | [Parquet (324M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi1.parquet)<br>[GPKG (1.1G)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi1.gpkg) | [Parquet (595M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi1_morphotopes.parquet)<br>[GPKG (1.4G)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi1_morphotopes.gpkg) | [Parquet (771M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi1_data.parquet) |
+| FI2 | [Parquet (3M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi2.parquet)<br>[GPKG (8M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi2.gpkg) | [Parquet (6M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi2_morphotopes.parquet)<br>[GPKG (12M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi2_morphotopes.gpkg) | [Parquet (128M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/fi2_data.parquet) |
+:::
+
+::: {.callout-tip collapse=true appearance="minimal"}
+#### Liechtenstein
+
+| NUTS1 | HiMoC on buildings | HiMoC on morphotopes | Morphometric data |
+|----|----|----|----|
+| LI0 | [Parquet (3M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/li0.parquet)<br>[GPKG (5M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/li0.gpkg) | [Parquet (3M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/li0_morphotopes.parquet)<br>[GPKG (5M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/li0_morphotopes.gpkg) | [Parquet (96M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/li0_data.parquet) |
+:::
+
+::: {.callout-tip collapse=true appearance="minimal"}
+#### Luxembourg
+
+| NUTS1 | HiMoC on buildings | HiMoC on morphotopes | Morphometric data |
+|----|----|----|----|
+| LU0 | [Parquet (28M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lu0.parquet)<br>[GPKG (102M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lu0.gpkg) | [Parquet (22M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lu0_morphotopes.parquet)<br>[GPKG (46M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lu0_morphotopes.gpkg) | [Parquet (218M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lu0_data.parquet) |
+:::
+
+::: {.callout-tip collapse=true appearance="minimal"}
+#### Latvia
+
+| NUTS1 | HiMoC on buildings | HiMoC on morphotopes | Morphometric data |
+|----|----|----|----|
+| LV0 | [Parquet (116M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lv0.parquet)<br>[GPKG (498M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lv0.gpkg) | [Parquet (151M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lv0_morphotopes.parquet)<br>[GPKG (368M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lv0_morphotopes.gpkg) | [Parquet (405M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/lv0_data.parquet) |
+:::
+
+::: {.callout-tip collapse=true appearance="minimal"}
+#### Norway
+
+| NUTS1 | HiMoC on buildings | HiMoC on morphotopes | Morphometric data |
+|----|----|----|----|
+| NO0 | [Parquet (397M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/no0.parquet)<br>[GPKG (1.1G)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/no0.gpkg) | [Parquet (492M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/no0_morphotopes.parquet)<br>[GPKG (1.1G)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/no0_morphotopes.gpkg) | [Parquet (804M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/no0_data.parquet) |
+:::
+
+::: {.callout-tip collapse=true appearance="minimal"}
+#### Sweden
+
+| NUTS1 | HiMoC on buildings | HiMoC on morphotopes | Morphometric data |
+|----|----|----|----|
+| SE1 | [Parquet (200M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se1.parquet)<br>[GPKG (639M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se1.gpkg) | [Parquet (237M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se1_morphotopes.parquet)<br>[GPKG (536M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se1_morphotopes.gpkg) | [Parquet (487M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se1_data.parquet) |
+| SE2 | [Parquet (319M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se2.parquet)<br>[GPKG (1014M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se2.gpkg) | [Parquet (386M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se2_morphotopes.parquet)<br>[GPKG (888M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se2_morphotopes.gpkg) | [Parquet (742M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se2_data.parquet) |
+| SE3 | [Parquet (199M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se3.parquet)<br>[GPKG (664M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se3.gpkg) | [Parquet (279M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se3_morphotopes.parquet)<br>[GPKG (657M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se3_morphotopes.gpkg) | [Parquet (795M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/se3_data.parquet) |
+:::
+
+::: {.callout-tip collapse=true appearance="minimal"}
+#### Common files
+
+| File name | Download |
+|----|----|
+| Morphotope data extension 2 | [Parquet (369M)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/urban_taxonomy/v202611/morphotope_data_extension_2.parquet) |
+| Complete classification including previous releases as PMtiles | [PMTiles (19G)](https://s3.cl4.du.cesnet.cz/4f4743b6_4043_4e02_a3ba_0452aa7523a2:uscuni-public/complete_v3.pmtiles) |
 :::
 
 ## License
@@ -247,11 +353,14 @@ Spain currently does not contain Basque region.
 This dataset is based on data from multiple sources. The combined database is licensed
 under the Open Database License (ODbL) v1.0.
 
-**Attribution:** Contains data © Charles University, OpenStreetMap contributors, TomTom,
-GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL,
-IT.NRW, GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische
-Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK
-(CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT), IGN, 3DGI, DGC, and others.
+**Attribution:** Contains data © Charles University, OpenStreetMap contributors, TomTom, 
+GeoBasis-DE/LGB, GeoSN, LGL Baden-Württemberg, GeoBasis-DE/MV, GeoBasis-DE/LVGL-SL, IT.NRW, 
+GeoBasis-DE/LGLN, GDI-Th, LVermGeo ST, GeoBasis-DE/LVermGeo SH, Bayerische 
+Vermessungsverwaltung, LGV Hamburg, Landesamt GeoInformation Bremen, GUGiK (PL), ČÚZK 
+(CZ), ÚGKK SR (SK), BEV (AT), Geoportal.lt (LT), IGN, 3DGI, DGC, Vurderingsstyrelsen 
+(DK), Maa- ja Ruumiamet (EE), VZD (LV), ACT (LU), Lantmäteriet (SE), Arabako Foru 
+Aldundia, Gipuzkoako Foru Aldundia, Bizkaiko Foru Aldundia, Gobierno de Navarra, and 
+others.
 
 Individual source building data is available under the following licenses and
 attributions:
@@ -291,3 +400,16 @@ attributions:
 -   **Belgium**: Open Database License (ODbL) OpenStreetMap Contributors
 -   **Netherlands**: CC-BY-4.0 © 3DBAG by tudelft3d and 3DGI
 -   **Spain**: LICENCIA DE ACCESO Y USO DE LOS SERVICIOS Y CONJUNTOS DE DATOS INSPIRE DE LA DIRECCIÓN GENERAL DEL CATASTRO © DGC
+-   **Araba/Álava**: Arabako Foru Aldundia / Diputación Foral de Álava — CC-BY 4.0
+-   **Gipuzkoa**: Diputación Foral de Gipuzkoa / Gipuzkoako Foru Aldundia -— CC-BY 4.0
+-   **Bizkaia**: Bizkaiko Foru Aldundia / Diputación Foral de Bizkaia -— CC BY 3.0 ES
+-   **Navarra**: Servicio proporcionado por el Gobierno de Navarra -— CC-BY 4.0
+-   **Denmark**: Vurderingsstyrelsen (BBR) -— [Vilkår for brug af data fra BBR (29.05.2019)](https://dataforsyningen.dk/asset/PDF/rettigheder_vilkaar/Vilk%C3%A5r%20for%20brug%20af%20data%20fra%20BBR.pdf)
+-   **Estonia**: Map data by Republic of Estonia Land and Spatial Development Board 11.08.2026 -— [Open data licence](https://geoportaal.maaruum.ee/opendata-licence)
+-   **Finland**: Open Database License (ODbL) OpenStreetMap Contributors
+-   **Latvia**: Valsts zemes dienests (State Land Service of Latvia) — CC-BY 4.0
+-   **Liechtenstein**: Open Database License (ODbL) OpenStreetMap Contributors
+-   **Luxembourg**: Administration du cadastre et de la topographie -— Creative Commons Zero (CC0)
+-   **Norway**: Open Database License (ODbL) OpenStreetMap Contributors
+-   **Sweden**: Byggnad Nedladdning, vektor © Lantmäteriet — CC-BY 4.0
+-   **Switzerland**: Open Database License (ODbL) OpenStreetMap Contributors
